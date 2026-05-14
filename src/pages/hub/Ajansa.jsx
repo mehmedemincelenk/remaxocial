@@ -141,7 +141,7 @@ export default function Ajansa() {
   const [up, setUp] = useState({ state: 'idle', prog: 0 });
   const [form, setForm] = useState({ name: '', contact: '', message: '' });
 
-  // AI STUDIO STATES (Copy-pasted from AIPromptLibrary)
+  // AI STUDIO STATES (Exact copy from AIPromptLibrary)
   const [selectedIds, setSelectedIds] = useState([]);
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -178,7 +178,7 @@ export default function Ajansa() {
     return TYPES.filter(t => t.tags.includes(mainTab === 'insta' ? instaTab : 'ads'));
   }, [mainTab, instaTab]);
 
-  // AI STUDIO LOGIC (Copy-pasted from AIPromptLibrary)
+  // AI STUDIO LOGIC (Exact copy from AIPromptLibrary)
   const handleAIUpload = (e) => {
     const files = Array.from(e.target.files);
     const newImgs = files.map(file => ({
@@ -370,6 +370,7 @@ export default function Ajansa() {
                 options={AI_SUB_OPTIONS}
                 activeId={aiTab}
                 onChange={setAiTab}
+                disabledIds={disabledToggleIds}
               />
             </motion.div>
           )}
@@ -379,7 +380,7 @@ export default function Ajansa() {
       {mainTab === 'ads' ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="ai-studio-container">
           {/* UPLOAD AREA */}
-          <div style={{ padding: '0 0.5rem 0.5rem' }}>
+          <div style={{ padding: '0 1.5rem 0.5rem' }}>
             <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
               <div 
                 style={{ 
@@ -435,7 +436,7 @@ export default function Ajansa() {
           {/* RESULT PREVIEW */}
           <AnimatePresence>
             {result && (
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ padding: '0 0.5rem 1rem' }}>
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ padding: '0 1.5rem 1rem' }}>
                 <img 
                   src={result} 
                   style={{ width: '100%', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }} 
@@ -445,29 +446,38 @@ export default function Ajansa() {
             )}
           </AnimatePresence>
 
-          {/* PROMPT CARDS */}
-          <div style={{ padding: '0 0.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+          {/* PROMPT CARDS - Pixel Perfect copy from AIPromptLibrary */}
+          <div style={{ padding: '0 1.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             {aiTab === 'all' && (
               <>
-                <PromptCard id="upscale" title="Kristal Berraklık" desc="Bulanıklığı siler, 8K keskinlik." icon="💎" isSelected={selectedIds.includes('upscale')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('upscale')} />
-                <PromptCard id="privacy" title="Önce Güvenlik" desc="Plakaları, yüzleri gizlerim." icon="🛡️" isSelected={selectedIds.includes('privacy')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('privacy')} />
-                <PromptCard id="cleaning" title="Cerrahi Temizlik" desc="Dağınıklığı yok ederim." icon="🧹" isSelected={selectedIds.includes('cleaning')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('cleaning')} isSurgical={true} />
+                <PromptCard id="upscale" title="Kristal Berraklık" desc="Bulanıklığı siler, 8K keskinlik ve detay eklerim." icon="💎" isSelected={selectedIds.includes('upscale')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('upscale')} />
+                <PromptCard id="privacy" title="Önce Güvenlik" desc="Plakaları, yüzleri ve özel evrakları profesyonelce gizlerim." icon="🛡️" isSelected={selectedIds.includes('privacy')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('privacy')} />
+                <PromptCard id="expand" title="Geniş Açı Operasyonu" desc="Mekanı veya manzarayı profesyonelce genişletirim." icon="🔍" isSelected={selectedIds.includes('expand')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('expand')} />
+                <PromptCard id="lifestyle" title="Yaşam İzleri" desc="Mülke ruh katar, hayalindeki o yaşamı resmederim." icon="👪" isSelected={selectedIds.includes('lifestyle')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('lifestyle')} />
+                <PromptCard id="cleaning" title="Cerrahi Temizlik" desc="Dağınıklığı yok eder, her yeri tertemiz yaparım." icon="🧹" isSelected={selectedIds.includes('cleaning')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('cleaning')} isSurgical={true} />
+                <PromptCard id="light" title="Gün Işığı" desc="Ferah, parlak ve doğal bir ışık operasyonu." icon="☀️" isSelected={selectedIds.includes('light')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('light')} />
+                <PromptCard id="twilight" title="Akşam Işığı" desc="Gündüzü büyüleyici bir alacakaranlığa çeviririm." icon="🌆" isSelected={selectedIds.includes('twilight')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('twilight')} />
+                <PromptCard id="neg_people" title="Sıfır İnsan" desc="Tüm figürleri siler, mekanı boşaltırım." icon="🚫" isSelected={selectedIds.includes('neg_people')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('neg_people')} isSurgical={true} />
+                <PromptCard id="neg_text" title="Sıfır Marka/Metin" desc="Yazıları ve logoları cerrahi titizlikle silerim." icon="✍️" isSelected={selectedIds.includes('neg_text')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('neg_text')} isSurgical={true} />
               </>
             )}
             {aiTab === 'indoor' && (
               <>
-                <PromptCard id="removal" title="Eşyaları Sıfırla" desc="Odayı bomboş yaparım." icon="🗑️" isSelected={selectedIds.includes('removal')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('removal')} isSurgical={true} />
-                <PromptCard id="lifestyle" title="Yaşam İzleri" desc="Mülke ruh katarım." icon="👪" isSelected={selectedIds.includes('lifestyle')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('lifestyle')} />
+                <PromptCard id="removal" title="Eşyaları Sıfırla" desc="İçeride ne varsa siler, odayı bomboş yaparım." icon="🗑️" isSelected={selectedIds.includes('removal')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('removal')} isSurgical={true} />
+                <PromptCard id="lifestyle" title="Yaşam İzleri" desc="Mülke ruh katar, hayalindeki o yaşamı resmederim." icon="👪" isSelected={selectedIds.includes('lifestyle')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('lifestyle')} />
                 <PromptCard id="ticari" title="₺" multiIcons={COM_TYPES} isSelected={selectedIds} onIconClick={toggleSelection} onCardClick={() => { }} />
               </>
             )}
             {aiTab === 'outdoor' && (
               <>
-                <PromptCard id="drone" title="Drone Bakışı" desc="Lüks drone çekimi." icon="🛸" isSelected={selectedIds.includes('drone')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('drone')} />
-                <PromptCard id="floorplan" title="Mimari Plan" desc="2D mimari plana çeviririm." icon="📐" isSelected={selectedIds.includes('floorplan')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('floorplan')} />
+                <PromptCard id="drone" title="Drone Bakışı" desc="Sınırları parlatır, lüks bir drone çekimine çeviririm." icon="🛸" isSelected={selectedIds.includes('drone')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('drone')} />
+                <PromptCard id="floorplan" title="Mimari Plan / Kroki" desc="Kötü çizimleri tertemiz 2D mimari plana çeviririm." icon="📐" isSelected={selectedIds.includes('floorplan')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('floorplan')} />
+                <PromptCard id="ticari" title="₺" multiIcons={COM_TYPES} isSelected={selectedIds} onIconClick={toggleSelection} onCardClick={() => { }} />
               </>
             )}
           </div>
+          
+          <div style={{ height: '2rem' }} />
         </motion.div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
