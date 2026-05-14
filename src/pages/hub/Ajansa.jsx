@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle, Clapperboard, Image as ImageIcon, Loader2, Check, PenLine } from 'lucide-react';
+import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle, Clapperboard, Image as ImageIcon, Loader2, Check, PenLine, Copy } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa';
 import { supabase } from '../../utils/supabaseClient';
 import PageLayout from '../../components/ortak/PageLayout';
@@ -143,10 +143,26 @@ export default function Ajansa() {
   const [form, setForm] = useState({ name: '', contact: '', message: '' });
 
   // WRITER STATES
-  const [writerForm, setWriterForm] = useState({ title: '', details: '', extra: '' });
+  const [writerForm, setWriterForm] = useState({ 
+    raw: '', 
+    title: '', 
+    details: '', 
+    extra: '', 
+    price: '', 
+    location: '', 
+    specs: '' 
+  });
   const [writerImages, setWriterImages] = useState([]);
   const [writerSelectedIds, setWriterSelectedIds] = useState([]);
-  const [writerRevealed, setWriterRevealed] = useState({ details: false, photos: false, extra: false });
+  const [writerRevealed, setWriterRevealed] = useState({ 
+    title: false, 
+    details: false, 
+    photos: false, 
+    extra: false, 
+    price: false, 
+    location: false, 
+    specs: false 
+  });
   const [writerResult, setWriterResult] = useState('');
   const [isWriting, setIsWriting] = useState(false);
   const writerFileInputRef = useRef(null);
@@ -411,38 +427,74 @@ export default function Ajansa() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="writer-container" style={{ padding: '0 0.5rem' }}>
           {/* PRIMARY INPUT */}
           <div style={{ marginBottom: '1rem' }}>
-            <input 
-              placeholder="İlan Başlığı (Örn: Deniz Manzaralı 3+1)" 
-              value={writerForm.title} 
-              onChange={e => setWriterForm(p => ({ ...p, title: e.target.value }))}
-              style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '1rem', borderRadius: '12px', color: '#fff', fontSize: '0.85rem', outline: 'none', width: '100%' }} 
+            <textarea 
+              placeholder="Sizdeki metin (Kaba notlar, fikirler, kopyalanmış ilanlar...)" 
+              rows={3}
+              value={writerForm.raw} 
+              onChange={e => setWriterForm(p => ({ ...p, raw: e.target.value }))}
+              style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '1rem', borderRadius: '12px', color: '#fff', fontSize: '0.85rem', outline: 'none', width: '100%', resize: 'none' }} 
             />
           </div>
 
           {/* REVEAL TRIGGERS (FilterChips) */}
-          <div style={{ display: 'flex', gap: '8px', marginBottom: '1.25rem', overflowX: 'auto', scrollbarWidth: 'none' }}>
-            <FilterChip 
-              label="Açıklama +" 
-              active={writerRevealed.details} 
-              onClick={() => toggleReveal('details')} 
-              color="var(--color-accent)"
-            />
-            <FilterChip 
-              label="Fotoğraf +" 
-              active={writerRevealed.photos} 
-              onClick={() => toggleReveal('photos')} 
-              color="var(--color-accent)"
-            />
-            <FilterChip 
-              label="Not +" 
-              active={writerRevealed.extra} 
-              onClick={() => toggleReveal('extra')} 
-              color="var(--color-accent)"
-            />
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '1.25rem', overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: '4px' }}>
+            <FilterChip label="Başlık +" active={writerRevealed.title} onClick={() => toggleReveal('title')} color="#3498db" />
+            <FilterChip label="Fiyat +" active={writerRevealed.price} onClick={() => toggleReveal('price')} color="#2ecc71" />
+            <FilterChip label="Konum +" active={writerRevealed.location} onClick={() => toggleReveal('location')} color="#e67e22" />
+            <FilterChip label="Teknik +" active={writerRevealed.specs} onClick={() => toggleReveal('specs')} color="#9b59b6" />
+            <FilterChip label="Açıklama +" active={writerRevealed.details} onClick={() => toggleReveal('details')} color="var(--color-accent)" />
+            <FilterChip label="Fotoğraf +" active={writerRevealed.photos} onClick={() => toggleReveal('photos')} color="var(--color-accent)" />
+            <FilterChip label="Not +" active={writerRevealed.extra} onClick={() => toggleReveal('extra')} color="var(--color-accent)" />
           </div>
 
           {/* SECONDARY FIELDS (Expandable) */}
           <AnimatePresence>
+            {writerRevealed.title && (
+              <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
+                <input 
+                  placeholder="Sahibinden Başlığı" 
+                  value={writerForm.title} 
+                  onChange={e => setWriterForm(p => ({ ...p, title: e.target.value }))}
+                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', outline: 'none', width: '100%' }} 
+                />
+              </motion.div>
+            )}
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
+              {writerRevealed.price && (
+                <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
+                  <input 
+                    placeholder="Fiyat (₺)" 
+                    value={writerForm.price} 
+                    onChange={e => setWriterForm(p => ({ ...p, price: e.target.value }))}
+                    style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', outline: 'none', width: '100%' }} 
+                  />
+                </motion.div>
+              )}
+              {writerRevealed.location && (
+                <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
+                  <input 
+                    placeholder="İl / İlçe / Mahalle" 
+                    value={writerForm.location} 
+                    onChange={e => setWriterForm(p => ({ ...p, location: e.target.value }))}
+                    style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', outline: 'none', width: '100%' }} 
+                  />
+                </motion.div>
+              )}
+            </div>
+
+            {writerRevealed.specs && (
+              <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
+                <textarea 
+                  placeholder="Teknik Bilgiler (m2, Oda, Kat, Isıtma vb.)" 
+                  rows={2}
+                  value={writerForm.specs} 
+                  onChange={e => setWriterForm(p => ({ ...p, specs: e.target.value }))}
+                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', resize: 'none', outline: 'none', width: '100%' }} 
+                />
+              </motion.div>
+            )}
+
             {writerRevealed.details && (
               <motion.div 
                 initial={{ height: 0, opacity: 0, marginBottom: 0 }} 
@@ -451,7 +503,7 @@ export default function Ajansa() {
                 style={{ overflow: 'hidden' }}
               >
                 <textarea 
-                  placeholder="Mülk Detayları (Metrekare, odalar, özellikler...)" 
+                  placeholder="Mülk Detayları ve Özellikleri..." 
                   rows={3}
                   value={writerForm.details} 
                   onChange={e => setWriterForm(p => ({ ...p, details: e.target.value }))}
@@ -522,7 +574,7 @@ export default function Ajansa() {
             )}
           </AnimatePresence>
 
-          {/* TRANSFORMER CARDS */}
+          {/* TRANSFORMER CARDS - Exactly same pattern as Ads */}
           <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.6rem', fontWeight: '800', marginBottom: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Metin Dönüştürücüler</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             <PromptCard 
