@@ -7,6 +7,7 @@ import { supabase } from '../../utils/supabaseClient';
 import PageLayout from '../../components/ortak/PageLayout';
 import GlassCard from '../../components/ortak/GlassCard';
 import MegaToggle from '../../components/ortak/MegaToggle';
+import FilterChip from '../../components/ortak/FilterChip';
 import { promptMixer } from '../../utils/aiPrompts';
 
 import cgptLogo from '../../assets/icons/cgpt_logo.svg';
@@ -142,9 +143,33 @@ export default function Ajansa() {
   const [form, setForm] = useState({ name: '', contact: '', message: '' });
 
   // WRITER STATES
-  const [writerForm, setWriterForm] = useState({ title: '', details: '', photos: '', extra: '' });
+  const [writerForm, setWriterForm] = useState({ title: '', details: '', extra: '' });
+  const [writerImages, setWriterImages] = useState([]);
+  const [writerSelectedIds, setWriterSelectedIds] = useState([]);
+  const [writerRevealed, setWriterRevealed] = useState({ details: false, photos: false, extra: false });
   const [writerResult, setWriterResult] = useState('');
   const [isWriting, setIsWriting] = useState(false);
+  const writerFileInputRef = useRef(null);
+
+  const toggleReveal = (field) => setWriterRevealed(p => ({ ...p, [field]: !p[field] }));
+
+  const handleWriterImageUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const newImgs = files.map(file => ({
+      id: Math.random().toString(36).substr(2, 9),
+      url: URL.createObjectURL(file),
+      file: file
+    }));
+    setWriterImages(prev => [...prev, ...newImgs].slice(0, 5));
+  };
+
+  const removeWriterImage = (id) => {
+    setWriterImages(prev => prev.filter(img => img.id !== id));
+  };
+
+  const toggleWriterSelection = (id) => {
+    setWriterSelectedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
+  };
 
   // AI STUDIO STATES (Exact copy from AIPromptLibrary)
   const [selectedIds, setSelectedIds] = useState([]);
@@ -384,46 +409,131 @@ export default function Ajansa() {
 
       {mainTab === 'writer' && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="writer-container" style={{ padding: '0 0.5rem' }}>
-          {/* INPUT FIELDS */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
+          {/* PRIMARY INPUT */}
+          <div style={{ marginBottom: '1rem' }}>
             <input 
               placeholder="İlan Başlığı (Örn: Deniz Manzaralı 3+1)" 
               value={writerForm.title} 
               onChange={e => setWriterForm(p => ({ ...p, title: e.target.value }))}
-              style={{ background: '#111', border: '1px solid #222', padding: '1rem', borderRadius: '16px', color: '#fff', fontSize: '0.85rem' }} 
-            />
-            <textarea 
-              placeholder="Mülk Detayları (Metrekaresi, odaları, özellikleri...)" 
-              rows={3}
-              value={writerForm.details} 
-              onChange={e => setWriterForm(p => ({ ...p, details: e.target.value }))}
-              style={{ background: '#111', border: '1px solid #222', padding: '1rem', borderRadius: '16px', color: '#fff', fontSize: '0.85rem', resize: 'none' }} 
-            />
-            <input 
-              placeholder="İlan Fotoğraflarında Neler Var?" 
-              value={writerForm.photos} 
-              onChange={e => setWriterForm(p => ({ ...p, photos: e.target.value }))}
-              style={{ background: '#111', border: '1px solid #222', padding: '1rem', borderRadius: '16px', color: '#fff', fontSize: '0.85rem' }} 
-            />
-            <textarea 
-              placeholder="Ekstra Notlar veya Hedef Kitle..." 
-              rows={2}
-              value={writerForm.extra} 
-              onChange={e => setWriterForm(p => ({ ...p, extra: e.target.value }))}
-              style={{ background: '#111', border: '1px solid #222', padding: '1rem', borderRadius: '16px', color: '#fff', fontSize: '0.85rem', resize: 'none' }} 
+              style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '1rem', borderRadius: '12px', color: '#fff', fontSize: '0.85rem', outline: 'none', width: '100%' }} 
             />
           </div>
 
+          {/* REVEAL TRIGGERS (FilterChips) */}
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '1.25rem', overflowX: 'auto', scrollbarWidth: 'none' }}>
+            <FilterChip 
+              label="Açıklama +" 
+              active={writerRevealed.details} 
+              onClick={() => toggleReveal('details')} 
+              color="var(--color-accent)"
+            />
+            <FilterChip 
+              label="Fotoğraf +" 
+              active={writerRevealed.photos} 
+              onClick={() => toggleReveal('photos')} 
+              color="var(--color-accent)"
+            />
+            <FilterChip 
+              label="Not +" 
+              active={writerRevealed.extra} 
+              onClick={() => toggleReveal('extra')} 
+              color="var(--color-accent)"
+            />
+          </div>
+
+          {/* SECONDARY FIELDS (Expandable) */}
+          <AnimatePresence>
+            {writerRevealed.details && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0, marginBottom: 0 }} 
+                animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} 
+                exit={{ height: 0, opacity: 0, marginBottom: 0 }}
+                style={{ overflow: 'hidden' }}
+              >
+                <textarea 
+                  placeholder="Mülk Detayları (Metrekare, odalar, özellikler...)" 
+                  rows={3}
+                  value={writerForm.details} 
+                  onChange={e => setWriterForm(p => ({ ...p, details: e.target.value }))}
+                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', resize: 'none', outline: 'none', width: '100%' }} 
+                />
+              </motion.div>
+            )}
+
+            {writerRevealed.photos && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0, marginBottom: 0 }} 
+                animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} 
+                exit={{ height: 0, opacity: 0, marginBottom: 0 }}
+                style={{ overflow: 'hidden' }}
+              >
+                <div 
+                  style={{ 
+                    height: '60px', 
+                    border: '1px dashed rgba(255,255,255,0.2)', 
+                    borderRadius: '12px', 
+                    display: 'flex', 
+                    alignItems: 'center', 
+                    gap: '8px',
+                    padding: '0 8px',
+                    overflowX: 'auto',
+                    scrollbarWidth: 'none',
+                    background: 'rgba(255,255,255,0.02)'
+                  }}
+                >
+                  <input type="file" multiple hidden ref={writerFileInputRef} onChange={handleWriterImageUpload} accept="image/*" />
+                  {writerImages.length < 5 && (
+                    <div 
+                      onClick={() => writerFileInputRef.current?.click()}
+                      style={{ minWidth: '40px', height: '40px', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                    >
+                      <ImageIcon size={16} style={{ opacity: 0.4 }} />
+                    </div>
+                  )}
+                  {writerImages.map(img => (
+                    <motion.div 
+                      key={img.id}
+                      onClick={() => removeWriterImage(img.id)}
+                      whileTap={{ scale: 0.9 }}
+                      style={{ minWidth: '40px', height: '40px', borderRadius: '8px', overflow: 'hidden', position: 'relative', cursor: 'pointer', border: '1px solid rgba(255,255,255,0.1)' }}
+                    >
+                      <img src={img.url} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            )}
+
+            {writerRevealed.extra && (
+              <motion.div 
+                initial={{ height: 0, opacity: 0, marginBottom: 0 }} 
+                animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} 
+                exit={{ height: 0, opacity: 0, marginBottom: 0 }}
+                style={{ overflow: 'hidden' }}
+              >
+                <textarea 
+                  placeholder="Ekstra Notlar veya Hedef Kitle..." 
+                  rows={2}
+                  value={writerForm.extra} 
+                  onChange={e => setWriterForm(p => ({ ...p, extra: e.target.value }))}
+                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', resize: 'none', outline: 'none', width: '100%' }} 
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
           {/* TRANSFORMER CARDS */}
-          <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.6rem', fontWeight: '800', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Metin Sihirbazları</p>
+          <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.6rem', fontWeight: '800', marginBottom: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Metin Dönüştürücüler</p>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             <PromptCard 
-              id="pro_desc" title="💎 Kurumsal İlan" desc="Profesyonel ve güven veren bir ilan metni oluştur." 
-              isSelected={false} onIconClick={() => {}} onCardClick={() => alert('Yapay zeka metni hazırlanıyor...')} 
+              id="pro_desc" title="Kurumsal İlan" desc="Profesyonel ve güven veren bir ilan metni oluştur." 
+              icon="💎" isSelected={writerSelectedIds.includes('pro_desc')} 
+              onIconClick={toggleWriterSelection} onCardClick={() => alert('Yapay zeka metni hazırlanıyor...')} 
             />
             <PromptCard 
-              id="insta_post" title="📱 Instagram Post" desc="Viral etkili, bol emojili sosyal medya içeriği." 
-              isSelected={false} onIconClick={() => {}} onCardClick={() => alert('Yapay zeka metni hazırlanıyor...')} 
+              id="insta_post" title="Instagram Post" desc="Viral etkili, bol emojili sosyal medya içeriği." 
+              icon="📱" isSelected={writerSelectedIds.includes('insta_post')} 
+              onIconClick={toggleWriterSelection} onCardClick={() => alert('Yapay zeka metni hazırlanıyor...')} 
             />
           </div>
 
