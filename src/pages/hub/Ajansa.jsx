@@ -1,24 +1,25 @@
 import { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle } from 'lucide-react';
+import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle, Clapperboard } from 'lucide-react';
 import { supabase } from '../../utils/supabaseClient';
 import PageLayout from '../../components/ortak/PageLayout';
+import MegaToggle from '../../components/ortak/MegaToggle';
 
 const TYPES = [
-  { id: 'victory', icon: <Trophy />, label: 'Satılan\nKiralanan', color: '#2ecc71' },
-  { id: 'studio', icon: <Video />, label: 'Haber\nOnayla', color: '#ff4d4d', path: '/studio' },
-  { id: 'selfie', icon: <Video />, label: 'Selfie\nStudio', color: '#3498db', path: '/selfie' },
-  { id: 'reels', icon: <Camera />, label: 'Instagram\nReels', color: '#E1306C' },
-  { id: 'post', icon: <Layout />, label: 'Instagram\nPost', color: '#833AB4' },
-  { id: 'story', icon: <PlayCircle />, label: 'Instagram\nStory', color: '#F77737' },
-  { id: 'qa', icon: <Video />, label: 'Soru\nCevaplar', color: 'var(--color-red)', heavy: true },
-  { id: 'field', icon: <Zap />, label: 'Saha\nKesitleri', color: '#C026D3', heavy: true },
-  { id: 'tour', icon: <Footprints />, label: 'Ev Gezi\nVideoları', color: 'var(--color-blue)', heavy: true },
-  { id: 'podcast', icon: <Mic />, label: 'Müşteri\nPodcast', color: '#7C3AED', heavy: true },
-  { id: 'photos', icon: <Image />, label: 'Kişisel\nHayat', color: '#059669' },
-  { id: 'stars', icon: <Star />, label: 'Müşteri\nYorumları', color: '#D97706' },
-  { id: 'suggestion', icon: <Zap />, label: 'Öneri\nBildir', color: '#D4AF37' },
+  { id: 'victory', icon: <Trophy />, label: 'Satılan\nKiralanan', color: '#2ecc71', tags: ['reels', 'post', 'story'] },
+  { id: 'studio', icon: <Video />, label: 'Haber\nOnayla', color: '#ff4d4d', path: '/studio', tags: ['reels'] },
+  { id: 'selfie', icon: <Video />, label: 'Selfie\nStudio', color: '#3498db', path: '/selfie', tags: ['reels', 'story'] },
+  { id: 'reels', icon: <Clapperboard />, label: 'Instagram\nReels', color: '#E1306C', tags: ['reels'] },
+  { id: 'post', icon: <Layout />, label: 'Instagram\nPost', color: '#833AB4', tags: ['post'] },
+  { id: 'story', icon: <PlayCircle />, label: 'Instagram\nStory', color: '#F77737', tags: ['story'] },
+  { id: 'qa', icon: <Video />, label: 'Soru\nCevaplar', color: 'var(--color-red)', heavy: true, tags: ['reels'] },
+  { id: 'field', icon: <Zap />, label: 'Saha\nKesitleri', color: '#C026D3', heavy: true, tags: ['reels'] },
+  { id: 'tour', icon: <Footprints />, label: 'Ev Gezi\nVideoları', color: 'var(--color-blue)', heavy: true, tags: ['reels'] },
+  { id: 'podcast', icon: <Mic />, label: 'Müşteri\nPodcast', color: '#7C3AED', heavy: true, tags: ['reels'] },
+  { id: 'photos', icon: <Image />, label: 'Kişisel\nHayat', color: '#059669', tags: ['post', 'story'] },
+  { id: 'stars', icon: <Star />, label: 'Müşteri\nYorumları', color: '#D97706', tags: ['post', 'story'] },
+  { id: 'suggestion', icon: <Zap />, label: 'Öneri\nBildir', color: '#D4AF37', tags: ['post', 'story'] },
 ];
 
 const UI = {
@@ -29,11 +30,28 @@ const UI = {
 
 export default function Ajansa() {
   const navigate = useNavigate();
+  const [tab, setTab] = useState('reels');
   const [sel, setSel] = useState(null);
   const [files, setFiles] = useState([]);
   const [status, setStatus] = useState('SATILDI');
   const [up, setUp] = useState({ state: 'idle', prog: 0 });
   const [form, setForm] = useState({ name: '', contact: '', message: '' });
+
+  const TOGGLE_OPTIONS = [
+    { id: 'reels', label: 'R' },
+    { id: 'post', label: 'P' },
+    { id: 'story', label: 'S' },
+  ];
+
+  const sortedTypes = useMemo(() => {
+    return [...TYPES].sort((a, b) => {
+      const aMatch = a.tags.includes(tab);
+      const bMatch = b.tags.includes(tab);
+      if (aMatch && !bMatch) return -1;
+      if (!aMatch && bMatch) return 1;
+      return 0;
+    });
+  }, [tab]);
 
   const reset = () => { setSel(null); setFiles([]); setStatus('SATILDI'); setUp({ state: 'idle', prog: 0 }); setForm({ name: '', contact: '', message: '' }); };
 
@@ -74,14 +92,25 @@ export default function Ajansa() {
 
   return (
     <PageLayout padding="1rem">
-      <h2 style={{ color: '#fff', fontSize: '1.2rem', fontWeight: '800', marginBottom: '1.5rem', padding: '0 0.5rem' }}>Ajans</h2>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1.5rem', padding: '0 0.5rem' }}>
+        <MegaToggle 
+          options={TOGGLE_OPTIONS}
+          activeId={tab}
+          onChange={setTab}
+        />
+      </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
-        {TYPES.map(t => (
-          <button key={t.id} onClick={() => handleBtnClick(t)} style={{ ...UI.glass, padding: '1rem 0.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', minHeight: '90px', cursor: 'pointer' }}>
+        {sortedTypes.map(t => (
+          <motion.button 
+            layout
+            key={t.id} 
+            onClick={() => handleBtnClick(t)} 
+            style={{ ...UI.glass, padding: '1rem 0.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', minHeight: '90px', cursor: 'pointer', opacity: t.tags.includes(tab) ? 1 : 0.4, transition: 'opacity 0.3s ease' }}
+          >
             <div style={{ fontSize: '1.2rem', color: t.color, filter: `drop-shadow(0 0 10px ${t.color}40)` }}>{t.icon}</div>
             <span style={{ color: '#fff', textAlign: 'center', whiteSpace: 'pre-line', fontSize: '0.6rem', fontWeight: '600', lineHeight: '1.1' }}>{t.label}</span>
-          </button>
+          </motion.button>
         ))}
       </div>
 
