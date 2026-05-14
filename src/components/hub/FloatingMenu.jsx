@@ -62,7 +62,6 @@ export default function FloatingMenu() {
   const hubItems = [
     { id: 'home', path: '/akademi', icon: <Trophy size={20} />, label: 'Ana Sayfa' },
     { id: 'library', path: '/', icon: <BookOpen size={20} />, label: 'Kütüphane' },
-    { id: 'ai', path: '/ai', icon: <Sparkles size={20} />, label: 'AI' },
     { id: 'ajansa', path: '/ajansa', icon: <Radio size={20} />, label: 'Ajansa' },
   ];
 
