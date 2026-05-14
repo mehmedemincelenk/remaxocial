@@ -131,7 +131,7 @@ const UI = {
 
 export default function Ajansa() {
   const navigate = useNavigate();
-  const [mainTab, setMainTab] = useState('insta'); // 'insta' or 'ads'
+  const [mainTab, setMainTab] = useState('insta'); // 'insta', 'ads', or 'writer'
   const [instaTab, setInstaTab] = useState('reels'); // 'reels', 'post', 'story'
   const [aiTab, setAiTab] = useState('all'); // 'indoor', 'outdoor', 'all'
   
@@ -140,6 +140,11 @@ export default function Ajansa() {
   const [status, setStatus] = useState('SATILDI');
   const [up, setUp] = useState({ state: 'idle', prog: 0 });
   const [form, setForm] = useState({ name: '', contact: '', message: '' });
+
+  // WRITER STATES
+  const [writerForm, setWriterForm] = useState({ title: '', details: '', photos: '', extra: '' });
+  const [writerResult, setWriterResult] = useState('');
+  const [isWriting, setIsWriting] = useState(false);
 
   // AI STUDIO STATES (Exact copy from AIPromptLibrary)
   const [selectedIds, setSelectedIds] = useState([]);
@@ -377,7 +382,70 @@ export default function Ajansa() {
         </AnimatePresence>
       </div>
 
-      {mainTab === 'ads' ? (
+      {mainTab === 'writer' && (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="writer-container" style={{ padding: '0 0.5rem' }}>
+          {/* INPUT FIELDS */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem', marginBottom: '1.5rem' }}>
+            <input 
+              placeholder="İlan Başlığı (Örn: Deniz Manzaralı 3+1)" 
+              value={writerForm.title} 
+              onChange={e => setWriterForm(p => ({ ...p, title: e.target.value }))}
+              style={{ background: '#111', border: '1px solid #222', padding: '1rem', borderRadius: '16px', color: '#fff', fontSize: '0.85rem' }} 
+            />
+            <textarea 
+              placeholder="Mülk Detayları (Metrekaresi, odaları, özellikleri...)" 
+              rows={3}
+              value={writerForm.details} 
+              onChange={e => setWriterForm(p => ({ ...p, details: e.target.value }))}
+              style={{ background: '#111', border: '1px solid #222', padding: '1rem', borderRadius: '16px', color: '#fff', fontSize: '0.85rem', resize: 'none' }} 
+            />
+            <input 
+              placeholder="İlan Fotoğraflarında Neler Var?" 
+              value={writerForm.photos} 
+              onChange={e => setWriterForm(p => ({ ...p, photos: e.target.value }))}
+              style={{ background: '#111', border: '1px solid #222', padding: '1rem', borderRadius: '16px', color: '#fff', fontSize: '0.85rem' }} 
+            />
+            <textarea 
+              placeholder="Ekstra Notlar veya Hedef Kitle..." 
+              rows={2}
+              value={writerForm.extra} 
+              onChange={e => setWriterForm(p => ({ ...p, extra: e.target.value }))}
+              style={{ background: '#111', border: '1px solid #222', padding: '1rem', borderRadius: '16px', color: '#fff', fontSize: '0.85rem', resize: 'none' }} 
+            />
+          </div>
+
+          {/* TRANSFORMER CARDS */}
+          <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.6rem', fontWeight: '800', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Metin Sihirbazları</p>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            <PromptCard 
+              id="pro_desc" title="💎 Kurumsal İlan" desc="Profesyonel ve güven veren bir ilan metni oluştur." 
+              isSelected={false} onIconClick={() => {}} onCardClick={() => alert('Yapay zeka metni hazırlanıyor...')} 
+            />
+            <PromptCard 
+              id="insta_post" title="📱 Instagram Post" desc="Viral etkili, bol emojili sosyal medya içeriği." 
+              isSelected={false} onIconClick={() => {}} onCardClick={() => alert('Yapay zeka metni hazırlanıyor...')} 
+            />
+          </div>
+
+          {/* RESULT AREA */}
+          <AnimatePresence>
+            {writerResult && (
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ marginTop: '1.5rem' }}>
+                <GlassCard padding="1.25rem" borderRadius="20px" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid var(--color-accent)' }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1rem' }}>
+                    <span style={{ fontSize: '0.7rem', fontWeight: '800', color: 'var(--color-accent)', textTransform: 'uppercase' }}>Yeni Nesil Metin</span>
+                    <button onClick={() => navigator.clipboard.writeText(writerResult)} style={{ background: 'transparent', border: 'none', color: '#fff', cursor: 'pointer' }}><Copy size={16} /></button>
+                  </div>
+                  <p style={{ color: '#fff', fontSize: '0.85rem', lineHeight: '1.6', whiteSpace: 'pre-line' }}>{writerResult}</p>
+                </GlassCard>
+              </motion.div>
+            )}
+          </AnimatePresence>
+          <div style={{ height: '2rem' }} />
+        </motion.div>
+      )}
+
+      {mainTab === 'ads' && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="ai-studio-container">
           {/* UPLOAD AREA */}
           <div style={{ padding: '0 1.5rem 0.5rem' }}>
@@ -479,7 +547,9 @@ export default function Ajansa() {
           
           <div style={{ height: '2rem' }} />
         </motion.div>
-      ) : (
+      )}
+
+      {mainTab === 'insta' && (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
           {filteredTypes.map(t => (
             <motion.button 
