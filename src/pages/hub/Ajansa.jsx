@@ -130,8 +130,10 @@ const UI = {
 
 export default function Ajansa() {
   const navigate = useNavigate();
-  const [tab, setTab] = useState('reels');
-  const [subTab, setSubTab] = useState('all');
+  const [mainTab, setMainTab] = useState('insta'); // 'insta' or 'ads'
+  const [instaTab, setInstaTab] = useState('reels'); // 'reels', 'post', 'story'
+  const [aiTab, setAiTab] = useState('all'); // 'indoor', 'outdoor', 'all'
+  
   const [sel, setSel] = useState(null);
   const [files, setFiles] = useState([]);
   const [status, setStatus] = useState('SATILDI');
@@ -145,14 +147,18 @@ export default function Ajansa() {
   const [result, setResult] = useState(null);
   const fileInputRef = useRef(null);
 
-  const TOGGLE_OPTIONS = [
-    { id: 'reels', label: 'R' },
-    { id: 'post', label: 'P' },
-    { id: 'story', label: 'S' },
+  const MAIN_TOGGLE_OPTIONS = [
+    { id: 'insta', icon: <Instagram size={18} />, label: 'Instagram' },
     { id: 'ads', icon: <Image size={18} />, label: 'İlanlar' },
   ];
 
-  const AI_TOGGLE_OPTIONS = [
+  const INSTA_SUB_OPTIONS = [
+    { id: 'reels', label: 'R' },
+    { id: 'post', label: 'P' },
+    { id: 'story', label: 'S' },
+  ];
+
+  const AI_SUB_OPTIONS = [
     { id: 'indoor', label: 'İç Mekan', customRender: (active) => <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: active ? '#fff' : 'rgba(255,255,255,0.2)' }} /> },
     { id: 'outdoor', label: 'Dış Mekan', customRender: (active) => <div style={{ width: '10px', height: '10px', borderRadius: '50%', border: active ? '2px solid #fff' : '2px solid rgba(255,255,255,0.2)', background: 'transparent' }} /> },
     {
@@ -167,8 +173,8 @@ export default function Ajansa() {
   ];
 
   const filteredTypes = useMemo(() => {
-    return TYPES.filter(t => t.tags.includes(tab));
-  }, [tab]);
+    return TYPES.filter(t => t.tags.includes(mainTab === 'insta' ? instaTab : 'ads'));
+  }, [mainTab, instaTab]);
 
   // AI STUDIO LOGIC
   const handleAIUpload = (e) => {
@@ -199,7 +205,7 @@ export default function Ajansa() {
     setLoading(true);
     setResult(null);
     try {
-      const finalPrompt = promptMixer(selectedIds, subTab);
+      const finalPrompt = promptMixer(selectedIds, aiTab);
       const base64Image = await fileToBase64(images[0].file);
       const response = await fetch(`${REPLICATE_PROXY}/v1/models/black-forest-labs/flux-dev/predictions`, {
         method: "POST",
@@ -257,7 +263,7 @@ export default function Ajansa() {
     setSelectedIds(prev => {
       if (prev.includes(id)) {
         const next = prev.filter(i => i !== id);
-        dispatchUpdate(next, subTab);
+        dispatchUpdate(next, aiTab);
         return next;
       }
       let next = [...prev];
@@ -267,14 +273,14 @@ export default function Ajansa() {
         if (prev.length >= 3) return prev;
       }
       next = [...next, id];
-      dispatchUpdate(next, subTab);
+      dispatchUpdate(next, aiTab);
       return next;
     });
   };
 
   const handleMasterCopy = (baseId) => {
     const allActive = Array.from(new Set([...selectedIds, baseId]));
-    const finalPrompt = promptMixer(allActive, subTab);
+    const finalPrompt = promptMixer(allActive, aiTab);
     navigator.clipboard.writeText(finalPrompt);
     setTimeout(() => setSelectedIds([]), 2000);
   };
@@ -320,29 +326,47 @@ export default function Ajansa() {
     <PageLayout padding="1rem">
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', padding: '0 0.5rem' }}>
         <MegaToggle 
-          options={TOGGLE_OPTIONS}
-          activeId={tab}
-          onChange={setTab}
+          options={MAIN_TOGGLE_OPTIONS}
+          activeId={mainTab}
+          onChange={setMainTab}
         />
-        <AnimatePresence>
-          {tab === 'ads' && (
+        
+        <AnimatePresence mode="wait">
+          {mainTab === 'insta' && (
             <motion.div
+              key="insta-sub"
               initial={{ opacity: 0, x: -10, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -10, scale: 0.9 }}
               transition={{ type: 'spring', damping: 20 }}
             >
               <MegaToggle 
-                options={AI_TOGGLE_OPTIONS}
-                activeId={subTab}
-                onChange={setSubTab}
+                options={INSTA_SUB_OPTIONS}
+                activeId={instaTab}
+                onChange={setInstaTab}
+              />
+            </motion.div>
+          )}
+          
+          {mainTab === 'ads' && (
+            <motion.div
+              key="ads-sub"
+              initial={{ opacity: 0, x: -10, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -10, scale: 0.9 }}
+              transition={{ type: 'spring', damping: 20 }}
+            >
+              <MegaToggle 
+                options={AI_SUB_OPTIONS}
+                activeId={aiTab}
+                onChange={setAiTab}
               />
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {tab === 'ads' ? (
+      {mainTab === 'ads' ? (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="ai-studio-container">
           {/* UPLOAD AREA */}
           <div style={{ padding: '0 0.5rem 0.5rem' }}>
@@ -413,21 +437,21 @@ export default function Ajansa() {
 
           {/* PROMPT CARDS */}
           <div style={{ padding: '0 0.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
-            {subTab === 'all' && (
+            {aiTab === 'all' && (
               <>
                 <PromptCard id="upscale" title="Kristal Berraklık" desc="Bulanıklığı siler, 8K keskinlik." icon="💎" isSelected={selectedIds.includes('upscale')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('upscale')} />
                 <PromptCard id="privacy" title="Önce Güvenlik" desc="Plakaları, yüzleri gizlerim." icon="🛡️" isSelected={selectedIds.includes('privacy')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('privacy')} />
                 <PromptCard id="cleaning" title="Cerrahi Temizlik" desc="Dağınıklığı yok ederim." icon="🧹" isSelected={selectedIds.includes('cleaning')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('cleaning')} isSurgical={true} />
               </>
             )}
-            {subTab === 'indoor' && (
+            {aiTab === 'indoor' && (
               <>
                 <PromptCard id="removal" title="Eşyaları Sıfırla" desc="Odayı bomboş yaparım." icon="🗑️" isSelected={selectedIds.includes('removal')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('removal')} isSurgical={true} />
                 <PromptCard id="lifestyle" title="Yaşam İzleri" desc="Mülke ruh katarım." icon="👪" isSelected={selectedIds.includes('lifestyle')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('lifestyle')} />
                 <PromptCard id="ticari" title="₺" multiIcons={COM_TYPES} isSelected={selectedIds} onIconClick={toggleSelection} onCardClick={() => { }} />
               </>
             )}
-            {subTab === 'outdoor' && (
+            {aiTab === 'outdoor' && (
               <>
                 <PromptCard id="drone" title="Drone Bakışı" desc="Lüks drone çekimi." icon="🛸" isSelected={selectedIds.includes('drone')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('drone')} />
                 <PromptCard id="floorplan" title="Mimari Plan" desc="2D mimari plana çeviririm." icon="📐" isSelected={selectedIds.includes('floorplan')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('floorplan')} />
