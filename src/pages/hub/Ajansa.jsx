@@ -2,6 +2,7 @@ import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle, Clapperboard, Image as ImageIcon, Loader2, Check } from 'lucide-react';
+import { FaInstagram } from 'react-icons/fa';
 import { supabase } from '../../utils/supabaseClient';
 import PageLayout from '../../components/ortak/PageLayout';
 import GlassCard from '../../components/ortak/GlassCard';
@@ -140,7 +141,7 @@ export default function Ajansa() {
   const [up, setUp] = useState({ state: 'idle', prog: 0 });
   const [form, setForm] = useState({ name: '', contact: '', message: '' });
 
-  // AI STUDIO STATES
+  // AI STUDIO STATES (Copy-pasted from AIPromptLibrary)
   const [selectedIds, setSelectedIds] = useState([]);
   const [images, setImages] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -148,7 +149,7 @@ export default function Ajansa() {
   const fileInputRef = useRef(null);
 
   const MAIN_TOGGLE_OPTIONS = [
-    { id: 'insta', icon: <Instagram size={18} />, label: 'Instagram' },
+    { id: 'insta', icon: <FaInstagram size={18} />, label: 'Instagram' },
     { id: 'ads', icon: <Image size={18} />, label: 'İlanlar' },
   ];
 
@@ -176,7 +177,7 @@ export default function Ajansa() {
     return TYPES.filter(t => t.tags.includes(mainTab === 'insta' ? instaTab : 'ads'));
   }, [mainTab, instaTab]);
 
-  // AI STUDIO LOGIC
+  // AI STUDIO LOGIC (Copy-pasted from AIPromptLibrary)
   const handleAIUpload = (e) => {
     const files = Array.from(e.target.files);
     const newImgs = files.map(file => ({
@@ -285,6 +286,10 @@ export default function Ajansa() {
     setTimeout(() => setSelectedIds([]), 2000);
   };
 
+  const hasIndoorSelected = selectedIds.some(id => ['removal', 'com_office', 'com_restaurant', 'com_coffee', 'com_boutique', 'com_industrial'].includes(id));
+  const hasOutdoorSelected = selectedIds.some(id => ['drone', 'floorplan'].includes(id));
+  const disabledToggleIds = hasOutdoorSelected ? ['indoor', 'commercial'] : (hasIndoorSelected ? ['outdoor'] : []);
+
   const reset = () => { setSel(null); setFiles([]); setStatus('SATILDI'); setUp({ state: 'idle', prog: 0 }); setForm({ name: '', contact: '', message: '' }); };
 
   const handleUpload = async () => {
@@ -324,21 +329,24 @@ export default function Ajansa() {
 
   return (
     <PageLayout padding="1rem">
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', padding: '0 0.5rem' }}>
-        <MegaToggle 
-          options={MAIN_TOGGLE_OPTIONS}
-          activeId={mainTab}
-          onChange={setMainTab}
-        />
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '6px', marginBottom: '1.5rem', padding: '0 0.5rem' }}>
+        <div style={{ margin: 0 }}>
+          <MegaToggle 
+            options={MAIN_TOGGLE_OPTIONS}
+            activeId={mainTab}
+            onChange={setMainTab}
+          />
+        </div>
         
-        <AnimatePresence mode="wait">
+        <AnimatePresence mode="popLayout">
           {mainTab === 'insta' && (
             <motion.div
               key="insta-sub"
-              initial={{ opacity: 0, x: -10, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -10, scale: 0.9 }}
-              transition={{ type: 'spring', damping: 20 }}
+              initial={{ opacity: 0, x: -5 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -5 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              style={{ margin: 0 }}
             >
               <MegaToggle 
                 options={INSTA_SUB_OPTIONS}
@@ -351,10 +359,11 @@ export default function Ajansa() {
           {mainTab === 'ads' && (
             <motion.div
               key="ads-sub"
-              initial={{ opacity: 0, x: -10, scale: 0.9 }}
-              animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -10, scale: 0.9 }}
-              transition={{ type: 'spring', damping: 20 }}
+              initial={{ opacity: 0, x: -5 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -5 }}
+              transition={{ duration: 0.15, ease: "easeOut" }}
+              style={{ margin: 0 }}
             >
               <MegaToggle 
                 options={AI_SUB_OPTIONS}
