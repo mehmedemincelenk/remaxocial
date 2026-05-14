@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle, Clapperboard, Image as ImageIcon, Loader2, Check } from 'lucide-react';
+import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle, Clapperboard, Image as ImageIcon, Loader2, Check, PenLine } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa';
 import { supabase } from '../../utils/supabaseClient';
 import PageLayout from '../../components/ortak/PageLayout';
@@ -151,6 +151,7 @@ export default function Ajansa() {
   const MAIN_TOGGLE_OPTIONS = [
     { id: 'insta', icon: <FaInstagram size={18} />, label: 'Instagram' },
     { id: 'ads', icon: <Image size={18} />, label: 'İlanlar' },
+    { id: 'writer', icon: <PenLine size={18} />, label: 'Metinler' },
   ];
 
   const INSTA_SUB_OPTIONS = [
