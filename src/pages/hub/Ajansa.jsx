@@ -434,26 +434,6 @@ export default function Ajansa() {
               </>
             )}
           </div>
-          
-          <div style={{ height: '2rem' }} />
-          
-          {/* ORIGINAL AGENCY BUTTONS FOR ADS */}
-          <div style={{ padding: '0 0.5rem' }}>
-            <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.6rem', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Ajans Talepleri</p>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
-              {filteredTypes.map(t => (
-                <motion.button 
-                  layout
-                  key={t.id} 
-                  onClick={() => handleBtnClick(t)} 
-                  style={{ ...UI.glass, padding: '1rem 0.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', minHeight: '90px', cursor: 'pointer' }}
-                >
-                  <div style={{ fontSize: '1.2rem', color: t.color, filter: `drop-shadow(0 0 10px ${t.color}40)` }}>{t.icon}</div>
-                  <span style={{ color: '#fff', textAlign: 'center', whiteSpace: 'pre-line', fontSize: '0.6rem', fontWeight: '600', lineHeight: '1.1' }}>{t.label}</span>
-                </motion.button>
-              ))}
-            </div>
-          </div>
         </motion.div>
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
