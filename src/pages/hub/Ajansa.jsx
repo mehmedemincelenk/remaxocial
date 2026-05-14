@@ -1,13 +1,113 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle, Clapperboard } from 'lucide-react';
+import { Image, Star, X, UploadCloud, CheckCircle, Trophy, Trash2, Video, Zap, Footprints, Mic, Camera, Layout, PlayCircle, Clapperboard, Image as ImageIcon, Loader2, Check } from 'lucide-react';
 import { supabase } from '../../utils/supabaseClient';
 import PageLayout from '../../components/ortak/PageLayout';
+import GlassCard from '../../components/ortak/GlassCard';
 import MegaToggle from '../../components/ortak/MegaToggle';
+import { promptMixer } from '../../utils/aiPrompts';
+
+import cgptLogo from '../../assets/icons/cgpt_logo.svg';
+import claudeLogo from '../../assets/icons/claude_logo.svg';
+import geminiLogo from '../../assets/icons/gemini_logo.svg';
+
+const REPLICATE_PROXY = "/replicate-api";
+
+const COM_TYPES = [
+  { id: 'com_office', icon: '🏢', label: 'Ofis' },
+  { id: 'com_restaurant', icon: '🍽️', label: 'Restoran' },
+  { id: 'com_coffee', icon: '☕', label: 'Kafe' },
+  { id: 'com_boutique', icon: '👕', label: 'Butik' },
+  { id: 'com_industrial', icon: '🏭', label: 'Sanayi/Depo' }
+];
+
+const PromptCard = ({ id, title, desc, icon, isSelected, onIconClick, onCardClick, isSurgical, multiIcons }) => {
+  const [copied, setCopied] = useState(false);
+  const [isFlashing, setIsFlashing] = useState(false);
+  const timerRef = useRef(null);
+
+  const handleLocalCardClick = () => {
+    if (timerRef.current) clearTimeout(timerRef.current);
+    onCardClick();
+    setCopied(true);
+    setIsFlashing(true);
+    timerRef.current = setTimeout(() => { setCopied(false); setIsFlashing(false); }, 3000);
+  };
+
+  return (
+    <div style={{ display: 'flex', alignItems: 'center', gap: '15px', width: '100%' }}>
+      {!multiIcons ? (
+        <>
+          <GlassCard
+            onClick={handleLocalCardClick} isMotion={true} whileTap={{ scale: 0.98 }} padding="0.75rem 1.25rem" borderRadius="20px"
+            style={{
+              flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', cursor: 'pointer',
+              border: ((typeof isSelected === 'boolean' ? isSelected : isSelected.some(id => multiIcons?.map(m => m.id).includes(id))) || copied) ? '1px solid #fff' : '1px solid var(--color-border)',
+              boxShadow: ((typeof isSelected === 'boolean' ? isSelected : isSelected.some(id => multiIcons?.map(m => m.id).includes(id))) || copied) ? '0 0 15px rgba(255,255,255,0.1)' : 'none',
+              transition: 'all 0.3s ease',
+              background: 'rgba(255,255,255,0.03)'
+            }}
+          >
+            <div style={{ textAlign: 'left', width: '100%', opacity: copied ? 0.2 : 1, transition: 'opacity 0.3s ease', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+              <h4 style={{ fontSize: '0.85rem', fontWeight: '800', margin: 0, color: isSurgical ? '#ff4d4d' : 'inherit' }}>{title}</h4>
+              {desc && <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: '0.7rem', marginTop: '2px', fontWeight: '500' }}>{desc}</p>}
+            </div>
+            <AnimatePresence>
+              {copied && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', borderRadius: '20px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '20px', zIndex: 100 }}
+                >
+                  <button onClick={(e) => { e.stopPropagation(); window.open('https://chat.openai.com', '_blank'); }} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.2s' }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
+                    <img src={cgptLogo} style={{ width: '28px', height: '28px' }} alt="GPT" />
+                  </button>
+                  <button onClick={(e) => { e.stopPropagation(); window.open('https://gemini.google.com', '_blank'); }} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.2s' }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
+                    <img src={geminiLogo} style={{ width: '28px', height: '28px' }} alt="Gemini" />
+                  </button>
+                  <button onClick={(e) => { e.stopPropagation(); window.open('https://claude.ai', '_blank'); }} style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'transform 0.2s' }} onMouseEnter={e => e.currentTarget.style.transform = 'scale(1.2)'} onMouseLeave={e => e.currentTarget.style.transform = 'scale(1)'}>
+                    <img src={claudeLogo} style={{ width: '28px', height: '28px' }} alt="Claude" />
+                  </button>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </GlassCard>
+
+          <div style={{ display: 'flex', gap: '6px' }}>
+            <button onClick={() => onIconClick(id)}
+              style={{ width: '40px', height: '40px', background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.2rem', transition: 'all 0.3s ease', opacity: (isSelected || isFlashing) ? 1 : 0.35, transform: (isSelected || isFlashing) ? 'scale(1.15)' : 'scale(1)', filter: (isSelected || isFlashing) ? `drop-shadow(0 0 8px ${isSurgical ? 'rgba(255,77,77,0.4)' : 'rgba(255,255,255,0.4)'})` : 'none' }}
+            >
+              {icon}
+            </button>
+          </div>
+        </>
+      ) : (
+        <div style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem 0' }}>
+          <div style={{ width: '100%', height: '1px', background: 'var(--border)', marginBottom: '1.5rem', opacity: 0.6 }} />
+          <div style={{ display: 'flex', gap: '15px', justifyContent: 'center' }}>
+            {multiIcons.map(m => (
+              <button key={m.id} onClick={() => onIconClick(m.id)}
+                style={{
+                  width: '42px', height: '42px', background: 'transparent', border: 'none', cursor: 'pointer',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: '1.4rem',
+                  transition: 'all 0.4s cubic-bezier(0.16, 1, 0.3, 1)',
+                  opacity: (Array.isArray(isSelected) && isSelected.includes(m.id)) ? 1 : 0.15,
+                  transform: (Array.isArray(isSelected) && isSelected.includes(m.id)) ? 'scale(1.3)' : 'scale(1)',
+                  filter: (Array.isArray(isSelected) && isSelected.includes(m.id)) ? 'drop-shadow(0 0 12px rgba(255,255,255,0.4))' : 'none'
+                }}
+                title={m.label}
+              >
+                {m.icon}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const TYPES = [
-  { id: 'victory', icon: <Trophy />, label: 'Satılan\nKiralanan', color: '#2ecc71', tags: ['reels', 'post', 'story'] },
+  { id: 'victory', icon: <Trophy />, label: 'Satılan\nKiralanan', color: '#2ecc71', tags: ['reels', 'post', 'story', 'ads'] },
   { id: 'studio', icon: <Video />, label: 'Haber\nOnayla', color: '#ff4d4d', path: '/studio', tags: ['reels'] },
   { id: 'selfie', icon: <Video />, label: 'Selfie\nStudio', color: '#3498db', path: '/selfie', tags: ['reels', 'story'] },
   { id: 'reels', icon: <Clapperboard />, label: 'Instagram\nReels', color: '#E1306C', tags: ['reels'] },
@@ -15,7 +115,7 @@ const TYPES = [
   { id: 'story', icon: <PlayCircle />, label: 'Instagram\nStory', color: '#F77737', tags: ['story'] },
   { id: 'qa', icon: <Video />, label: 'Soru\nCevaplar', color: 'var(--color-red)', heavy: true, tags: ['reels'] },
   { id: 'field', icon: <Zap />, label: 'Saha\nKesitleri', color: '#C026D3', heavy: true, tags: ['reels'] },
-  { id: 'tour', icon: <Footprints />, label: 'Ev Gezi\nVideoları', color: 'var(--color-blue)', heavy: true, tags: ['reels'] },
+  { id: 'tour', icon: <Footprints />, label: 'Ev Gezi\nVideoları', color: 'var(--color-blue)', heavy: true, tags: ['reels', 'ads'] },
   { id: 'podcast', icon: <Mic />, label: 'Müşteri\nPodcast', color: '#7C3AED', heavy: true, tags: ['reels'] },
   { id: 'photos', icon: <Image />, label: 'Kişisel\nHayat', color: '#059669', tags: ['post', 'story'] },
   { id: 'stars', icon: <Star />, label: 'Müşteri\nYorumları', color: '#D97706', tags: ['post', 'story'] },
@@ -31,27 +131,153 @@ const UI = {
 export default function Ajansa() {
   const navigate = useNavigate();
   const [tab, setTab] = useState('reels');
+  const [subTab, setSubTab] = useState('all');
   const [sel, setSel] = useState(null);
   const [files, setFiles] = useState([]);
   const [status, setStatus] = useState('SATILDI');
   const [up, setUp] = useState({ state: 'idle', prog: 0 });
   const [form, setForm] = useState({ name: '', contact: '', message: '' });
 
+  // AI STUDIO STATES
+  const [selectedIds, setSelectedIds] = useState([]);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [result, setResult] = useState(null);
+  const fileInputRef = useRef(null);
+
   const TOGGLE_OPTIONS = [
     { id: 'reels', label: 'R' },
     { id: 'post', label: 'P' },
     { id: 'story', label: 'S' },
+    { id: 'ads', icon: <Image size={18} />, label: 'İlanlar' },
   ];
 
-  const sortedTypes = useMemo(() => {
-    return [...TYPES].sort((a, b) => {
-      const aMatch = a.tags.includes(tab);
-      const bMatch = b.tags.includes(tab);
-      if (aMatch && !bMatch) return -1;
-      if (!aMatch && bMatch) return 1;
-      return 0;
-    });
+  const AI_TOGGLE_OPTIONS = [
+    { id: 'indoor', label: 'İç Mekan', customRender: (active) => <div style={{ width: '10px', height: '10px', borderRadius: '50%', background: active ? '#fff' : 'rgba(255,255,255,0.2)' }} /> },
+    { id: 'outdoor', label: 'Dış Mekan', customRender: (active) => <div style={{ width: '10px', height: '10px', borderRadius: '50%', border: active ? '2px solid #fff' : '2px solid rgba(255,255,255,0.2)', background: 'transparent' }} /> },
+    {
+      id: 'all', label: 'Ortak', icon: (
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%', height: '100%', marginTop: '2px' }}>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 20V12C4 7.58172 7.58172 4 12 4C16.4183 4 20 7.58172 20 12V20" stroke="currentColor" strokeWidth="3" strokeLinecap="round" />
+          </svg>
+        </div>
+      )
+    }
+  ];
+
+  const filteredTypes = useMemo(() => {
+    return TYPES.filter(t => t.tags.includes(tab));
   }, [tab]);
+
+  // AI STUDIO LOGIC
+  const handleAIUpload = (e) => {
+    const files = Array.from(e.target.files);
+    const newImgs = files.map(file => ({
+      id: Math.random().toString(36).substr(2, 9),
+      url: URL.createObjectURL(file),
+      file: file
+    }));
+    setImages(prev => [...prev, ...newImgs].slice(0, 5));
+  };
+
+  const removeImage = (id) => {
+    setImages(prev => prev.filter(img => img.id !== id));
+  };
+
+  const fileToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = error => reject(error);
+    });
+  };
+
+  const handleGenerate = async () => {
+    if (selectedIds.length === 0 || images.length === 0) return;
+    setLoading(true);
+    setResult(null);
+    try {
+      const finalPrompt = promptMixer(selectedIds, subTab);
+      const base64Image = await fileToBase64(images[0].file);
+      const response = await fetch(`${REPLICATE_PROXY}/v1/models/black-forest-labs/flux-dev/predictions`, {
+        method: "POST",
+        headers: {
+          "Authorization": `Token ${import.meta.env.VITE_REPLICATE_API_TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          input: {
+            prompt: finalPrompt,
+            image: base64Image,
+            prompt_strength: 0.45,
+            guidance: 3.5,
+            num_inference_steps: 28,
+            output_format: "webp"
+          }
+        })
+      });
+      const prediction = await response.json();
+      if (!response.ok) throw new Error(prediction.detail || prediction.error || `API Hatası: ${response.status}`);
+      let pollUrl = prediction.urls.get.replace("https://api.replicate.com", REPLICATE_PROXY);
+      const checkStatus = async () => {
+        try {
+          const res = await fetch(pollUrl, { headers: { "Authorization": `Token ${import.meta.env.VITE_REPLICATE_API_TOKEN}` } });
+          const statusData = await res.json();
+          if (statusData.status === "succeeded") {
+            setResult(statusData.output[0]);
+            setLoading(false);
+          } else if (statusData.status === "failed") {
+            throw new Error("Görsel üretimi başarısız oldu");
+          } else {
+            setTimeout(checkStatus, 2000);
+          }
+        } catch (pollErr) {
+          console.error("Polling Error:", pollErr);
+          setLoading(false);
+        }
+      };
+      checkStatus();
+    } catch (err) {
+      console.error("Detailed AI Error:", err);
+      alert(`Hata: ${err.message || "Bilinmeyen bir hata oluştu"}`);
+      setLoading(false);
+    }
+  };
+
+  const dispatchUpdate = (ids, mode) => {
+    window.dispatchEvent(new CustomEvent('ai-selection-changed', {
+      detail: { count: ids.length, ids, mode }
+    }));
+  };
+
+  const toggleSelection = (id) => {
+    const isCommercial = COM_TYPES.map(c => c.id).includes(id);
+    setSelectedIds(prev => {
+      if (prev.includes(id)) {
+        const next = prev.filter(i => i !== id);
+        dispatchUpdate(next, subTab);
+        return next;
+      }
+      let next = [...prev];
+      if (isCommercial) {
+        next = next.filter(i => !COM_TYPES.map(c => c.id).includes(i));
+      } else {
+        if (prev.length >= 3) return prev;
+      }
+      next = [...next, id];
+      dispatchUpdate(next, subTab);
+      return next;
+    });
+  };
+
+  const handleMasterCopy = (baseId) => {
+    const allActive = Array.from(new Set([...selectedIds, baseId]));
+    const finalPrompt = promptMixer(allActive, subTab);
+    navigator.clipboard.writeText(finalPrompt);
+    setTimeout(() => setSelectedIds([]), 2000);
+  };
 
   const reset = () => { setSel(null); setFiles([]); setStatus('SATILDI'); setUp({ state: 'idle', prog: 0 }); setForm({ name: '', contact: '', message: '' }); };
 
@@ -92,27 +318,158 @@ export default function Ajansa() {
 
   return (
     <PageLayout padding="1rem">
-      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginBottom: '1.5rem', padding: '0 0.5rem' }}>
+      <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px', marginBottom: '1.5rem', padding: '0 0.5rem' }}>
         <MegaToggle 
           options={TOGGLE_OPTIONS}
           activeId={tab}
           onChange={setTab}
         />
+        <AnimatePresence>
+          {tab === 'ads' && (
+            <motion.div
+              initial={{ opacity: 0, x: -10, scale: 0.9 }}
+              animate={{ opacity: 1, x: 0, scale: 1 }}
+              exit={{ opacity: 0, x: -10, scale: 0.9 }}
+              transition={{ type: 'spring', damping: 20 }}
+            >
+              <MegaToggle 
+                options={AI_TOGGLE_OPTIONS}
+                activeId={subTab}
+                onChange={setSubTab}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
-        {sortedTypes.map(t => (
-          <motion.button 
-            layout
-            key={t.id} 
-            onClick={() => handleBtnClick(t)} 
-            style={{ ...UI.glass, padding: '1rem 0.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', minHeight: '90px', cursor: 'pointer', opacity: t.tags.includes(tab) ? 1 : 0.4, transition: 'opacity 0.3s ease' }}
-          >
-            <div style={{ fontSize: '1.2rem', color: t.color, filter: `drop-shadow(0 0 10px ${t.color}40)` }}>{t.icon}</div>
-            <span style={{ color: '#fff', textAlign: 'center', whiteSpace: 'pre-line', fontSize: '0.6rem', fontWeight: '600', lineHeight: '1.1' }}>{t.label}</span>
-          </motion.button>
-        ))}
-      </div>
+      {tab === 'ads' ? (
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="ai-studio-container">
+          {/* UPLOAD AREA */}
+          <div style={{ padding: '0 0.5rem 0.5rem' }}>
+            <div style={{ display: 'flex', gap: '10px', alignItems: 'center' }}>
+              <div 
+                style={{ 
+                  flex: 1, 
+                  height: '80px', 
+                  border: '1px dashed rgba(255,255,255,0.2)', 
+                  borderRadius: '12px', 
+                  display: 'flex', 
+                  alignItems: 'center', 
+                  gap: '10px',
+                  padding: '0 10px',
+                  overflowX: 'auto',
+                  scrollbarWidth: 'none',
+                  background: 'rgba(255,255,255,0.02)'
+                }}
+              >
+                <input type="file" multiple hidden ref={fileInputRef} onChange={handleAIUpload} accept="image/*" />
+                {images.length < 5 && (
+                  <div 
+                    onClick={() => fileInputRef.current?.click()}
+                    style={{ minWidth: '50px', height: '60px', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
+                  >
+                    <ImageIcon size={20} style={{ opacity: 0.4 }} />
+                  </div>
+                )}
+                {images.map(img => (
+                  <motion.div 
+                    key={img.id}
+                    onClick={() => removeImage(img.id)}
+                    whileTap={{ scale: 0.9 }}
+                    style={{ minWidth: '50px', height: '60px', borderRadius: '8px', overflow: 'hidden', position: 'relative', cursor: 'pointer', border: '1px solid rgba(255,255,255,0.1)' }}
+                  >
+                    <img src={img.url} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                    <div style={{ position: 'absolute', inset: 0, background: 'rgba(255,0,0,0.2)', display: 'flex', alignItems: 'center', justifyContent: 'center', opacity: 0, transition: '0.2s' }} onMouseEnter={e => e.currentTarget.style.opacity = 1} onMouseLeave={e => e.currentTarget.style.opacity = 0}>
+                      <X size={14} color="#fff" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+              {images.length > 0 && selectedIds.length > 0 && (
+                <motion.button 
+                  onClick={result ? () => window.open(result, '_blank') : handleGenerate}
+                  disabled={loading}
+                  initial={{ scale: 0 }} animate={{ scale: 1 }}
+                  style={{ width: '40px', height: '80px', borderRadius: '12px', border: `1px solid ${result ? '#00ff00' : 'var(--color-accent)'}`, background: 'transparent', color: result ? '#00ff00' : 'var(--color-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: loading ? 'not-allowed' : 'pointer', opacity: loading ? 0.5 : 1 }}
+                >
+                  {loading ? <Loader2 size={20} className="animate-spin" /> : (result ? <ImageIcon size={20} /> : <Check size={20} />)}
+                </motion.button>
+              )}
+            </div>
+          </div>
+
+          {/* RESULT PREVIEW */}
+          <AnimatePresence>
+            {result && (
+              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} style={{ padding: '0 0.5rem 1rem' }}>
+                <img 
+                  src={result} 
+                  style={{ width: '100%', borderRadius: '12px', border: '1px solid rgba(255,255,255,0.1)' }} 
+                  alt="Result" 
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+
+          {/* PROMPT CARDS */}
+          <div style={{ padding: '0 0.5rem', display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
+            {subTab === 'all' && (
+              <>
+                <PromptCard id="upscale" title="Kristal Berraklık" desc="Bulanıklığı siler, 8K keskinlik." icon="💎" isSelected={selectedIds.includes('upscale')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('upscale')} />
+                <PromptCard id="privacy" title="Önce Güvenlik" desc="Plakaları, yüzleri gizlerim." icon="🛡️" isSelected={selectedIds.includes('privacy')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('privacy')} />
+                <PromptCard id="cleaning" title="Cerrahi Temizlik" desc="Dağınıklığı yok ederim." icon="🧹" isSelected={selectedIds.includes('cleaning')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('cleaning')} isSurgical={true} />
+              </>
+            )}
+            {subTab === 'indoor' && (
+              <>
+                <PromptCard id="removal" title="Eşyaları Sıfırla" desc="Odayı bomboş yaparım." icon="🗑️" isSelected={selectedIds.includes('removal')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('removal')} isSurgical={true} />
+                <PromptCard id="lifestyle" title="Yaşam İzleri" desc="Mülke ruh katarım." icon="👪" isSelected={selectedIds.includes('lifestyle')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('lifestyle')} />
+                <PromptCard id="ticari" title="₺" multiIcons={COM_TYPES} isSelected={selectedIds} onIconClick={toggleSelection} onCardClick={() => { }} />
+              </>
+            )}
+            {subTab === 'outdoor' && (
+              <>
+                <PromptCard id="drone" title="Drone Bakışı" desc="Lüks drone çekimi." icon="🛸" isSelected={selectedIds.includes('drone')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('drone')} />
+                <PromptCard id="floorplan" title="Mimari Plan" desc="2D mimari plana çeviririm." icon="📐" isSelected={selectedIds.includes('floorplan')} onIconClick={toggleSelection} onCardClick={() => handleMasterCopy('floorplan')} />
+              </>
+            )}
+          </div>
+          
+          <div style={{ height: '2rem' }} />
+          
+          {/* ORIGINAL AGENCY BUTTONS FOR ADS */}
+          <div style={{ padding: '0 0.5rem' }}>
+            <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.6rem', fontWeight: '800', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Ajans Talepleri</p>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
+              {filteredTypes.map(t => (
+                <motion.button 
+                  layout
+                  key={t.id} 
+                  onClick={() => handleBtnClick(t)} 
+                  style={{ ...UI.glass, padding: '1rem 0.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', minHeight: '90px', cursor: 'pointer' }}
+                >
+                  <div style={{ fontSize: '1.2rem', color: t.color, filter: `drop-shadow(0 0 10px ${t.color}40)` }}>{t.icon}</div>
+                  <span style={{ color: '#fff', textAlign: 'center', whiteSpace: 'pre-line', fontSize: '0.6rem', fontWeight: '600', lineHeight: '1.1' }}>{t.label}</span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+      ) : (
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0.5rem' }}>
+          {filteredTypes.map(t => (
+            <motion.button 
+              layout
+              key={t.id} 
+              onClick={() => handleBtnClick(t)} 
+              style={{ ...UI.glass, padding: '1rem 0.25rem', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.5rem', minHeight: '90px', cursor: 'pointer' }}
+            >
+              <div style={{ fontSize: '1.2rem', color: t.color, filter: `drop-shadow(0 0 10px ${t.color}40)` }}>{t.icon}</div>
+              <span style={{ color: '#fff', textAlign: 'center', whiteSpace: 'pre-line', fontSize: '0.6rem', fontWeight: '600', lineHeight: '1.1' }}>{t.label}</span>
+            </motion.button>
+          ))}
+        </div>
+      )}
 
       <AnimatePresence>
         {sel && (
