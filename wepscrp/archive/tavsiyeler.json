@@ -1,0 +1,147 @@
+[
+  {
+    "id": 1,
+    "baslik": "Jump Cut",
+    "icerik": "Cümle aralarındaki tüm boşlukları kes, video mermi gibi aksın."
+  },
+  {
+    "id": 2,
+    "baslik": "3 Saniye Kuralı",
+    "icerik": "Videonun ilk 3 saniyesinde mutlaka büyük bir yazı patlat veya hareket et."
+  },
+  {
+    "id": 3,
+    "baslik": "Ses > Görüntü",
+    "icerik": "Kötü görüntü izlenir ama kötü sese kimse tahammül edemez. Mikrofon kullan!"
+  },
+  {
+    "id": 4,
+    "baslik": "Lense Bak",
+    "icerik": "Ekrana değil, kameranın tam ortasına bak; izleyiciyle bağ kur."
+  },
+  {
+    "id": 5,
+    "baslik": "Altyazısız Asla",
+    "icerik": "İnsanların %80'i videoları sessiz izler. Altyazı eklemezsen %80'i kaybedersin."
+  },
+  {
+    "id": 7,
+    "baslik": "Işığa Dön",
+    "icerik": "Pencere arkanda değil, önünde olsun. Yüzün aydınlık kalsın."
+  },
+  {
+    "id": 8,
+    "baslik": "+%20 Enerji",
+    "icerik": "Kamera enerjiyi emer. Normalden %20 daha canlı ve yüksek sesle konuş."
+  },
+  {
+    "id": 9,
+    "baslik": "Yeşil Ekran",
+    "icerik": "Arkana bir haber veya ilan alıp üstüne konuşmak otoriteni artırır."
+  },
+  {
+    "id": 10,
+    "baslik": "Hareket Et",
+    "icerik": "Sabit durma. Kameraya yürü ya da kamerayı seninle yürüt."
+  },
+  {
+    "id": 11,
+    "baslik": "Merak Uyandır",
+    "icerik": "\"Bunu kimse söylemez ama...\" diyerek başla (Curiosity Gap)."
+  },
+  {
+    "id": 12,
+    "baslik": "Samimiyet",
+    "icerik": "Elinde kahve veya kağıtlarla çekim yap; çok \"hazırlanmış\" durma."
+  },
+  {
+    "id": 13,
+    "baslik": "Kanıt Sun",
+    "icerik": "Sadece anlatma, inşaatı, tapuyu veya o evi arkanda göster."
+  },
+  {
+    "id": 14,
+    "baslik": "Hızlı Başla",
+    "icerik": "\"Merhaba ben Ali\" diyerek vakit kaybetme, direkt konuya gir."
+  },
+  {
+    "id": 15,
+    "baslik": "Müziği Kıs",
+    "icerik": "Fon müziği sesini asla bastırmasın, %10-15 seviyesinde tut."
+  },
+  {
+    "id": 16,
+    "baslik": "Tek Konu",
+    "icerik": "Bir videoda 5 şey anlatma. Sadece bir tane net bilgi ver."
+  },
+  {
+    "id": 17,
+    "baslik": "Duyguyu Geçir",
+    "icerik": "Sadece teknik konuşma; o evin yaratacağı huzuru veya kazancı hissettir."
+  },
+  {
+    "id": 18,
+    "baslik": "Konum Belirt",
+    "icerik": "Videonun bir köşesinde mutlaka nerede olduğun yazsın."
+  },
+  {
+    "id": 19,
+    "baslik": "Profesyonel Görünüm",
+    "icerik": "Üzerinde mutlaka RE/MAX rozeti veya kurumsal bir detay olsun."
+  },
+  {
+    "id": 20,
+    "baslik": "El Hareketleri",
+    "icerik": "Ellerini kullan. Statik duran insan sıkıcıdır."
+  },
+  {
+    "id": 21,
+    "baslik": "Araba Sohbeti",
+    "icerik": "Arabadayken çekilen videolar \"meşgul ve başarılı danışman\" imajı verir."
+  },
+  {
+    "id": 22,
+    "baslik": "Süreklilik",
+    "icerik": "Her gün aynı saatte paylaşım yapmaya çalış, algoritma sadakati sever."
+  },
+  {
+    "id": 23,
+    "baslik": "Loop Yarat",
+    "icerik": "Videonun sonunu başına bağla ki insanlar fark etmeden tekrar izlesin."
+  },
+  {
+    "id": 24,
+    "baslik": "Soru Sor",
+    "icerik": "Videoyu \"Siz ne düşünüyorsunuz?\" diye bitir ki yorum gelsin."
+  },
+  {
+    "id": 25,
+    "baslik": "Dikey Format",
+    "icerik": "Daima 9:16 formatında çek, ekranı tam doldur."
+  },
+  {
+    "id": 26,
+    "baslik": "Araçları Kullan",
+    "icerik": "CapCut gibi uygulamalarda \"Otomatik Altyazı\" özelliğini kullan, vakit kazan."
+  },
+  {
+    "id": 27,
+    "baslik": "Yakın Markaj",
+    "icerik": "Kamerayı çok uzağa koyma, yüz hatların net görünsün."
+  },
+  {
+    "id": 28,
+    "baslik": "Kendinle Dalga Geç",
+    "icerik": "Hatalarını silme, araya küçük bir \"blooper\" (hata) ekle; insanidir."
+  },
+  {
+    "id": 29,
+    "baslik": "Veriyi Oku",
+    "icerik": "Hangi videonun çok izlendiğine bak ve o tarz videoları çoğalt."
+  },
+  {
+    "id": 30,
+    "baslik": "Harekete Geçir",
+    "icerik": "\"Daha fazlası için takip et\" demeyi unutma."
+  }
+]

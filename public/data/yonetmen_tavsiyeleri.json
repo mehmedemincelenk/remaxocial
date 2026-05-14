@@ -1,0 +1,27 @@
+[
+  { 
+    "id": 1, 
+    "baslik": "Boşlukları Kes (Jump Cut)", 
+    "icerik": "Konuşurken verdiğin esleri ve duraklamaları tamamen kes. \n\nÖrnek: Şarkı söylerken nefes aldığın yerleri silmek gibi. Video mermi gibi hızlı aksın, izleyen hiç sıkılmasın." 
+  },
+  { 
+    "id": 2, 
+    "baslik": "Ses Görüntüden Önemlidir", 
+    "icerik": "İzleyici kötü görüntüyü affeder ama kötü sese dayanamaz. \n\nÖrnek: Radyoda cızırtılı bir şarkı dinlemek gibi. Sesin net çıkmıyorsa kimse videonu sonuna kadar izlemez. Mutlaka mikrofon kullan!" 
+  },
+  { 
+    "id": 3, 
+    "baslik": "Işığı Karşına Al", 
+    "icerik": "Yüzün karanlıkta kalmasın, her zaman aydınlık olsun. \n\nÖrnek: Karanlıkta saklambaç oynamak gibi. Güneşi veya lambayı arkana değil, tam karşına al ki yüzün parlasın." 
+  },
+  { 
+    "id": 4, 
+    "baslik": "Göz Teması Kur", 
+    "icerik": "Ekrana değil, kameranın o küçük deliğine bak. \n\nÖrnek: Biriyle konuşurken gözlerinin içine bakmak gibi. Kameraya bakarsan izleyici senin ona baktığını hisseder ve sana daha çok güvenir." 
+  },
+  { 
+    "id": 5, 
+    "baslik": "Biraz Daha Canlı Ol", 
+    "icerik": "Kamera senin enerjini yer. Normalden %20 daha canlı ve yüksek sesle konuş. \n\nÖrnek: Birine çok güzel bir müjdeli haber verirken nasıl heyecanlıysan öyle konuş. Robot gibi dümdüz anlatma." 
+  }
+]

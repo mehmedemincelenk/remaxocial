@@ -1,0 +1,442 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --bg: #000000;
+  --fg: #ffffff;
+  --accent: #00D1FF;
+  --border: rgba(255, 255, 255, 0.1);
+  --secondary: #888888;
+  --hover-bg: #0a0a0a;
+  --card-bg: #050505;
+  --modal-overlay: rgba(0, 0, 0, 0.9);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--bg);
+  color: var(--fg);
+  line-height: 1.4;
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button,
+a,
+.card,
+.btn {
+  outline: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* ⚪️ Global Headings - Always White */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #ffffff !important;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  padding-top: 0;
+}
+
+/* 🖼️ Mobile-First Grid (Strict 2-Column for Mockup & Mobile) */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 120px;
+  grid-auto-flow: dense;
+  gap: 0.75rem;
+  padding: 1rem 0;
+}
+
+/* 🃏 Card Masonry Variations */
+.card-tall {
+  grid-row: span 3;
+  /* 3 birim (yaklaşık 400px + gap) */
+}
+
+.card-short {
+  grid-row: span 1;
+  /* 1 birim (yaklaşık 130px) */
+}
+
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  border-color: var(--accent);
+  box-shadow: 0 10px 30px rgba(0, 209, 255, 0.1);
+}
+
+.card-thumb {
+  width: 100%;
+  aspect-ratio: 9/16;
+  background: #111;
+  object-fit: cover;
+  border-bottom: 1px solid var(--border);
+}
+
+.card-body {
+  padding: 0.75rem;
+}
+
+.card-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 2.4rem;
+}
+
+.card-metrics {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.7rem;
+  color: var(--secondary);
+}
+
+/* 📦 Basic Card */
+.basic-card {
+  padding: 1.25rem;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: left;
+}
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--modal-overlay);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: #050505;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 12px;
+  padding: 2rem;
+  position: relative;
+  border: 1px solid var(--border);
+}
+
+.header {
+  padding: 4.5rem 0 1.5rem;
+  text-align: left;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+}
+
+p.subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 1.05rem;
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 600px;
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--border);
+  background: #111;
+  color: var(--fg);
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: var(--bg);
+  border: none;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+}
+
+/* Animasyonlar */
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes slideInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+/* 📱 Desktop Phone Mockup Styles - THE DEFINITIVE VERSION */
+.desktop-mockup-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  background: #000;
+  overflow: hidden;
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+}
+
+.mockup-info-section {
+  width: 50%;
+  /* Rigid 50% split */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem;
+  background: radial-gradient(circle at 60% 50%, #111 0%, #000 100%);
+  border-right: 1px solid rgba(255, 255, 255, 0.03);
+  position: relative;
+}
+
+.info-content {
+  max-width: 460px;
+  width: 100%;
+  animation: slideInLeft 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Global animations used across the app */
+
+.mockup-title {
+  font-size: 4rem;
+  font-weight: 900;
+  line-height: 0.9;
+  margin-bottom: 2rem;
+  letter-spacing: -0.05em;
+  color: #fff !important;
+}
+
+.gradient-text {
+  background: linear-gradient(to right, #00D1FF, #0054A6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mockup-subtitle {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.3);
+  line-height: 1.6;
+  margin-bottom: 3.5rem;
+}
+
+.qr-box {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 1.5rem;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.qr-icon-container {
+  background: #fff;
+  color: #000;
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.qr-text h3 {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 0.25rem;
+}
+
+.qr-text p {
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.mockup-phone-section {
+  width: 50%;
+  /* Rigid 50% split */
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #050505;
+}
+
+.phone-frame {
+  width: 340px;
+  height: 720px;
+  background: #000;
+  border-radius: 56px;
+  padding: 12px;
+  position: relative;
+  border: 4px solid #1a1a1a;
+  box-shadow:
+    0 50px 100px rgba(0, 0, 0, 0.8),
+    0 0 0 2px #222,
+    inset 0 0 10px rgba(255, 255, 255, 0.05);
+  animation: slideInRight 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Phone mockup specific animations */
+
+.phone-bezel-highlight {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  right: 10px;
+  height: 300px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  border-radius: 40px;
+  pointer-events: none;
+}
+
+.phone-notch {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 140px;
+  height: 34px;
+  background: #000;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.speaker {
+  width: 45px;
+  height: 4px;
+  background: #111;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.camera {
+  width: 10px;
+  height: 10px;
+  background: #080808;
+  border-radius: 50%;
+  border: 1px solid #1a1a1a;
+}
+
+.phone-buttons-container .hw-btn {
+  position: absolute;
+  background: #1a1a1a;
+  border-radius: 2px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.vol-up {
+  left: -6px;
+  top: 120px;
+  width: 3px;
+  height: 45px;
+}
+
+.vol-down {
+  left: -6px;
+  top: 175px;
+  width: 3px;
+  height: 45px;
+}
+
+.power {
+  right: -6px;
+  top: 150px;
+  width: 3px;
+  height: 70px;
+}
+
+.phone-screen {
+  width: 100%;
+  height: 100%;
+  background: #000;
+  border-radius: 44px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+  z-index: 1;
+  padding-top: 45px;
+  /* Notch Safe Area */
+}
+
+.phone-screen::-webkit-scrollbar {
+  display: none;
+}
+
+/* Mobile View Fallback */
+.mobile-view {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: #000;
+  overflow: hidden;
+  position: relative;
+  /* Fixed menu container */
+}
+
+main {
+  flex: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+main::-webkit-scrollbar {
+  display: none;
+}

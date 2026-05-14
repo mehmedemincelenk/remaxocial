@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emlak Shorts Paneli</title>
+    <style>
+        body { font-family: sans-serif; background: #121212; color: white; margin: 0; padding: 20px; }
+        h1 { text-align: center; color: #ff0000; margin-bottom: 30px; }
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .video-card {
+            background: #1e1e1e;
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            border: 1px solid #333;
+            transition: transform 0.2s;
+        }
+        .video-card:hover { transform: scale(1.03); border-color: #ff0000; }
+        .video-container {
+            position: relative;
+            padding-bottom: 177.77%;
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            cursor: pointer;
+        }
+        .video-container img {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover;
+            opacity: 0.7;
+        }
+        .play-button {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 50px;
+            color: white;
+            z-index: 2;
+            opacity: 0.8;
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            border: 0;
+            z-index: 3;
+        }
+        .info { padding: 10px; font-size: 11px; color: #bbb; }
+        .title { color: white; font-weight: bold; margin-bottom: 8px; font-size: 13px; height: 32px; overflow: hidden; }
+        .stats { display: flex; justify-content: space-between; border-top: 1px solid #333; padding-top: 8px; }
+        .stat-item { display: flex; align-items: center; gap: 4px; }
+    </style>
+</head>
+<body>
+    <h1>#emlak YouTube Shorts Paneli</h1>
+    <div class="grid-container" id="videoGrid"></div>
+
+    <script>
+        let allVideos = [];
+        let currentIndex = 0;
+        const BATCH_SIZE = 10;
+
+        function formatNumber(num) {
+            if (!num) return "0";
+            if (num >= 1000000) return (num / 1000000).toFixed(1) + 'M';
+            if (num >= 1000) return (num / 1000).toFixed(1) + 'K';
+            return num;
+        }
+
+        function playVideo(container, embedUrl) {
+            const cleanUrl = `${embedUrl}?autoplay=1&controls=0&rel=0&iv_load_policy=3`;
+            container.innerHTML = `<iframe src="${cleanUrl}" allow="autoplay" allowfullscreen></iframe>`;
+        }
+
+        function renderNextBatch() {
+            const grid = document.getElementById('videoGrid');
+            const nextBatch = allVideos.slice(currentIndex, currentIndex + BATCH_SIZE);
+            
+            nextBatch.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'video-card';
+                const thumbUrl = `https://img.youtube.com/vi/${video.id}/hqdefault.jpg`;
+                
+                card.innerHTML = `
+                    <div class="video-container" onclick="playVideo(this, '${video.embed_url}')">
+                        <img src="${thumbUrl}" loading="lazy">
+                        <div class="play-button">▶</div>
+                    </div>
+                    <div class="info">
+                        <div class="title">${video.title}</div>
+                        <div class="stats">
+                            <div class="stat-item">❤️ ${formatNumber(video.likes)}</div>
+                            <div class="stat-item">💬 ${formatNumber(video.comments)}</div>
+                        </div>                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            
+            currentIndex += BATCH_SIZE;
+        }
+
+        async function init() {
+            try {
+                const response = await fetch('data.json');
+                allVideos = await response.json();
+                renderNextBatch(); // İlk 10'u yükle
+            } catch (err) {
+                console.error("Hata!", err);
+            }
+        }
+
+        // Kaydırma Takibi (Infinite Scroll)
+        window.onscroll = function() {
+            if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 500) {
+                if (currentIndex < allVideos.length) {
+                    renderNextBatch();
+                }
+            }
+        };
+
+        init();
+    </script>
+</body>
+</html>

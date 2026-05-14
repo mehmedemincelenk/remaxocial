@@ -1,0 +1,29 @@
+{
+  "yatırım": [
+    "#emlakyatırımı",
+    "#arsa",
+    "#kiraçarpanı",
+    "#konutkredisi",
+    "#gayrimenkulyatırım",
+    "#fırsatkonut",
+    "#yatırımlık"
+  ],
+  "ilan": [
+    "#satılıkkonut",
+    "#beylikdüzüemlak",
+    "#lükskonut",
+    "#daire",
+    "#emlakilanı",
+    "#sahibinden",
+    "#kiralıkdaire"
+  ],
+  "bilgi": [
+    "#emlakbilgi",
+    "#tapu",
+    "#remaxbeylikdüzü",
+    "#gayrimenkul",
+    "#emlakdanışmanı",
+    "#imar",
+    "#iskan"
+  ]
+}

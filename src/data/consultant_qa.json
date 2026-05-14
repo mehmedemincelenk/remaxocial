@@ -1,0 +1,128 @@
+[
+  {
+    "id": 1,
+    "question": "Yanlış fiyatın maliyeti?",
+    "answer": "Mülkü eskitir ve değerini düşürür 📉",
+    "category": ["Satıcı", "Sık Sorulanlar", "risk"]
+  },
+  {
+    "id": 11,
+    "question": "Ödeme güvenliği riski?",
+    "answer": "Güvenli sistem yoksa risk büyüktür 😊",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 2,
+    "question": "Bireysel satışın riski?",
+    "answer": "Güvenlik ve zaman kaybı yaşatır ⏳",
+    "category": ["Satıcı", "risk"]
+  },
+  {
+    "id": 3,
+    "question": "Verisiz satışın sonu?",
+    "answer": "Aylarca beklemek ve fırsatı kaçırmaktır 🚫",
+    "category": ["Satıcı", "risk"]
+  },
+  {
+    "id": 4,
+    "question": "İnternet fiyatı yanıltır mı?",
+    "answer": "Hayali rakamlar bütçenize zarar verebilir",
+    "category": ["Sık Sorulanlar", "risk"]
+  },
+  {
+    "id": 5,
+    "question": "Tapudaki en büyük risk?",
+    "answer": "Yasal hatalar tüm emeğinizi yakabilir 🛡️",
+    "category": ["Satıcı", "risk"]
+  },
+  {
+    "id": 6,
+    "question": "Yanlış alıcı ne kaybettirir?",
+    "answer": "Tapuda sürprizler ve boşa giden aylar 🚫",
+    "category": ["risk"]
+  },
+  {
+    "id": 7,
+    "question": "Pazarlıkta hata payı?",
+    "answer": "Duygusal kararlar zarar ettirebilir 📊",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 8,
+    "question": "Kredi süreci satışı bozar mı?",
+    "answer": "Onaylanmayan krediler süreci durdurur",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 9,
+    "question": "Eksik ilan ne kaybettirir?",
+    "answer": "Doğru alıcıyı ıskalamak ve vakit kaybı 📢",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 10,
+    "question": "Yanlış görselin zararı?",
+    "answer": "Mülkü ucuz gösterir ve alıcıyı kaçırır 📸",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 12,
+    "question": "Bölge analizi neden şart?",
+    "answer": "Fiyatı ıskalarsanız aylarınız boşa gider 📍",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 13,
+    "question": "Hukuki altyapı eksikse?",
+    "answer": "Sözleşme hatası ağır tazminatlara yol açar ⚖️",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 14,
+    "question": "Yanlış zamanlama zararı?",
+    "answer": "Piyasayı ıskalamak kârınızdan çalmaktır ⏱️",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 15,
+    "question": "Ekspertiz raporu yoksa?",
+    "answer": "Alıcı güvenmez ve süreç en baştan kopar 🚫",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 16,
+    "question": "Çoklu emlakçı riski?",
+    "answer": "Mülkü basitleştirir ve değerini düşürür 🏚️",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 17,
+    "question": "Telefon trafiği yorar mı?",
+    "answer": "Gereksiz aramalar zamanınızı tüketir 📱",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 18,
+    "question": "Vergi planlaması hatası?",
+    "answer": "Satış sonrası ağır borçlar çıkabilir 🧾",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 19,
+    "question": "Tadilat masrafı kâr mı?",
+    "answer": "Yanlış yatırım kârınızı artırmaz 🛠️",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 20,
+    "question": "Tapuda son dakika krizi?",
+    "answer": "Harcı anlaşmazlıkları satışı masada bırakır 💥",
+    "category": ["risk", "Satıcı"]
+  },
+  {
+    "id": 21,
+    "question": "Eksik evrakın maliyeti?",
+    "answer": "Beklenmedik pürüzler süreci aylarca durdurur 📄",
+    "category": ["risk", "Satıcı"]
+  }
+]

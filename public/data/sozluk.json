@@ -1,0 +1,27 @@
+[
+  { 
+    "id": 1, 
+    "terim": "Kanca (Hook)", 
+    "anlam": "Videonun başındaki 'Dur ve İzle' kısmıdır. \n\nÖrnek: Sokakta yürürken birinin 'Hey bak buraya!' diye bağırması gibi. Videonun başında 'Bu evi bedavaya aldım!' dersen herkes durur." 
+  },
+  { 
+    "id": 2, 
+    "terim": "CTA (Eylem Çağrısı)", 
+    "anlam": "İzleyiciye ne yapacağını söylemektir. \n\nÖrnek: Bakkaldan çıkarken 'Yine gel' denmesi gibi. Videonun sonunda 'Daha fazlası için takip et' demek izleyiciye yol gösterir." 
+  },
+  { 
+    "id": 3, 
+    "terim": "Algoritma", 
+    "anlam": "Instagram'ın senin videonu sevip sevmediğine karar veren robotudur. \n\nÖrnek: Sen dondurma seviyorsan robot sana hep dondurma videosu gösterir. Robotu beslemek için çok izlenen videolar çekmelisin." 
+  },
+  { 
+    "id": 4, 
+    "terim": "Retention (Elde Tutma)", 
+    "anlam": "İzleyicinin videoda ne kadar uzun süre kaldığıdır. \n\nÖrnek: Bir masal anlatırken çocukların uyuyup kalmaması gibi. Videon ne kadar sürükleyiciyse o kadar çok kişi sonuna kadar izler." 
+  },
+  { 
+    "id": 5, 
+    "terim": "Engagement (Etkileşim)", 
+    "anlam": "İzleyicinin seninle konuşmasıdır. \n\nÖrnek: Sınıfta parmak kaldırmak gibi. Beğeni, yorum ve paylaşım ne kadar çoksa videon o kadar popüler olur." 
+  }
+]

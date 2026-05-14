@@ -1,0 +1,162 @@
+[
+  {
+    "id": 1,
+    "terim": "Kişisel Markalaşma",
+    "terim_anlam": "Sektörde adınızın geçtiği her yerde, insanların aklına gelen ilk 'güven' ve 'uzmanlık' imajıdır. Sizin kim olduğunuzun dijital ayak izidir.",
+    "terim_uzman_notu": "İnsanlar logolardan mülk almaz, insanlardan alır. Markanız şirketinizin logosu değil, sizin tutarlılığınız ve karakterinizdir.",
+    "ai_baslik": "Metod: Chain of Thought (Adım Adım Düşün)",
+    "ai_metod": "AI'ya bir strateji kurdururken 'adım adım düşün' talimatı verin. Bu, onun daha mantıklı ve uygulanabilir planlar yapmasını sağlar.",
+    "dijital_uzman_notu_baslik": "Dijital Vitrin 7/24 Açıktır",
+    "dijital_uzman_notu_icerik": "Dijital dünyada varsanız, varsınız. Yoksanız, sadece tanıdıklarınızın danışmanısınız. Dijitalleşme sizi 'mahallenin emlakçısı' olmaktan çıkarıp 'bölgenin otoritesi' haline getirir."
+  },
+  {
+    "id": 2,
+    "terim": "LTV (Yaşam Boyu Değer)",
+    "terim_anlam": "Bir müşterinin size sadece bugün değil, tüm hayatı boyunca (referansları dahil) kazandırabileceği toplam maddi ve manevi değerdir.",
+    "terim_uzman_notu": "Bugünkü satışı değil, gelecekteki 10 satışı hedefleyin. Bir müşteriyi kazanmak zordur, ama onu tutmak servet değerindedir.",
+    "ai_baslik": "Metod: Few-Shot Prompting",
+    "ai_metod": "AI'ya sevdiğiniz 2 başarılı mesaj örneği gösterip 'üçüncüsünü bu tarzda yaz' derseniz, sizin üslubunuzu mükemmel kopyalar.",
+    "dijital_uzman_notu_baslik": "Veri, Yeni Altındır",
+    "dijital_uzman_notu_icerik": "Eski usul emlakçılıkta rehberiniz vardı, yeni nesil danışmanlıkta 'veritabanınız' (CRM) var. Verisini yöneten, pazarın geleceğini de yönetir."
+  },
+  {
+    "id": 3,
+    "terim": "Sosyal Kanıt (Social Proof)",
+    "terim_anlam": "İnsanların bir karar vermeden önce başkalarının ne yaptığını bakma eğilimidir. 'O seçtiyse bir bildiği vardır' mantığıdır.",
+    "terim_uzman_notu": "Sizin ne kadar iyi olduğunuzu sizin söylemeniz reklamdır; müşterinizin söylemesi ise gerçektir. Yorum toplayın, güven satın.",
+    "ai_baslik": "Metod: Role Prompting",
+    "ai_metod": "AI'ya 'Sen dünyanın en iyi itibar yönetimi uzmanısın' derseniz, size çok daha ikna edici ve profesyonel metinler yazar.",
+    "dijital_uzman_notu_baslik": "Yorumlar Sizin Dijital Tapunuzdur",
+    "dijital_uzman_notu_icerik": "Google'daki 5 yıldızlı yorumlarınız, ofisinizdeki en şık tablodan daha değerlidir. Dijital itibar, fiziksel ofisten daha çok kapı açar."
+  },
+  {
+    "id": 4,
+    "terim": "FOMO (Kaçırma Korkusu)",
+    "terim_anlam": "İnsanların bir fırsatı başkalarının yakalayıp kendisinin kaçıracağı düşüncesiyle hissettiği o tatlı panik halidir.",
+    "terim_uzman_notu": "Aciliyet hissi yaratmak bir baskı değil, müşterinin karar vermesine yardımcı olmaktır. Fırsatı değil, o fırsatın 'biteceği' gerçeğini satın.",
+    "ai_baslik": "Metod: Iterative Prompting",
+    "ai_metod": "AI'ya tek seferde sormayın. Çıkan sonucu 'biraz daha merak uyandırıcı yap' diyerek 2-3 turda rafine edin.",
+    "dijital_uzman_notu_baslik": "Hız, İnternetin Para Birimidir",
+    "dijital_uzman_notu_icerik": "Müşterinin sorusuna 5 dakikada dönmekle 5 saatte dönmek arasındaki fark, portföyü almakla kaybetmek arasındaki farktır."
+  },
+  {
+    "id": 5,
+    "terim": "A/B Testi",
+    "terim_anlam": "İki farklı seçeneğin (Örn: İki farklı başlık) hangisinin daha iyi sonuç verdiğini anlamak için yapılan küçük denemelerdir.",
+    "terim_uzman_notu": "Tahmin etmeyin, test edin. Hangi ilan başlığının daha çok tıklandığını bildiğinizde, bütçenizi boşa harcamazsınız.",
+    "ai_baslik": "Metod: Content Variation",
+    "ai_metod": "AI'dan ayn konu için 5 farklı başlık alternatifi isteyin. En 'zeki' olanı seçmek sizin tecrübenize kalsın.",
+    "dijital_uzman_notu_baslik": "Algoritma Deneyeni Sever",
+    "dijital_uzman_notu_icerik": "Sosyal medya algoritmaları sabit duranları değil, sürekli farklı içerik türleri deneyen ve etkileşim alanları ödüllendirir."
+  },
+  {
+    "id": 6,
+    "terim": "Niş Pazarlama",
+    "terim_anlam": "Pazarın tamamına değil, sadece çok özel bir gruba (Örn: Sadece lüks villalar veya ticari arsalar) odaklanma sanatıdır.",
+    "terim_uzman_notu": "Herkesin emlakçısı olmaya çalışan, hiç kimsenin uzmanı olamaz. Odaklanın, derinleşin ve o küçük gölün büyük balığı olun.",
+    "ai_baslik": "Metod: Persona Building",
+    "ai_metod": "AI'ya 'Lüks konut arayan bir yatırımcı gibi düşün ve bana bu mülkü neden alması gerektiğini anlat' derseniz, dâhiyane açılar bulur.",
+    "dijital_uzman_notu_baslik": "Odaklanmak, Reddetmektir",
+    "dijital_uzman_notu_icerik": "Başarı, neyi yapacağınızdan çok, neyi yapmayacağınıza karar vermektir. Dijital dünyada spesifik olanlar her zaman genel olanlardan daha çok kazanır."
+  },
+  {
+    "id": 7,
+    "terim": "Duygusal Pazarlama",
+    "terim_anlam": "Müşterinin mantığına değil, duygularına ve hayallerine (Örn: Güven, huzur, aile saadeti) hitap etme yöntemidir.",
+    "terim_uzman_notu": "İnsanlar özellikleri değil, o özelliklerin onlara nasıl hissettireceğini satın alırlar. Evi değil, içindeki yuvayı anlatın.",
+    "ai_baslik": "Metod: Emotional Priming",
+    "ai_metod": "AI'ya 'Bu ilanı okuyan kişinin huzur ve güven hissetmesini sağlayan kelimeler seç' derseniz, çok daha etkileyici bir dil kurar.",
+    "dijital_uzman_notu_baslik": "Ekranın Arkasında İnsan Var",
+    "dijital_uzman_notu_icerik": "Dijital pazarlama veri işi değil, insan psikolojisi işidir. Algoritmaları değil, insanların kalplerini hedefleyenler her zaman kazanır."
+  },
+  {
+    "id": 8,
+    "terim": "Reels & Shorts",
+    "terim_anlam": "1 dakikadan kısa, hızlı ve dikey videolar. Şu anki en yüksek organik erişim gücüdür.",
+    "terim_uzman_notu": "Kusursuz değil, samimi olun. İnsanlar profesyonel stüdyo çekimlerinden çok, sizin doğal halinizi görmek istiyor.",
+    "ai_baslik": "Metod: Hook Generation",
+    "ai_metod": "AI'dan videolarınız için 'izlemeyi bırakamayacakları' 5 farklı giriş cümlesi isteyin. İlk 3 saniye her şeydir.",
+    "dijital_uzman_notu_baslik": "Video, Yeni Fotoğraftır",
+    "dijital_uzman_notu_icerik": "Bir video, bin fotoğraftan daha çok güven verir. Video çekmeyen danışman, dijital dünyada 'görünmez' kalmaya mahkumdur."
+  },
+  {
+    "id": 9,
+    "terim": "Google My Business",
+    "terim_anlam": "Müşterilerin sizi Google Haritalar'da bulmasını sağlayan ücretsiz dijital işletme profilinizdir.",
+    "terim_uzman_notu": "Bölgenizde aratıldığınızda ilk sırada çıkmak, en pahalı reklamdan daha etkilidir. Konumunuz, dijital varlığınızın merkezidir.",
+    "ai_baslik": "Metod: SEO Optimization",
+    "ai_metod": "AI'ya işletme açıklamanızı yazdırırken 'Gayrimenkul Danışmanı' ve 'Bölge Adı' gibi kritik anahtar kelimeleri yedirmesini isteyin.",
+    "dijital_uzman_notu_baslik": "Yerelde Devleşin",
+    "dijital_uzman_notu_icerik": "Tüm dünyaya değil, önce kendi mahallenize dijitalde hakim olun. Yerel SEO, size en kaliteli ve yakın müşteriyi getirir."
+  },
+  {
+    "id": 10,
+    "terim": "Veri Odaklı Danışmanlık",
+    "terim_anlam": "Kararlarınızı hislerinize göre değil, pazar verilerine ve istatistiklere göre verme sürecidir.",
+    "terim_uzman_notu": "Veriyle konuşan danışman, sadece 'fikir' vermez; 'kanıt' sunar. Müşterinizi ikna etmenin en hızlı yolu rakamlardır.",
+    "ai_baslik": "Metod: Data Analysis Prompting",
+    "ai_metod": "Pazar verilerini AI'ya verip 'Bana buradan müşterimi ikna edecek 3 çarpıcı sonuç çıkar' derseniz, dâhi gibi görünürsünüz.",
+    "dijital_uzman_notu_baslik": "Bilgi Güçtür",
+    "dijital_uzman_notu_icerik": "Karmaşık pazar verilerini basitleştirip müşterisine sunan danışman, müşterisinin gözünde 'vazgeçilmez bir stratejist' olur."
+  },
+  {
+    "id": 11,
+    "terim": "Storytelling",
+    "terim_anlam": "Bir mülkü anlatırken sadece teknik detayları değil, akılda kalıcı bir 'hikaye' kurgusunu kullanmaktır.",
+    "terim_uzman_notu": "Rakamlar unutulur, ama hikayeler asla. Müşterinize mülkün metrekaresini değil, o mülkte geçecek mutlu pazar sabahlarını hayal ettirin.",
+    "ai_baslik": "Metod: Narrative Prompting",
+    "ai_metod": "AI'ya 'Bu evi sıcak bir hikaye gibi yaz' derseniz, büyüleyici metinler alırsınız.",
+    "dijital_uzman_notu_baslik": "Zihinlerde Yer Açın",
+    "dijital_uzman_notu_icerik": "İnsan zihni hikayelerle kodlanmıştır. Hikayeleştirdiğiniz her portföy, dijital dünyada 10 kat daha fazla hatırlanır."
+  },
+  {
+    "id": 12,
+    "terim": "Kişisel Markalaşma (Stil & Tutarlılık)",
+    "terim_anlam": "Dijital dünyada herkesin bir sesi var, ama sadece 'tutarlı' olanların sesi duyulur. Kişisel markanız sizin dijital imzanızdır.",
+    "terim_uzman_notu": "Sürekli profil fotoğrafı değiştirmek markanızı zayıflatır. İnsanlar sizi bir renkle, bir duruşla veya bir uzmanlık alanıyla özdeşleştirmeli.",
+    "ai_baslik": "Metod: Brand Voice Matching",
+    "ai_metod": "AI'ya kendi yazdığınız 3 eski metni verin ve 'Benim stilimi analiz et ve yeni metni bu dille yaz' deyin.",
+    "dijital_uzman_notu_baslik": "Tutarlılık Güven Doğurur",
+    "dijital_uzman_notu_icerik": "Dijitalde bir gün var olup bir ay yok olmak güveni yıkar. Marka olmak, her gün müşterinizin zihninde küçük bir yer kaplamaktır."
+  },
+  {
+    "id": 13,
+    "terim": "LTV (Referans Çemberi)",
+    "terim_anlam": "Bir müşterinin yaşam boyu değeri sadece onun yaptığı alım-satım değil, onun size getirdiği diğer 5 kişidir.",
+    "terim_uzman_notu": "Satış bittiğinde hizmet yeni başlar. Memnun bir müşterinin referans çemberi, en pahalı reklam bütçesinden daha büyüktür.",
+    "ai_baslik": "Metod: Referral Prompting",
+    "ai_metod": "AI'ya 'Müşterimden beni referans etmesini isteyeceğim, onu darlamayan ama değerli hissettiren bir mesaj yaz' derseniz, nazik bir köprü kurar.",
+    "dijital_uzman_notu_baslik": "Ağınız Sizin Servetinizdir",
+    "dijital_uzman_notu_icerik": "Dijitalleşme, referans sisteminizi otomatize etmenizi sağlar. Memnuniyetinizi dijital kanıtlarla (yorumlar/videolar) belgeleyin."
+  },
+  {
+    "id": 14,
+    "terim": "Sosyal Kanıt (Video Testimonial)",
+    "terim_anlam": "Yazılı yorumlar iyidir, ama müşterinizin kameraya karşı sizin hakkınızdaki samimi cümleleri 'altın' değerindedir.",
+    "terim_uzman_notu": "Müşterinizden video isterken 'beni övün' demeyin. 'Süreci nasıl yönettik?' diye sorun. Gerçek hikayeler en büyük kanıttır.",
+    "ai_baslik": "Metod: Interview Questioning",
+    "ai_metod": "AI'dan müşterinize soracağınız, onun en iyi yanlarınızı doğalca anlatmasını sağlayacak 3 stratejik soru hazırlamasını isteyin.",
+    "dijital_uzman_notu_baslik": "Göz Teması Dijitalde de Önemlidir",
+    "dijital_uzman_notu_icerik": "Videolu yorumlar, izleyenlerin sizinle duygusal bağ kurmasını sağlar. Bir video, binlerce okumadan daha hızlı ikna eder."
+  },
+  {
+    "id": 15,
+    "terim": "Storytelling (Mülkün Ruhu)",
+    "terim_anlam": "Bir evin kaç odası olduğunu herkes yazar, ama o evin 'ruhunu' ve orada yaşanacak 'geleceği' sadece usta bir danışman anlatır.",
+    "terim_uzman_notu": "Evin mutfağını değil, o mutfakta sabah kahvesini içerken camdan süzülen sabah güneşini anlatın. Duyguyu satarsanız, fiyatı tartışmazsınız.",
+    "ai_baslik": "Metod: Sensory Prompting",
+    "ai_metod": "AI'ya 'Bu ilanı beş duyu organına hitap edecek kelimelerle (gün ışığı, kuş sesleri, taze kahve kokusu) zenginleştir' deyin.",
+    "dijital_uzman_notu_baslik": "Hayal Kurdurmak Satışın Yarısıdır",
+    "dijital_uzman_notu_icerik": "Dijital içeriklerinizde müşteriye bir 'ev turu' değil, bir 'hayat fragmanı' izletin. Hikaye, veriyi unutulmaz kılar."
+  },
+  {
+    "id": 16,
+    "terim": "Reels & Shorts (Eğitici İçerik)",
+    "terim_anlam": "Sadece mülk videosu değil, 'Bölgenizde ev alırken dikkat etmeniz gereken 3 şey' gibi bilgi veren videolardır.",
+    "terim_uzman_notu": "Uzmanlığınızı bedava dağıtın. İnsanlar sizin bilginize güvendiğinde, mülklerini size emanet etmek için sıraya girerler.",
+    "ai_baslik": "Metod: Educational Scripting",
+    "ai_metod": "AI'dan 15 saniyelik, 'hap bilgi' tadında 3 farklı video senaryosu isteyin. Bilgi veren, her zaman kazanır.",
+    "dijital_uzman_notu_baslik": "Değer Verin, Değer Alın",
+    "dijital_uzman_notu_icerik": "Dijital pazarlamada 'Al' demeden önce 3 kez 'Ver' (Bilgi ver, ipucu ver, vizyon ver) kuralını uygularsanız, otoriteniz sarsılmaz olur."
+  }
+]

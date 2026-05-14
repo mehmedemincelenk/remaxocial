@@ -1,0 +1,433 @@
+[
+  {
+    "id": 1,
+    "text": "Komisyon oranı çok yüksek, indirim yapmaz mısınız?",
+    "answer": "Düşük komisyonlu biri mülkünüzün değerini de düşük savunur. Biz değer koruyoruz, sadece ilan girmiyoruz.",
+    "categories": ["Komisyon", "Fiyat"]
+    },
+    {
+    "id": 31,
+    "text": "Evi ilan sitelerine ben de koyarım, emlakçıya ne gerek var?",
+    "answer": "Herkes ilan girebilir ama herkes doğru alıcıyı eleyemez. Biz kapınıza sadece 'meraklıları' değil, parası hazır 'gerçek alıcıları' getiriyoruz.",
+    "categories": ["Hizmet", "Fark"]
+    },
+    {
+    "id": 32,
+    "text": "Birkaç emlakçıya daha verdim, kim satarsa komisyonu o alsın.",
+    "answer": "Çok elden satış mülkü 'pazara düşmüş' gibi gösterir ve değerini kırar. Tek elden, prestijli yönetim mülkün değerini savunmanın tek yoludur.",
+    "categories": ["Sözleşme", "Prestij"]
+    },
+    {
+    "id": 33,
+    "text": "Evi satmazsam size bir borcum olacak mı?",
+    "answer": "Hayır, biz sonuca ortağız. Satış gerçekleşene kadar tüm pazarlama, video ve reklam maliyetleri bize ait, risk tamamen bizim üzerimizde.",
+    "categories": ["Güven", "Maliyet"]
+    },
+    {
+    "id": 34,
+    "text": "Tanıdık bir emlakçı var, ayıp olmasın diye ona söz verdim.",
+    "answer": "Gayrimenkul ticareti duygusal değil, rasyonel bir süreçtir. 'Ayıp olmasın' diye mülkünüzün aylarca ilanda beklemesine razı mısınız?",
+    "categories": ["Profesyonellik", "Zaman"]
+    },
+    {
+    "id": 35,
+    "text": "Komisyonu alıcı ödesin, ben cebimden bir şey vermem.",
+    "answer": "Piyasada alıcı zaten mülkün toplam maliyetine bakar. Hizmet bedelini mülkün üzerine koymak yerine, doğru fiyatla pazarlığı bizim yönetmemiz size daha çok kazandırır.",
+    "categories": ["Komisyon", "Pazarlık"]
+    },
+    {
+    "id": 36,
+    "text": "Evi görmek isteyen olursa ben anahtarı veririm, siz gelmeseniz de olur.",
+    "answer": "Alıcıyla sizin aranızdaki duygusal bağ pazarlıkta zayıflık yaratır. Bizim orada olmamız, mülkün eksilerini profesyonelce yönetmek içindir.",
+    "categories": ["Sunum", "Pazarlık"]
+    },
+    {
+    "id": 37,
+    "text": "Sizin getireceğiniz alıcıya ben de ulaşabilirim.",
+    "answer": "Bizim ağımız sadece ilan siteleri değil; hazırda bekleyen yatırımcı havuzumuzdur. Siz alıcıyı beklersiniz, biz alıcıyı mülke davet ederiz.",
+    "categories": ["Hizmet", "Hız"]
+    },
+    {
+    "id": 38,
+    "text": "Sözleşme imzalamam, ben söze güvenirim.",
+    "answer": "Sözleşme bizim değil, sizin haklarınızın teminatıdır. Süreci yasallaştırmak, her iki tarafın da ciddiyetini ve emeğini korur.",
+    "categories": ["Sözleşme", "Hukuk"]
+    },
+    {
+    "id": 39,
+    "text": "Sizin markanız çok pahalıdır, komisyonda esnemez misiniz?",
+    "answer": "Markamızın gücü mülkünüzü daha pahalıya satabilme yeteneğimizden gelir. Ucuz hizmet genelde pahalıya patlar, biz size net kâr vaat ediyoruz.",
+    "categories": ["Marka", "Komisyon"]
+    },
+    {
+    "id": 40,
+    "text": "Piyasa şu an çok durgun, beklesek mi?",
+    "answer": "Durgun piyasada 'bekleyen' değil, 'doğru strateji kuran' satar. Pazar hareketlendiğinde rekabet de artacak; şu an mülkünüzün öne çıkma vakti.",
+    "categories": ["Piyasa", "Zamanlama"]
+    },
+    {
+    "id": 41,
+    "text": "Daha önce bir emlakçıyla çalıştım, hiçbir şey yapmadı; size neden güveneyim?",
+    "answer": "Kötü tecrübe bir engel değil, tecrübedir. Biz sadece ilan girmiyoruz; her hafta size verilerle rapor sunuyor ve süreci şeffaf yönetiyoruz.",
+    "categories": ["Güven", "Raporlama"]
+    },
+    {
+    "id": 42,
+    "text": "Evi bugün alacak biri varsa hemen imzalarım, yoksa bekleyelim.",
+    "answer": "Alıcıyı beklemek piyango oynamaktır, alıcıyı hazırlamak ise profesyonelliktir. Biz mülkü 'hemen alınabilir' hale getiriyoruz.",
+    "categories": ["Zamanlama", "Strateji"]
+    },
+    {
+    "id": 43,
+    "text": "Tapu işlemlerinde dolandırılmaktan korkuyorum.",
+    "answer": "Korkunuzda haklısınız, bu yüzden biz varız. Tüm süreci yasal protokoller ve banka güvenceli ödeme sistemleriyle sıfır riskle yönetiyoruz.",
+    "categories": ["Güven", "Hukuk"]
+    },
+    {
+    "id": 44,
+    "text": "Mülküm çok özel, her önüne gelenin eve girmesini istemiyorum.",
+    "answer": "Biz de istemiyoruz. Herkesi eve almıyoruz; önce mali yeterliliğini ve ciddiyetini kontrol ediyor, sadece 'nitelikli' alıcıya sunum yapıyoruz.",
+    "categories": ["Gizlilik", "Eleme"]
+    },
+    {
+    "id": 45,
+    "text": "İnternette benzer evler daha yüksek fiyatta, neden benimkini düşük yazıyoruz?",
+    "answer": "İnternetteki fiyatlar 'istenen' rakamlardır, bizim sunduğumuz ise 'gerçekleşen' piyasa verisidir. Amacımız satmak mı, yoksa ilanda beklemek mi?",
+    "categories": ["Fiyat", "Piyasa"]
+    },
+    {
+    "id": 46,
+    "text": "Sizin komisyonunuzu fiyatın üzerine ekleyip öyle satalım.",
+    "answer": "Piyasa fiyatının üzerine çıkan her kuruş satışı zorlaştırır. Biz mülkü değerinde satıp, hizmet bedelimizi bu başarıdan alırız.",
+    "categories": ["Komisyon", "Fiyat"]
+    },
+    {
+    "id": 47,
+    "text": "Evi satıp üzerine para koyup yeni ev alacağım, bu yüzden bu fiyat şart.",
+    "answer": "Piyasa sizin ihtiyacınıza göre değil, arz-talebe göre şekillenir. Hedefinize ulaşmanız için mülkünüzü en hızlı ve en doğru fiyattan nakde çevirmeliyiz.",
+    "categories": ["Fiyat", "Hedef"]
+    },
+    {
+    "id": 48,
+    "text": "Evi boyatıp öyle mi satışa çıksak, değerini artırır mı?",
+    "answer": "Büyük masraflar genelde geri dönmez. Biz mülkü 'makyaj'la değil, 'doğru pazarlama ve ışık'la değerli gösteriyoruz.",
+    "categories": ["Hazırlık", "Maliyet"]
+    },
+    {
+    "id": 49,
+    "text": "Sizin ofisiniz çok uzak, bölgeye hakim misiniz?",
+    "answer": "Hakimiyet ofis mesafesiyle değil, veriyle ölçülür. Biz dijital ağımızla tüm bölgenin nabzını anlık tutuyoruz.",
+    "categories": ["Lokasyon", "Veri"]
+    },
+    {
+    "id": 50,
+    "text": "Başka bir emlakçı 'daha yüksek fiyata satarım' dedi.",
+    "answer": "Size duymak istediğinizi söyleyen değil, gerçeği söyleyen kazandırır. İmzayı almak için yüksek fiyat verip sonra indirim istemek bizim tarzımız değil.",
+    "categories": ["Etik", "Fiyat"]
+    },
+    {
+    "id": 51,
+    "text": "Şu an dolar yükseliyor, beklersek daha çok kazanır mıyız?",
+    "answer": "Dolar yükselirken alacağınız yeni mülkün fiyatı da yerinde durmuyor. Önemli olan piyasalar arası geçişi doğru zamanda yapmaktır.",
+    "categories": ["Ekonomi", "Zamanlama"]
+    },
+    {
+    "id": 52,
+    "text": "Evin içindeki kiracı çıkmadan satabilir miyiz, sorun olur mu?",
+    "answer": "Evet satılır, ancak doğru yönetilmezse alıcıyı kaçırır. Kiracıyla olan süreci hukuki ve insani zeminde biz koordine ediyoruz.",
+    "categories": ["Kiracı", "Hukuk"]
+    },
+    {
+    "id": 53,
+    "text": "Evde mirasçılar arasında anlaşmazlık var, satamazsınız diye korkuyorum.",
+    "answer": "Anlaşmazlık süreci kilitler, biz ise anahtarız. Tüm mirasçıları ortak bir faydada buluşturmak için profesyonel arabuluculuk yapıyoruz.",
+    "categories": ["Miras", "Arabuluculuk"]
+    },
+    {
+    "id": 54,
+    "text": "Emlakçılar sadece kendi cebini düşünür, benim mülkümün değeri umurunuzda mı?",
+    "answer": "Bizim kazancımız sizin mülkünüzü en yüksek fiyata satmamıza bağlı. Sizinle aynı taraftayız; mülk ne kadar değerli satılırsa, biz de o kadar başarılı oluruz.",
+    "categories": ["Güven", "Etik"]
+    },
+    {
+    "id": 55,
+    "text": "Komşularım evimi sattığımı duysun istemiyorum, sessizce satabilir miyiz?",
+    "answer": "Elbette. 'Off-market' dediğimiz gizli portföy yönetimiyle, mülkünüzü genel ilana çıkmadan sadece ciddi yatırımcı havuzumuza sunabiliriz.",
+    "categories": ["Gizlilik", "Strateji"]
+    },
+    {
+    "id": 56,
+    "text": "Evi sattıktan sonra çıkacak yeni ev bulamazsam ortada kalırım.",
+    "answer": "Bu süreci 'zincir satış' yönetimiyle çözüyoruz. Kendi evinizi satarken, yeni evinizin tapu sürecini eş zamanlı planlayıp riskinizi sıfırlıyoruz.",
+    "categories": ["Zamanlama", "Güven"]
+    },
+    {
+    "id": 57,
+    "text": "Emlakçıya yetki verirsem evimin kontrolü benden çıkar mı?",
+    "answer": "Asla. Kontrol her zaman sizde; biz sadece sizin belirlediğiniz sınırlar içinde profesyonel operasyonu yöneten 'eliniz kolunuzuz'.",
+    "categories": ["Sözleşme", "Kontrol"]
+    },
+    {
+    "id": 58,
+    "text": "Sizin getirdiğiniz alıcı pazarlıkta beni çok sıkıştırır mı?",
+    "answer": "Bizim görevimiz sizi sıkıştırmak değil, alıcıyı mülkün gerçek değerine ikna etmektir. Biz sizin adınıza masadaki en güçlü savunmacıyız.",
+    "categories": ["Pazarlık", "Savunma"]
+    },
+    {
+    "id": 59,
+    "text": "Evimde çok fazla özel eşya ve sanat eseri var, çekimlerde görünmesin.",
+    "answer": "Profesyonel kurgu ekibimizle, özel alanlarınızı flulaştırarak veya kadraj dışı bırakarak mülkü hem şık hem de güvenli şekilde pazarlıyoruz.",
+    "categories": ["Gizlilik", "Çekim"]
+    },
+    {
+    "id": 60,
+    "text": "Emlakçıya ödeyeceğim parayla evime tadilat yaparım daha iyi.",
+    "answer": "Tadilat mülkü güzelleştirir ama satmaz. Profesyonel pazarlama ise mülkü 'nakde' çevirir. Güzelleşen mülk ilanda beklerken para kaybettirebilir.",
+    "categories": ["Maliyet", "Strateji"]
+    },
+    {
+    "id": 61,
+    "text": "Sözleşme süresi neden 3 ay? Çok uzun değil mi?",
+    "answer": "Gerçek bir pazarlama planı (video, reklam, eleme, tapu) zaman ister. Biz 3 ayı beklemek için değil, en iyi teklifi o sürede garantilemek için istiyoruz.",
+    "categories": ["Sözleşme", "Zaman"]
+    },
+    {
+    "id": 62,
+    "text": "Evi satmaktan vazgeçersem bir yaptırımı var mı?",
+    "answer": "Kararınıza saygı duyarız. Biz sadece satış gerçekleştiğinde hak kazanırız. Vazgeçerseniz verdiğimiz emek ve reklam masrafları bizim yatırım riskimizdir.",
+    "categories": ["Sözleşme", "Güven"]
+    },
+    {
+    "id": 63,
+    "text": "Sizin markanız çok kurumsal, bizim mahallenin dilinden anlar mı?",
+    "answer": "Kurumsallığımız gücümüzdür, ancak biz sahadayız. Mahallenin kahvesinden emlak piyasasına kadar her dili konuşuyoruz.",
+    "categories": ["Marka", "Yerel"]
+    },
+    {
+    "id": 64,
+    "text": "Alıcı kredi kullanırsa para elime geçene kadar tapu benden çıkar mı?",
+    "answer": "Hayır. Banka bloke çek veya güvenli ödeme sistemleriyle, para hesabınıza geçmeden tapu devri gerçekleşmez. Süreç %100 güvencelidir.",
+    "categories": ["Hukuk", "Ödeme"]
+    },
+    {
+    "id": 65,
+    "text": "Evi çok acil satmam lazım, fiyatı çok mu öldürmeliyiz?",
+    "answer": "Acele etmek 'fiyat öldürmek' demek değildir. En doğru fiyattan çıkıp, agresif bir dijital pazarlamayla doğru alıcıya ulaşmak en hızlı ve en kârlı yoldur.",
+    "categories": ["Hız", "Fiyat"]
+    },
+    {
+    "id": 66,
+    "text": "Evimdeki kiracı evden çıkmıyor, alıcı bunu sorun eder mi?",
+    "answer": "Yatırımcı alıcılar için kiracı bir avantajdır. Oturumcu alıcılar için ise süreci hukuki zeminle ve kiracıyla iletişim kurarak biz yönetiyoruz.",
+    "categories": ["Kiracı", "Yatırım"]
+    },
+    {
+    "id": 67,
+    "text": "Sizden başka emlakçılar da arıyor, onlar 'bizde hazır alıcı var' diyor.",
+    "answer": "Hazır alıcısı olan kapınızı çalar, telefonda 'vaat' vermez. Biz vaat değil, somut pazarlama planı ve gerçek alıcı elemesi sunuyoruz.",
+    "categories": ["Etik", "Rekabet"]
+    },
+    {
+    "id": 68,
+    "text": "İnternet ilanları mülkümü basitleştirir mi?",
+    "answer": "Kötü çekim ve eksik bilgi basitleştirir. Bizim yaptığımız yüksek kaliteli sinematik çekimler mülkünüzü 'lüks' kategorisine taşır.",
+    "categories": ["Prestij", "Pazarlama"]
+    },
+    {
+    "id": 69,
+    "text": "Yabancı alıcılara güvenebilir miyim? Ödeme nasıl olacak?",
+    "answer": "Yabancı satışları devlet denetimindedir. Ekspertiz raporundan döviz alım belgesine kadar tüm bürokrasiyi biz güvenle takip ediyoruz.",
+    "categories": ["Yabancı Satış", "Güven"]
+    },
+    {
+    "id": 70,
+    "text": "Evi bir süre kiralayıp sonra mı satsam?",
+    "answer": "İçinde kiracı olan evin satış hızı ve fiyatı genelde düşer. Eğer hedefiniz satmaksa, mülkü 'boş ve hemen teslim' olarak sunmak daha kârlıdır.",
+    "categories": ["Strateji", "Kira"]
+    },
+    {
+    "id": 71,
+    "text": "Piyasada çok fazla emlakçı var, sizin farkınız nedir?",
+    "answer": "Biz sadece 'emlakçı' değiliz; biz dijital pazarlama ajansı gibi çalışan gayrimenkul stratejistleriyiz. Mülkünüzü milyonlara biz ulaştırıyoruz.",
+    "categories": ["Fark", "Marka"]
+    },
+    {
+    "id": 72,
+    "text": "Evi sattıktan sonra vergiler çok tutar mı?",
+    "answer": "Değer artış kazancı vergisi gibi konularda mali müşavirimizle size ön çalışma yapıyor, sürpriz maliyetlerle karşılaşmanızı engelliyoruz.",
+    "categories": ["Maliye", "Vergi"]
+    }
+    ]    "id": 2,
+    "text": "Emlakçıya gerek yok, kendim de satabilirim.",
+    "answer": "Satış sadece ilan girmek değildir; yabancı elemeleri, güvenlik ve pazarlık yönetimidir. Biz yükü alıyoruz.",
+    "categories": ["Hizmet", "Satış"]
+  },
+  {
+    "id": 3,
+    "text": "Fiyatı piyasanın biraz üstünde tutalım, pazarlık payı olsun.",
+    "answer": "Yanlış fiyat mülkü eskitir. Doğru fiyatla başlayıp en yüksek teklifi almak en karlı stratejidir.",
+    "categories": ["Fiyat", "Strateji"]
+  },
+  {
+    "id": 4,
+    "text": "Başka emlakçı %1 komisyonla çalışmayı kabul etti.",
+    "answer": "%1'lik hizmet %5'lik kayba neden olabilir. Profesyonellik fark yaratır, mülkünüzü riske atmayın.",
+    "categories": ["Rekabet", "Komisyon"]
+  },
+  {
+    "id": 5,
+    "text": "Aciliyetim yok, bekleyebilirim.",
+    "answer": "Beklediğiniz her gün fırsat maliyetidir. Bugünün fiyatı yarının hayali olabilir. Piyasa beklemez.",
+    "categories": ["Zaman", "Fırsat"]
+  },
+  {
+    "id": 6,
+    "text": "Önce arkadaşım denesin, satamazsa size veririm.",
+    "answer": "Mülkünüzün piyasadaki 'tazeliği' en büyük sermayenizdir. İlk 15 gün en güçlü alıcıların geldiği zamandır.",
+    "categories": ["Güven", "Zaman"]
+  },
+  {
+    "id": 7,
+    "text": "Siz ne yapacaksınız ki? Sadece sahibinden'e ilan gireceksiniz.",
+    "answer": "Bizim ağımızdaki binlerce hazır alıcıya ve global portföyümüze ilan girmeden mülkünüzü sunuyoruz.",
+    "categories": ["Hizmet", "Pazarlama"]
+  },
+  {
+    "id": 8,
+    "text": "Sözleşme yapmak istemiyorum.",
+    "answer": "Sözleşme, mülkünüzün pazarlama bütçesinin ve bizim sorumluluğumuzun teminatıdır. Güven belgesidir.",
+    "categories": ["Güven", "Hukuk"]
+  },
+  {
+    "id": 9,
+    "text": "Kredi faizleri çok yüksek, şu an ev alınmaz.",
+    "answer": "Herkes dururken almak pazarlık gücü verir. Faiz düştüğünde fiyatlar zıplar, aradaki farkı şimdi kazanın.",
+    "categories": ["Finans", "Kredi"]
+  },
+  {
+    "id": 10,
+    "text": "Arsanın imar durumu karışık görünüyor.",
+    "answer": "Karışık durumlar uzmanlık gerektirir. Biz tüm teknik incelemeyi yaptık, riskleri fırsata dönüştürebiliriz.",
+    "categories": ["Arsa", "İmar"]
+  },
+  {
+    "id": 11,
+    "text": "Ev çok eski, masrafı çok olur.",
+    "answer": "Masraf bir yatırım kalemidir. Bu lokasyonda bu metrekareyi bu fiyata alıp yenilemek en büyük kardır.",
+    "categories": ["Emlak", "Yatırım"]
+  },
+  {
+    "id": 12,
+    "text": "Daha önce başka bir emlakçıyla çalıştım, satamadı.",
+    "answer": "Doğru pazarlama planı ve doğru fiyatlama ile her mülk satılır. Bizim yöntemimiz farklı ve sonuç odaklı.",
+    "categories": ["Güven", "Rekabet"]
+  },
+  {
+    "id": 13,
+    "text": "Komisyonu alıcıdan alın, benden almayın.",
+    "answer": "Hizmet bedeli tarafsızlığımızın ve profesyonelliğimizin garantisidir. Her iki tarafın haklarını koruyoruz.",
+    "categories": ["Komisyon", "Hukuk"]
+  },
+  {
+    "id": 14,
+    "text": "Pazarlık yapmıyor musunuz?",
+    "answer": "Fiyatta değil, mülkün değerini nasıl artıracağımızda pazarlık yapalım. En iyi rakamı biz getiririz.",
+    "categories": ["Fiyat", "Pazarlık"]
+  },
+  {
+    "id": 15,
+    "text": "Tapu üzerinde ipotek var, korkutuyor.",
+    "answer": "İpotekli satışlar günlük rutinimiz. Tüm süreci banka ve tapu nezdinde güvenle biz yönetiyoruz.",
+    "categories": ["Tapu", "Hukuk"]
+  },
+  {
+    "id": 16,
+    "text": "Bölgeyi pek bilmiyorum, güvenemiyorum.",
+    "answer": "Bölge uzmanıyız. Son 2 yıldaki prim oranlarını ve gelecek projeleri size raporlayabiliriz.",
+    "categories": ["Güven", "Bölge"]
+  },
+  {
+    "id": 17,
+    "text": "Kiracı çıkmazsa ne yaparım?",
+    "answer": "Tahliye taahhütnamesi ve kiracı görüşmelerini önceden netleştiriyoruz. Hukuki süreci biz takip ederiz.",
+    "categories": ["Emlak", "Kiracı"]
+  },
+  {
+    "id": 18,
+    "text": "Dolar bazında zarar ederim diye korkuyorum.",
+    "answer": "Gayrimenkul uzun vadede dolardan fazla kazandırır. Lokasyon seçimiyle enflasyona karşı koruma sağlarız.",
+    "categories": ["Yatırım", "Finans"]
+  },
+  {
+    "id": 19,
+    "text": "Komisyonu tapuda ödesem olmaz mı?",
+    "answer": "Hizmet bedeli tapu devri anında tahsil edilir, süreç tamamlanmadan ödeme almayız. Güven esastır.",
+    "categories": ["Komisyon", "Güven"]
+  },
+  {
+    "id": 20,
+    "text": "Ev sahibi çok inatçı görünüyor.",
+    "answer": "Pazarlık bizim işimiz. Duyguları masadan çekip mantıklı bir zeminde buluşturmakta uzmanız.",
+    "categories": ["Psikoloji", "Pazarlık"]
+  },
+  {
+    "id": 21,
+    "text": "Şu an param mevduatta, daha çok getiriyor.",
+    "answer": "Mevduat parayı korur, gayrimenkul servet inşa eder. Mevduat faizi biter, mülk değeri katlanır.",
+    "categories": ["Yatırım", "Finans"]
+  },
+  {
+    "id": 22,
+    "text": "Gayrimenkul balonu var diyorlar.",
+    "answer": "Arzın talebi karşılamadığı bir yerde balon olmaz. İhtiyaç ve nüfus artışı olduğu sürece fiyatlar artar.",
+    "categories": ["Yatırım", "Piyasa"]
+  },
+  {
+    "id": 23,
+    "text": "İlanı sadece RE/MAX sitesine mi koyacaksınız?",
+    "answer": "Hayır, tüm büyük portallarda en üst sıralarda (Dopingli) ve sosyal medyada hedefli reklamlarla çıkıyoruz.",
+    "categories": ["Hizmet", "Pazarlama"]
+  },
+  {
+    "id": 24,
+    "text": "Mülk çok uzak, bakmaya değer mi?",
+    "answer": "Sizin yerinize biz gidip detaylı bir video turu ve rapor hazırladık. Zamanınız bizim için değerli.",
+    "categories": ["Zaman", "Hizmet"]
+  },
+  {
+    "id": 25,
+    "text": "Bu arsa imara ne zaman açılır?",
+    "answer": "Belediye planlarını ve gelişim aksını inceledik. Bölgedeki hareketlilik 1-2 yıl içinde ciddi sinyal veriyor.",
+    "categories": ["Arsa", "Yatırım"]
+  },
+  {
+    "id": 26,
+    "text": "Eşimi/ortağımı ikna etmem lazım.",
+    "answer": "Onlara da sunum yapabiliriz. Karar vericilerin tüm sorularını yanıtlayıp süreci hızlandıralım.",
+    "categories": ["Güven", "Karar"]
+  },
+  {
+    "id": 27,
+    "text": "Mülk sahibiyle doğrudan görüşebilir miyim?",
+    "answer": "Elbette, ancak duygusal pazarlıkların satışa zarar vermemesi için ilk aşamayı bizim yönetmemiz lehinize olur.",
+    "categories": ["Pazarlık", "Strateji"]
+  },
+  {
+    "id": 28,
+    "text": "Hizmetinizden memnun kalmazsam ne olur?",
+    "answer": "Şeffaf çalışıyoruz. Her hafta rapor sunuyoruz. Başarısızlık lügatimizde yok, memnuniyet tek hedefimiz.",
+    "categories": ["Hizmet", "Güven"]
+  },
+  {
+    "id": 29,
+    "text": "Tapu masrafını kim öder?",
+    "answer": "Kanunen yarı yarıyadır ancak pazarlık masasında bu durumu sizin lehinize çevirmek için çabalarız.",
+    "categories": ["Tapu", "Fiyat"]
+  },
+  {
+    "id": 30,
+    "text": "Sizi neden seçmeliyim?",
+    "answer": "En geniş alıcı ağına sahibiz, en şeffaf süreci yönetiyoruz ve mülkünüzü kendi mülkümüz gibi koruyoruz.",
+    "categories": ["Güven", "Marka"]
+  }
+]
