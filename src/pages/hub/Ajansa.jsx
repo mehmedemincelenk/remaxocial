@@ -144,24 +144,19 @@ export default function Ajansa() {
 
   // WRITER STATES
   const [writerForm, setWriterForm] = useState({ 
-    raw: '', 
     title: '', 
     details: '', 
-    extra: '', 
-    price: '', 
     location: '', 
-    specs: '' 
+    extra: '' 
   });
   const [writerImages, setWriterImages] = useState([]);
   const [writerSelectedIds, setWriterSelectedIds] = useState([]);
   const [writerRevealed, setWriterRevealed] = useState({ 
     title: false, 
     details: false, 
-    photos: false, 
-    extra: false, 
-    price: false, 
     location: false, 
-    specs: false 
+    photos: false, 
+    extra: false 
   });
   const [writerResult, setWriterResult] = useState('');
   const [isWriting, setIsWriting] = useState(false);
@@ -425,26 +420,13 @@ export default function Ajansa() {
 
       {mainTab === 'writer' && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="writer-container" style={{ padding: '0 0.5rem' }}>
-          {/* PRIMARY INPUT */}
-          <div style={{ marginBottom: '1rem' }}>
-            <textarea 
-              placeholder="Sizdeki metin (Kaba notlar, fikirler, kopyalanmış ilanlar...)" 
-              rows={3}
-              value={writerForm.raw} 
-              onChange={e => setWriterForm(p => ({ ...p, raw: e.target.value }))}
-              style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '1rem', borderRadius: '12px', color: '#fff', fontSize: '0.85rem', outline: 'none', width: '100%', resize: 'none' }} 
-            />
-          </div>
-
           {/* REVEAL TRIGGERS (FilterChips) */}
           <div style={{ display: 'flex', gap: '8px', marginBottom: '1.25rem', overflowX: 'auto', scrollbarWidth: 'none', paddingBottom: '4px' }}>
             <FilterChip label="Başlık +" active={writerRevealed.title} onClick={() => toggleReveal('title')} color="#3498db" />
-            <FilterChip label="Fiyat +" active={writerRevealed.price} onClick={() => toggleReveal('price')} color="#2ecc71" />
+            <FilterChip label="Detay +" active={writerRevealed.details} onClick={() => toggleReveal('details')} color="var(--color-accent)" />
             <FilterChip label="Konum +" active={writerRevealed.location} onClick={() => toggleReveal('location')} color="#e67e22" />
-            <FilterChip label="Teknik +" active={writerRevealed.specs} onClick={() => toggleReveal('specs')} color="#9b59b6" />
-            <FilterChip label="Açıklama +" active={writerRevealed.details} onClick={() => toggleReveal('details')} color="var(--color-accent)" />
             <FilterChip label="Fotoğraf +" active={writerRevealed.photos} onClick={() => toggleReveal('photos')} color="var(--color-accent)" />
-            <FilterChip label="Not +" active={writerRevealed.extra} onClick={() => toggleReveal('extra')} color="var(--color-accent)" />
+            <FilterChip label="Notlar +" active={writerRevealed.extra} onClick={() => toggleReveal('extra')} color="var(--color-accent)" />
           </div>
 
           {/* SECONDARY FIELDS (Expandable) */}
@@ -452,7 +434,7 @@ export default function Ajansa() {
             {writerRevealed.title && (
               <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
                 <input 
-                  placeholder="Sahibinden Başlığı" 
+                  placeholder="İlan Başlığı" 
                   value={writerForm.title} 
                   onChange={e => setWriterForm(p => ({ ...p, title: e.target.value }))}
                   style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', outline: 'none', width: '100%' }} 
@@ -460,48 +442,8 @@ export default function Ajansa() {
               </motion.div>
             )}
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px' }}>
-              {writerRevealed.price && (
-                <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
-                  <input 
-                    placeholder="Fiyat (₺)" 
-                    value={writerForm.price} 
-                    onChange={e => setWriterForm(p => ({ ...p, price: e.target.value }))}
-                    style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', outline: 'none', width: '100%' }} 
-                  />
-                </motion.div>
-              )}
-              {writerRevealed.location && (
-                <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
-                  <input 
-                    placeholder="İl / İlçe / Mahalle" 
-                    value={writerForm.location} 
-                    onChange={e => setWriterForm(p => ({ ...p, location: e.target.value }))}
-                    style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', outline: 'none', width: '100%' }} 
-                  />
-                </motion.div>
-              )}
-            </div>
-
-            {writerRevealed.specs && (
-              <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
-                <textarea 
-                  placeholder="Teknik Bilgiler (m2, Oda, Kat, Isıtma vb.)" 
-                  rows={2}
-                  value={writerForm.specs} 
-                  onChange={e => setWriterForm(p => ({ ...p, specs: e.target.value }))}
-                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', resize: 'none', outline: 'none', width: '100%' }} 
-                />
-              </motion.div>
-            )}
-
             {writerRevealed.details && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0, marginBottom: 0 }} 
-                animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} 
-                exit={{ height: 0, opacity: 0, marginBottom: 0 }}
-                style={{ overflow: 'hidden' }}
-              >
+              <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
                 <textarea 
                   placeholder="Mülk Detayları ve Özellikleri..." 
                   rows={3}
@@ -512,13 +454,19 @@ export default function Ajansa() {
               </motion.div>
             )}
 
+            {writerRevealed.location && (
+              <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
+                <input 
+                  placeholder="İl / İlçe / Mahalle" 
+                  value={writerForm.location} 
+                  onChange={e => setWriterForm(p => ({ ...p, location: e.target.value }))}
+                  style={{ background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', padding: '0.75rem', borderRadius: '12px', color: '#fff', fontSize: '0.8rem', outline: 'none', width: '100%' }} 
+                />
+              </motion.div>
+            )}
+
             {writerRevealed.photos && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0, marginBottom: 0 }} 
-                animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} 
-                exit={{ height: 0, opacity: 0, marginBottom: 0 }}
-                style={{ overflow: 'hidden' }}
-              >
+              <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
                 <div 
                   style={{ 
                     height: '60px', 
@@ -557,12 +505,7 @@ export default function Ajansa() {
             )}
 
             {writerRevealed.extra && (
-              <motion.div 
-                initial={{ height: 0, opacity: 0, marginBottom: 0 }} 
-                animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} 
-                exit={{ height: 0, opacity: 0, marginBottom: 0 }}
-                style={{ overflow: 'hidden' }}
-              >
+              <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
                 <textarea 
                   placeholder="Ekstra Notlar veya Hedef Kitle..." 
                   rows={2}
