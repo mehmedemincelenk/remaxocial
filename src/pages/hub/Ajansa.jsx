@@ -149,34 +149,17 @@ export default function Ajansa() {
     location: '', 
     extra: '' 
   });
-  const [writerImages, setWriterImages] = useState([]);
   const [writerSelectedIds, setWriterSelectedIds] = useState([]);
   const [writerRevealed, setWriterRevealed] = useState({ 
     title: false, 
     details: false, 
     location: false, 
-    photos: false, 
     extra: false 
   });
   const [writerResult, setWriterResult] = useState('');
   const [isWriting, setIsWriting] = useState(false);
-  const writerFileInputRef = useRef(null);
 
   const toggleReveal = (field) => setWriterRevealed(p => ({ ...p, [field]: !p[field] }));
-
-  const handleWriterImageUpload = (e) => {
-    const files = Array.from(e.target.files);
-    const newImgs = files.map(file => ({
-      id: Math.random().toString(36).substr(2, 9),
-      url: URL.createObjectURL(file),
-      file: file
-    }));
-    setWriterImages(prev => [...prev, ...newImgs].slice(0, 5));
-  };
-
-  const removeWriterImage = (id) => {
-    setWriterImages(prev => prev.filter(img => img.id !== id));
-  };
 
   const toggleWriterSelection = (id) => {
     setWriterSelectedIds(prev => prev.includes(id) ? prev.filter(i => i !== id) : [...prev, id]);
@@ -425,7 +408,6 @@ export default function Ajansa() {
             <FilterChip label="Başlık +" active={writerRevealed.title} onClick={() => toggleReveal('title')} color="#3498db" />
             <FilterChip label="Detay +" active={writerRevealed.details} onClick={() => toggleReveal('details')} color="var(--color-accent)" />
             <FilterChip label="Konum +" active={writerRevealed.location} onClick={() => toggleReveal('location')} color="#e67e22" />
-            <FilterChip label="Fotoğraf +" active={writerRevealed.photos} onClick={() => toggleReveal('photos')} color="var(--color-accent)" />
             <FilterChip label="Notlar +" active={writerRevealed.extra} onClick={() => toggleReveal('extra')} color="var(--color-accent)" />
           </div>
 
@@ -465,45 +447,6 @@ export default function Ajansa() {
               </motion.div>
             )}
 
-            {writerRevealed.photos && (
-              <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
-                <div 
-                  style={{ 
-                    height: '60px', 
-                    border: '1px dashed rgba(255,255,255,0.2)', 
-                    borderRadius: '12px', 
-                    display: 'flex', 
-                    alignItems: 'center', 
-                    gap: '8px',
-                    padding: '0 8px',
-                    overflowX: 'auto',
-                    scrollbarWidth: 'none',
-                    background: 'rgba(255,255,255,0.02)'
-                  }}
-                >
-                  <input type="file" multiple hidden ref={writerFileInputRef} onChange={handleWriterImageUpload} accept="image/*" />
-                  {writerImages.length < 5 && (
-                    <div 
-                      onClick={() => writerFileInputRef.current?.click()}
-                      style={{ minWidth: '40px', height: '40px', borderRadius: '8px', border: '1px dashed rgba(255,255,255,0.3)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}
-                    >
-                      <ImageIcon size={16} style={{ opacity: 0.4 }} />
-                    </div>
-                  )}
-                  {writerImages.map(img => (
-                    <motion.div 
-                      key={img.id}
-                      onClick={() => removeWriterImage(img.id)}
-                      whileTap={{ scale: 0.9 }}
-                      style={{ minWidth: '40px', height: '40px', borderRadius: '8px', overflow: 'hidden', position: 'relative', cursor: 'pointer', border: '1px solid rgba(255,255,255,0.1)' }}
-                    >
-                      <img src={img.url} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                    </motion.div>
-                  ))}
-                </div>
-              </motion.div>
-            )}
-
             {writerRevealed.extra && (
               <motion.div initial={{ height: 0, opacity: 0, marginBottom: 0 }} animate={{ height: 'auto', opacity: 1, marginBottom: '1rem' }} exit={{ height: 0, opacity: 0, marginBottom: 0 }} style={{ overflow: 'hidden' }}>
                 <textarea 
@@ -517,18 +460,22 @@ export default function Ajansa() {
             )}
           </AnimatePresence>
 
-          {/* TRANSFORMER CARDS - Exactly same pattern as Ads */}
-          <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: '0.6rem', fontWeight: '800', marginBottom: '0.6rem', textTransform: 'uppercase', letterSpacing: '0.05em' }}>Metin Dönüştürücüler</p>
+          {/* TRANSFORMER CARDS - Functional Output Focused */}
           <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem' }}>
             <PromptCard 
-              id="pro_desc" title="Kurumsal İlan" desc="Profesyonel ve güven veren bir ilan metni oluştur." 
-              icon="💎" isSelected={writerSelectedIds.includes('pro_desc')} 
-              onIconClick={toggleWriterSelection} onCardClick={() => alert('Yapay zeka metni hazırlanıyor...')} 
+              id="write_title" title="Başlık" desc="Sadece en çok tıklanan, merak uyandıran 5 farklı başlık üretir." 
+              icon="🎯" isSelected={writerSelectedIds.includes('write_title')} 
+              onIconClick={toggleWriterSelection} onCardClick={() => alert('Başlıklar hazırlanıyor...')} 
             />
             <PromptCard 
-              id="insta_post" title="Instagram Post" desc="Viral etkili, bol emojili sosyal medya içeriği." 
-              icon="📱" isSelected={writerSelectedIds.includes('insta_post')} 
-              onIconClick={toggleWriterSelection} onCardClick={() => alert('Yapay zeka metni hazırlanıyor...')} 
+              id="write_summary" title="Açıklama" desc="WhatsApp veya Story için en vurucu 3 özelliği öne çıkaran kısa metin." 
+              icon="⚡" isSelected={writerSelectedIds.includes('write_summary')} 
+              onIconClick={toggleWriterSelection} onCardClick={() => alert('Açıklama hazırlanıyor...')} 
+            />
+            <PromptCard 
+              id="write_full" title="Tam Detaylı Açıklama" desc="Portallar için profesyonel, teknik ve ikna edici tam metin." 
+              icon="💎" isSelected={writerSelectedIds.includes('write_full')} 
+              onIconClick={toggleWriterSelection} onCardClick={() => alert('Tam detaylı açıklama hazırlanıyor...')} 
             />
           </div>
 
