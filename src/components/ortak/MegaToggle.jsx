@@ -18,7 +18,13 @@ const MegaToggle = ({
       flexWrap: 'wrap', 
       justifyContent: 'center' 
     }}>
-      {options.map((opt) => {
+      {options.map((opt, index) => {
+        if (opt.isSeparator) {
+          return (
+            <div key={`sep-${index}`} style={{ width: '1px', height: '20px', background: 'rgba(255,255,255,0.1)', margin: 'auto 6px' }} />
+          );
+        }
+
         const isActive = activeId === opt.id;
         const isDisabled = disabledIds.includes(opt.id);
 

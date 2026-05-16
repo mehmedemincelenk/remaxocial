@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { LayoutGrid, BookOpen, Sparkles, X, Phone, HelpCircle, Trash2, Copy, Video, Mic, Radio, Trophy } from 'lucide-react';
 import useSupabase from '../../hooks/useSupabase';
-import { promptMixer } from '../../utils/aiPrompts';
+import { promptMixer, writerPromptMixer } from '../../utils/aiPrompts';
 
 import cgptLogo from '../../assets/icons/cgpt_logo.svg';
 import geminiLogo from '../../assets/icons/gemini_logo.svg';
@@ -34,7 +34,7 @@ export default function FloatingMenu() {
   const navigate = useNavigate();
   const loc = useLocation();
   const [isOpen, setIsOpen] = useState(false);
-  const [aiData, setAiData] = useState({ count: 0, ids: [], mode: 'all' });
+  const [aiData, setAiData] = useState({ count: 0, ids: [], mode: 'all', type: 'photo', formData: null });
 
   const isP = loc.pathname.startsWith('/p/');
   const slug = isP ? loc.pathname.split('/')[2] : null;
@@ -49,9 +49,18 @@ export default function FloatingMenu() {
   const handleAIAction = (type) => {
     if (type === 'clear') {
       window.dispatchEvent(new CustomEvent('ai-selection-clear'));
+      setAiData({ count: 0, ids: [], mode: 'all', type: 'photo', formData: null });
       return;
     }
-    const finalPrompt = promptMixer(aiData.ids, aiData.mode);
+
+    let finalPrompt = "";
+    if (aiData.type === 'writer') {
+      // Writer prompts are single selection usually, but we join if multiple are selected
+      finalPrompt = aiData.ids.map(id => writerPromptMixer(id, aiData.formData)).join("\n\n---\n\n");
+    } else {
+      finalPrompt = promptMixer(aiData.ids, aiData.mode);
+    }
+
     navigator.clipboard.writeText(finalPrompt);
     if (type === 'gpt') window.open('https://chat.openai.com', '_blank');
     if (type === 'gemini') window.open('https://gemini.google.com', '_blank');

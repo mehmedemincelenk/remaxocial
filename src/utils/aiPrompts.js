@@ -1,3 +1,11 @@
+export const COM_TYPES = [
+  { id: 'com_office', icon: '🏢', label: 'Ofis' },
+  { id: 'com_restaurant', icon: '🍽️', label: 'Restoran' },
+  { id: 'com_coffee', icon: '☕', label: 'Kafe' },
+  { id: 'com_boutique', icon: '👕', label: 'Butik' },
+  { id: 'com_industrial', icon: '🏭', label: 'Sanayi/Depo' }
+];
+
 export const promptMixer = (activeIds, viewMode) => {
   // FINAL GUARD (Conflict Resolution) - Mantıksal Çakışmaları Engelle
   let filteredIds = [...activeIds];
@@ -142,4 +150,30 @@ export const promptMixer = (activeIds, viewMode) => {
   const finalNeg = Array.from(new Set(negativeParts)).join(", ");
 
   return `${header}${finalPos}${finalNeg ? ` [NEGATIVE PROMPT: ${finalNeg}]` : ''}`.trim();
+};
+
+export const writerPromptMixer = (id, data = {}) => {
+  const { title = '', details = '', location = '', extra = '' } = data;
+  
+  const context = `Mülk Bilgileri:
+- Başlık: ${title}
+- Detaylar: ${details}
+- Konum: ${location}
+- Ekstra Notlar: ${extra}`;
+
+  const TEMPLATES = {
+    write_title: `Görevin: Yukarıdaki bilgilere dayanarak gayrimenkul ilanı için EN ÇOK TIKLANAN, merak uyandırıcı ve profesyonel 5 farklı başlık üret. 
+    Kriterler: Emojiler kullan, emlak portalları için optimize et, karakter limitine dikkat et.
+    \n\n${context}`,
+    
+    write_summary: `Görevin: Yukarıdaki bilgilere dayanarak WhatsApp veya Instagram Story için en vurucu 3 özelliği öne çıkaran kısa bir pazarlama metni yaz. 
+    Kriterler: Samimi ama profesyonel bir dil kullan, aksiyon çağrısı (CTA) ekle, okumayı kolaylaştıracak liste yapısı kullan.
+    \n\n${context}`,
+    
+    write_full: `Görevin: Yukarıdaki bilgilere dayanarak Sahibinden/Hürriyet Emlak gibi portallar için profesyonel, teknik ve son derece ikna edici tam bir ilan metni yaz. 
+    Kriterler: Bölge avantajlarını vurgula, teknik detayları (m2, oda sayısı vb.) şık bir dille sun, kurumsal bir ton kullan.
+    \n\n${context}`
+  };
+
+  return TEMPLATES[id] || "Gayrimenkul verilerini kullanarak profesyonel bir metin hazırlar.";
 };
