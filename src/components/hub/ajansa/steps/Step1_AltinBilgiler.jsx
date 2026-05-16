@@ -28,7 +28,7 @@ export default function Step1_AltinBilgiler({ sessionId, memberId, onComplete })
       const ay = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}`;
 
       const { error } = await supabase
-        .from('TEST_altin_bilgi_onaylari')
+        .from('test_altin_bilgi_onaylari')
         .insert([{
           session_id: sessionId,
           member_id: memberId,

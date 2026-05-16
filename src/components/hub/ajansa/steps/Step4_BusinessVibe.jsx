@@ -4,7 +4,7 @@ import GlassCard from '../../../ortak/GlassCard';
 import { UploadCloud, Check, Video, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Step3_BusinessVibe({ sessionId, memberId, onComplete }) {
+export default function Step4_BusinessVibe({ sessionId, memberId, onComplete }) {
   const [videoFiles, setVideoFiles] = useState([]);
   const [aciklama, setAciklama] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -65,7 +65,7 @@ export default function Step3_BusinessVibe({ sessionId, memberId, onComplete }) 
       setUploadProgress(90);
 
       const { error } = await supabase
-        .from('TEST_business_vibe_uploads')
+        .from('test_business_vibe_uploads')
         .insert(insertData);
 
       if (error) throw error;

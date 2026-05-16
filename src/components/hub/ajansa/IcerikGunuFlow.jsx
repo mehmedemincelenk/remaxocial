@@ -1,16 +1,17 @@
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { supabase } from '../../../utils/supabaseClient';
 import GlassCard from '../../ortak/GlassCard';
 import { Loader2 } from 'lucide-react';
 
 import Step1_AltinBilgiler from './steps/Step1_AltinBilgiler';
-import Step2_MusteriMemnuniyeti from './steps/Step2_MusteriMemnuniyeti';
-import Step3_BusinessVibe from './steps/Step3_BusinessVibe';
-import Step4_HaberReels from './steps/Step4_HaberReels';
-import Step5_SeriFace from './steps/Step5_SeriFace';
+import Step2_MusteriMesaji from './steps/Step2_MusteriMesaji';
+import Step3_MusteriVideosu from './steps/Step3_MusteriVideosu';
+import Step4_BusinessVibe from './steps/Step4_BusinessVibe';
+import Step5_HaberReels from './steps/Step5_HaberReels';
+import Step6_SeriFace from './steps/Step6_SeriFace';
 
-export default function IcerikGunuWizard() {
+export default function IcerikGunuFlow() {
   const [currentStep, setCurrentStep] = useState(1);
   const [sessionId, setSessionId] = useState(null);
   const [memberId, setMemberId] = useState(null);
@@ -38,7 +39,7 @@ export default function IcerikGunuWizard() {
 
       // 3. Find active session for this month
       const { data: existing, error: fetchErr } = await supabase
-        .from('TEST_icerik_gunu_sessions')
+        .from('test_icerik_gunu_sessions')
         .select('*')
         .eq('member_id', mId)
         .eq('ay', ay)
@@ -51,7 +52,7 @@ export default function IcerikGunuWizard() {
       } else {
         // Create new session
         const { data: newSession, error: insertErr } = await supabase
-          .from('TEST_icerik_gunu_sessions')
+          .from('test_icerik_gunu_sessions')
           .insert([{ member_id: mId, ay }])
           .select()
           .single();
@@ -80,7 +81,7 @@ export default function IcerikGunuWizard() {
     }
     
     // Go to next step if not final
-    if (currentStep < 5) {
+    if (currentStep < 6) {
       setCurrentStep(prev => prev + 1);
     } else {
       alert("İçerik günü tamamlandı! Tebrikler.");
@@ -107,7 +108,7 @@ export default function IcerikGunuWizard() {
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
           <h2 style={{ fontSize: '1rem', color: '#fff', margin: 0 }}>İçerik Günü</h2>
           <div style={{ fontSize: '0.8rem', color: 'var(--color-accent)' }}>
-            Adım {currentStep} / 5
+            Adım {currentStep} / 6
           </div>
         </div>
         
@@ -115,7 +116,7 @@ export default function IcerikGunuWizard() {
         <div style={{ width: '100%', height: '4px', background: '#333', borderRadius: '4px', marginTop: '0.5rem', overflow: 'hidden' }}>
           <motion.div 
             initial={{ width: 0 }}
-            animate={{ width: `${(currentStep / 5) * 100}%` }}
+            animate={{ width: `${(currentStep / 6) * 100}%` }}
             transition={{ duration: 0.3 }}
             style={{ height: '100%', background: 'var(--color-accent)' }}
           />
@@ -132,10 +133,11 @@ export default function IcerikGunuWizard() {
             transition={{ duration: 0.2 }}
           >
             {currentStep === 1 && <Step1_AltinBilgiler {...stepProps} />}
-            {currentStep === 2 && <Step2_MusteriMemnuniyeti {...stepProps} />}
-            {currentStep === 3 && <Step3_BusinessVibe {...stepProps} />}
-            {currentStep === 4 && <Step4_HaberReels {...stepProps} />}
-            {currentStep === 5 && <Step5_SeriFace {...stepProps} />}
+            {currentStep === 2 && <Step2_MusteriMesaji {...stepProps} />}
+            {currentStep === 3 && <Step3_MusteriVideosu {...stepProps} />}
+            {currentStep === 4 && <Step4_BusinessVibe {...stepProps} />}
+            {currentStep === 5 && <Step5_HaberReels {...stepProps} />}
+            {currentStep === 6 && <Step6_SeriFace {...stepProps} />}
           </motion.div>
         </AnimatePresence>
       </div>

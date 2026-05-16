@@ -5,7 +5,7 @@ import seriIcerikleri from '../../../../data/seriIcerikleri.json';
 import { UploadCloud, Check, Video, RefreshCw, ChevronRight, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Step5_SeriFace({ sessionId, memberId, onComplete }) {
+export default function Step6_SeriFace({ sessionId, memberId, onComplete }) {
   // Select up to 4 items initially
   const [selectedIds, setSelectedIds] = useState(seriIcerikleri.map(s => s.id).slice(0, 4));
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -102,7 +102,7 @@ export default function Step5_SeriFace({ sessionId, memberId, onComplete }) {
       setUploadProgress(90);
 
       const { error } = await supabase
-        .from('TEST_seri_face_uploads')
+        .from('test_seri_face_uploads')
         .insert(insertData);
 
       if (error) throw error;

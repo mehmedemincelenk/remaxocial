@@ -5,7 +5,7 @@ import haberler from '../../../../data/haberler.json';
 import { UploadCloud, Check, Mic, Play, ChevronRight, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-export default function Step4_HaberReels({ sessionId, memberId, onComplete }) {
+export default function Step5_HaberReels({ sessionId, memberId, onComplete }) {
   const [selectedIds] = useState(haberler.map(h => h.id).slice(0, 5)); // Limit to 5 for MVP
   const [currentIndex, setCurrentIndex] = useState(0);
   const [audioFiles, setAudioFiles] = useState({}); // { haberId: file }
@@ -86,7 +86,7 @@ export default function Step4_HaberReels({ sessionId, memberId, onComplete }) {
       setUploadProgress(90);
 
       const { error } = await supabase
-        .from('TEST_haber_ses_kayitlari')
+        .from('test_haber_ses_kayitlari')
         .insert(insertData);
 
       if (error) throw error;
