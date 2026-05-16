@@ -1,0 +1,160 @@
+[
+  {
+    "id": 1,
+    "question": "Bağcılar'da ailemle huzurla oturabileceğim bir sokak var mı gerçekten?",
+    "answer": "Var! Bağcılar'ın her yeri bir değil; sadece doğru mahalleyi ve sokağı seçmen lazım, ben oraları biliyorum.",
+    "followUpQuestion": "Peki hangi mahalleler daha nezih ve aileye uygun?",
+    "followUpAnswer": "Güneşli, Hürriyet ve Bağlar taraflarında çok temiz aile cepleri var; oraları beraber gezmeliyiz.",
+    "closingEmoji": "☀️"
+  },
+  {
+    "id": 2,
+    "question": "Yeni evleneceğiz ama birikimimiz çok az, nasıl ev sahibi oluruz?",
+    "answer": "Sadece bankaya bakma; tasarruf finansman şirketleri ve düşük peşinatlı fırsatları takip etmelisin.",
+    "followUpQuestion": "Emin Evim gibi modeller güvenilir mi peki?",
+    "followUpAnswer": "Doğru yönetildiğinde evet; faiz yükü olmadan ev sahibi olmanın en mantıklı yollarından biri.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 3,
+    "question": "Faiz ödemek istemiyorum, başka bir yolu var mı?",
+    "answer": "Kesinlikle! Faizsiz ev edindirme sistemleri veya elden taksit yapan projeleri değerlendirebiliriz.",
+    "followUpQuestion": "Elden taksit yapan yerler çok peşinat istiyor mu?",
+    "followUpAnswer": "Projeye göre değişir ama bütçene göre ödeme planı kurgulayabileceğimiz yerler var, merak etme."
+  },
+  {
+    "id": 4,
+    "question": "Yeni mezunum, işe yeni girdim. Kredi çıkar mı?",
+    "answer": "Tek başına zor olsa da aile desteği veya kefil sistemiyle ilk adımı atabilirsin.",
+    "followUpQuestion": "Ailem kefil olsa 1.20 kredi kampanyasından faydalanabilir miyim?",
+    "followUpAnswer": "Kampanya şartlarına bakmak lazım ama ilk evini alacak gençler için her zaman bir kapı açılır.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 5,
+    "question": "Eski binadan ev alınır mı? Korkuyoruz biraz.",
+    "answer": "Kentsel dönüşüm potansiyeli varsa 'evet', ama raporu görmeden asla.",
+    "followUpQuestion": "Dönüşüme girerse maliyeti biz mi karşılıyoruz?",
+    "followUpAnswer": "Müteahhit anlaşmasına göre değişir; bazen cebinizden hiç para çıkmadan yeni eviniz olabilir.",
+    "closingEmoji": "☀️"
+  },
+  {
+    "id": 6,
+    "question": "Ev alırken emlakçı komisyonu ödemek şart mı?",
+    "answer": "Hukuki koruma ve doğru fiyat pazarlığı için ödediğin o rakam, seni büyük zararlardan korur.",
+    "followUpQuestion": "Yani siz fiyatı benim için düşürebiliyor musunuz?",
+    "followUpAnswer": "Kesinlikle! Profesyonel pazarlıkla komisyonun kat kat fazlasını fiyattan düşürebilirim.",
+    "closingEmoji": "😂"
+  },
+  {
+    "id": 7,
+    "question": "Giriş kat evler hep rutubetli mi olur?",
+    "answer": "Hepsi değil; yalıtımı iyi yapılmış, yerden yüksek girişler bütçe dostu harika fırsatlardır.",
+    "followUpQuestion": "Rutubeti nasıl anlarız bakarken?",
+    "followUpAnswer": "Duvar diplerindeki boya kabarmalarına ve evin kokusuna dikkat etmeliyiz, ben size gösteririm.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 8,
+    "question": "Tapu masrafını neden alıcı ödüyor genelde?",
+    "answer": "Kanunen %2 alıcı, %2 satıcıdır ama piyasa teamülü böyle gelişmiş.",
+    "followUpQuestion": "Pazarlıkta bunu satıcıya ödetebilir miyiz?",
+    "followUpAnswer": "İyi bir teklif ve doğru iletişimle masrafları paylaştırmak mümkün, denemeye değer."
+  },
+  {
+    "id": 9,
+    "question": "Bağcılar'da metroya yakın yerler çok mu kalabalık?",
+    "answer": "Durak dipleri hareketlidir ama 5-10 dakika yürüyünce çok sakin sokaklar bulabiliyoruz.",
+    "followUpQuestion": "Sizin portföyünüzde böyle sakin ama yakın yerler var mı?",
+    "followUpAnswer": "Şu an tam istediğin tanıma uyan 2 tane seçenek var elimde, yarın bakalım mı?",
+    "closingEmoji": "☀️"
+  },
+  {
+    "id": 10,
+    "question": "Eşyalı ev almak mantıklı mı yeni evliler için?",
+    "answer": "Eğer eşyalar yeniyse masrafı çok azaltır ama genelde boş ev alıp kendi zevkinize göre dizmek daha iyi.",
+    "followUpQuestion": "Boş ev alınca tadilat masrafı çok tutar mı?",
+    "followUpAnswer": "Sadece boya-badana ve temizlikle girilecek çok diri evler var, bütçeyi yormayız.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 11,
+    "question": "Evi alırken içinde kiracı olması riskli mi?",
+    "answer": "Kira kontratını ve kiracı profilini incelemeden almak risklidir.",
+    "followUpQuestion": "Kiracı çıkmazsa ne yaparız?",
+    "followUpAnswer": "Tahliye taahhütnamesi varsa sorun olmaz, yoksa süreç uzayabilir; o yüzden önceden bakmalıyız.",
+    "closingEmoji": "☀️"
+  },
+  {
+    "id": 12,
+    "question": "Kira öder gibi ev sahibi olmak gerçekten mümkün mü?",
+    "answer": "Doğru peşinat ve ödeme planıyla, 3-4 yıl sonra taksitlerin kiradan düşük kalacağını göreceksin.",
+    "followUpQuestion": "Bu sürede ödemelerde zorlanırsak ne olur?",
+    "followUpAnswer": "Yapılandırma veya mülkü değerlendirip daha uygun bir yere geçme gibi B planlarımız hep olur.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 13,
+    "question": "Yatırımlık küçük bir yer alıp kiraya mı versek, yoksa otursak mı?",
+    "answer": "Yeni evleniyorsanız önce kendi yuvanız; huzur en büyük yatırımdır.",
+    "followUpQuestion": "Peki ileride o evi satıp büyütebilir miyiz?",
+    "followUpAnswer": "Bağcılar gibi hızlı değerlenen bölgelerde evet, ilk eviniz ikinci evinizin basamağı olur.",
+    "closingEmoji": "☀️"
+  },
+  {
+    "id": 14,
+    "question": "Düşük faizli krediler ne zaman çıkar tekrar?",
+    "answer": "Devletin sosyal konut hamlelerini ve 'İlk Evim' paketlerini anlık takip ediyoruz.",
+    "followUpQuestion": "Çıktığında haberimiz olur mu sizden?",
+    "followUpAnswer": "Anında! Listemdeki herkese bildirim geçiyorum, ilk başvuranlardan oluruz.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 15,
+    "question": "Ev sahibi evi satarsa biz çıkmak zorunda mıyız?",
+    "answer": "Hayır, kontratınız yeni sahip için de geçerlidir. Haklarınızı bilin.",
+    "followUpQuestion": "Yeni sahibi 'ben oturacağım' derse peki?",
+    "followUpAnswer": "O zaman 6 aylık bir süresi var, hukuki süreçleri takip ederek kendinizi koruyabilirsiniz.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 16,
+    "question": "Bağcılar'da kentsel dönüşüm hızlandı mı?",
+    "answer": "Evet, belediye ve bakanlık desteğiyle birçok ada bazlı dönüşüm şu an yolda.",
+    "followUpQuestion": "Yeni binaların fiyatları çok uçar mı?",
+    "followUpAnswer": "Proje aşamasında girersek topraktan kazanmış oluruz, bittikten sonra yakalamak zor.",
+    "closingEmoji": "☀️"
+  },
+  {
+    "id": 17,
+    "question": "Site içi mi yoksa müstakil apartman mı daha iyi?",
+    "answer": "Güvenlik ve imkan istiyorsan site; düşük aidat ve samimiyet istiyorsan apartman.",
+    "followUpQuestion": "Apartmanlarda güvenlik sorunu olur mu?",
+    "followUpAnswer": "Doğru mahalleyi ve komşu profilini seçersek siteleri aratmayacak huzurlu binalar var.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 18,
+    "question": "Ev alırken kapora verirken nelere dikkat etmeliyiz?",
+    "answer": "Sözleşmesiz ve emlak müşaviri onayı olmadan asla kapora vermeyin.",
+    "followUpQuestion": "Sözleşmeye 'kredi çıkmazsa iade edilir' maddesi ekleyebilir miyiz?",
+    "followUpAnswer": "Kesinlikle! Sizi koruyacak en kritik madde budur, ben her sözleşmeye ekletirim.",
+    "closingEmoji": "🙌🏻"
+  },
+  {
+    "id": 19,
+    "question": "Öğrenci çocuklarım için yatırım yapmak istiyorum, Bağcılar doğru mu?",
+    "answer": "Kesinlikle! Üniversitelere yakınlığı ve ulaşım ağlarıyla her zaman prim yapar.",
+    "followUpQuestion": "Kiracı bulmak kolay mı o bölgede?",
+    "followUpAnswer": "Metroya yakın her ev 24 saat içinde kiralanır, boş kalma şansı yok.",
+    "closingEmoji": "☀️"
+  },
+  {
+    "id": 20,
+    "question": "Bize uygun evi bulabilir misin?",
+    "answer": "İhtiyaçları doğru belirlersek, 1-2 hafta içinde hayalindeki kapıyı açabiliriz.",
+    "followUpQuestion": "Süreç boyunca yanımızda olacak mısınız?",
+    "followUpAnswer": "Sadece tapuda değil; taşınırken, elektrik-su bağlatırken bile yanınızdayım. Söz.",
+    "closingEmoji": "🙌🏻"
+  }
+]

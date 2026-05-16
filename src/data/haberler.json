@@ -1,0 +1,17 @@
+[
+  {
+    "id": 1,
+    "baslik": "Kira Fiyatları %30 Arttı",
+    "metin": "Türkiye genelinde kira fiyatları son bir yılda ortalama %30 artış gösterdi. Uzmanlar, arz yetersizliği nedeniyle bu artışın devam edeceğini öngörüyor."
+  },
+  {
+    "id": 2,
+    "baslik": "Yeni Konut Kredisi Kampanyası Geliyor",
+    "metin": "İlk evini alacaklar için %1.20 faiz oranlı yeni bir konut kredisi kampanyasının yolda olduğu konuşuluyor. Gayrimenkul sektörü hareketlenmeye hazır."
+  },
+  {
+    "id": 3,
+    "baslik": "Yabancıya Konut Satışında Düşüş",
+    "metin": "Son verilere göre yabancılara yapılan konut satışlarında %15'lik bir düşüş yaşandı. Piyasada yerli alıcının ağırlığı artıyor."
+  }
+]

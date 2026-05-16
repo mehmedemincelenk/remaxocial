@@ -1,0 +1,10 @@
+node_modules
+.DS_Store
+out
+out.mp4
+.env
+.remotion
+dist
+build
+tmp
+*.log

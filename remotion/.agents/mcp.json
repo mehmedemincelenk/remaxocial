@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "remotion-docs": {
+      "command": "npx",
+      "args": ["-y", "@remotion/mcp@latest"]
+    },
+    "remotion-bits": {
+      "command": "npx",
+      "args": ["-y", "remotion-bits", "mcp"]
+    }
+  }
+}

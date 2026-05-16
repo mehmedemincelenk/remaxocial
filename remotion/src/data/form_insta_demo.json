@@ -1,0 +1,46 @@
+[
+  {
+    "id": "quiz_red_line",
+    "type": "quiz",
+    "question": "Ev alırken sizin için 'Kırmızı Çizgi' (Olmazsa olmaz) hangisi? 🚩",
+    "options": [
+      "Metroya / Metrobüse yürüme mesafesi 🚇",
+      "Binanın sıfır veya çok yeni olması ✨",
+      "Okul ve kreşlere yürüme mesafesi 🎒",
+      "Yakınlarda büyük bir park/yeşil alan 🌳"
+    ]
+  },
+  {
+    "id": "input_barrier",
+    "type": "input",
+    "question": "Evi alırken size 'Dur bir dakika' dedirten o en büyük şüphe veya korku tam olarak ne? 🗣️"
+  },
+  {
+    "id": "poll_difficulty",
+    "type": "poll",
+    "question": "Sizce hangisi daha yorucu? 🧐",
+    "optionA": "Sokak sokak ev aramak 🔍",
+    "optionB": "Ay sonu kredi taksiti ödemek 💸"
+  },
+  {
+    "id": "poll_mood",
+    "type": "poll",
+    "question": "Evinizin penceresinden hangisini görmek sizi daha çok mutlu eder? ✨",
+    "optionA": "Şehrin ışıltılı silüeti 🏙️",
+    "optionB": "Sakin bir bahçe ve yeşillik 🌳"
+  },
+  {
+    "id": "poll_priority",
+    "type": "poll",
+    "question": "Hangi seçenek sizi daha çok heyecanlandırır? ✨",
+    "optionA": "Geniş ama eski bir 3+1 (Aile boyu) 🏠",
+    "optionB": "Butik ama sıfır bir 1+1 (Rezidans konforu) ✨"
+  },
+  {
+    "id": "slider_trust",
+    "type": "slider",
+    "question": "Dürüst olalım; emlak danışmanlarına olan sizin ve çevrenizin güveni yüzde kaç? 🤝",
+    "leftLabel": "0",
+    "rightLabel": "100"
+  }
+]

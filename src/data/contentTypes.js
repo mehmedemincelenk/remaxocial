@@ -1,0 +1,42 @@
+export const CONTENT_TYPES = {
+  altin_bilgi: {
+    id: 'altin_bilgi',
+    label: 'Altın Bilgi',
+    icon: '💎',
+    outputFormat: 'png',
+    remotionComposition: 'SSS_B2B',
+    dataSource: 'altinBilgiler.json',
+  },
+  musteri_memnuniyeti: {
+    id: 'musteri_memnuniyeti',
+    label: 'Müşteri Memnuniyeti',
+    icon: '💬',
+    outputFormat: 'png',
+    remotionComposition: 'ReviewCard',
+    dataSource: null,
+  },
+  business_vibe: {
+    id: 'business_vibe',
+    label: 'Business Vibe',
+    icon: '🎥',
+    outputFormat: 'upload',
+    remotionComposition: null,
+    dataSource: null,
+  },
+  haber_video: {
+    id: 'haber_video',
+    label: 'Haber Reels',
+    icon: '📰',
+    outputFormat: 'mp4',
+    remotionComposition: 'NewsVideo',
+    dataSource: 'haberler.json',
+  },
+  seri_face: {
+    id: 'seri_face',
+    label: 'Seri Face Reel',
+    icon: '🎬',
+    outputFormat: 'upload',
+    remotionComposition: null,
+    dataSource: 'seriIcerikleri.json',
+  },
+};

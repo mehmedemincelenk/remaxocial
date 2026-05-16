@@ -1,0 +1,9 @@
+# Remotion Agent Rules
+
+All AI instructions, skills, and rules are located in the `.agents/` directory.
+Please refer to:
+- `.agents/remotion/SKILL.md` for core development logic.
+- `.agents/remotion/rules/` for specific feature guidance.
+- `.agents/mcp.json` for documentation server setup.
+
+Follow Remotion best practices: No CSS animations, use `spring()`/`interpolate()`, and handle assets with `staticFile()`.

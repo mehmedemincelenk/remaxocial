@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "bilgi": "Alıcılar bir evi ortalama 7 dakikada değerlendirir.",
+    "aciklama": "İlk izlenimi doğru yaratmak için hazırlık şart.",
+    "kategori": "Satıcı"
+  },
+  {
+    "id": 2,
+    "bilgi": "Evi boş göstermek yerine, minimal eşyalarla dekore etmek satış hızını %70 artırır.",
+    "aciklama": "İnsanlar boşlukları değil, yaşam alanlarını hayal etmek ister.",
+    "kategori": "Satıcı"
+  },
+  {
+    "id": 3,
+    "bilgi": "Evinizin fiyatını piyasa belirler, duygularınız değil.",
+    "aciklama": "Yanlış fiyatlandırma evin piyasada eskimesine neden olur.",
+    "kategori": "Fiyatlandırma"
+  },
+  {
+    "id": 4,
+    "bilgi": "Pazarlık masasında ilk teklif her zaman en iyi teklif olmayabilir.",
+    "aciklama": "Doğru strateji ile masadan karlı kalkmak profesyonellerin işidir.",
+    "kategori": "Pazarlık"
+  },
+  {
+    "id": 5,
+    "bilgi": "Profesyonel fotoğraflar ilanın tıklanma oranını %139 artırır.",
+    "aciklama": "Görsellik, dijital dünyadaki ilk vitrininizdir.",
+    "kategori": "Pazarlama"
+  },
+  {
+    "id": 6,
+    "bilgi": "Evin kokusu, alıcının kararını bilinçaltında %40 etkiler.",
+    "aciklama": "Taze kahve veya hafif vanilya kokusu evinizi daha davetkar yapar.",
+    "kategori": "Satıcı"
+  },
+  {
+    "id": 7,
+    "bilgi": "Kışın ev satılmaz efsanesi yanlıştır.",
+    "aciklama": "Kışın alıcılar daha ciddidir ve piyasada daha az rakip ev vardır.",
+    "kategori": "Piyasa"
+  },
+  {
+    "id": 8,
+    "bilgi": "Evinizi satmadan önce yapacağınız ufak tadilatlar, satış fiyatını %5-10 artırabilir.",
+    "aciklama": "Boya, temizlik ve ufak tamiratlar her zaman kazandırır.",
+    "kategori": "Yatırım"
+  },
+  {
+    "id": 9,
+    "bilgi": "Ev alırken lokasyon her şeydir.",
+    "aciklama": "Evin içini değiştirebilirsiniz ama sokağını asla.",
+    "kategori": "Alıcı"
+  },
+  {
+    "id": 10,
+    "bilgi": "Doğru gayrimenkul danışmanı size zaman ve para kazandırır.",
+    "aciklama": "Piyasa bilgisi, ağ ve müzakere yeteneği paha biçilemez.",
+    "kategori": "Genel"
+  }
+]

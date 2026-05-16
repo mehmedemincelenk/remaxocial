@@ -1,7 +1,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Image, Trophy, Video, Zap, Image as ImageIcon, Loader2, Check, PenLine, Copy, Database } from 'lucide-react';
+import { Image, Trophy, Video, Zap, Image as ImageIcon, Loader2, Check, PenLine, Copy, Database, MessageSquareQuote, UploadCloud } from 'lucide-react';
 import { FaInstagram } from 'react-icons/fa';
 import { supabase } from '../../utils/supabaseClient';
 import PageLayout from '../../components/ortak/PageLayout';
@@ -9,10 +9,13 @@ import GlassCard from '../../components/ortak/GlassCard';
 import MegaToggle from '../../components/ortak/MegaToggle';
 import FilterChip from '../../components/ortak/FilterChip';
 import PromptCard from '../../components/hub/ajansa/PromptCard';
+import IcerikGunuWizard from '../../components/hub/ajansa/IcerikGunuWizard';
 import { promptMixer, COM_TYPES } from '../../utils/aiPrompts';
 
 const TYPES = [
   { id: 'victory', icon: <Trophy />, label: 'Satılan\nKiralanan', color: '#2ecc71', tags: ['reels', 'post', 'story', 'ads'] },
+  { id: 'review_video', icon: <Video />, label: 'Müşteri\nVideosu', color: '#9b59b6', tags: ['reels', 'story'] },
+  { id: 'review_msg', icon: <MessageSquareQuote />, label: 'Müşteri\nMesajı', color: '#f39c12', tags: ['post', 'story'] },
   { id: 'data', icon: <Database />, label: 'Veri\nAnalizi', color: '#3498db', tags: ['reels', 'post', 'story'] },
   { id: 'suggestion', icon: <Zap />, label: 'Öneri\nBildir', color: '#D4AF37', tags: ['post', 'story'] },
 ];
@@ -53,6 +56,7 @@ export default function Ajansa() {
   const MAIN_TOGGLE_OPTIONS = [
     { id: 'insta', icon: <FaInstagram size={18} />, label: 'Instagram' },
     { id: 'ads', icon: <Image size={18} />, label: 'İlanlar' },
+    { id: 'icerik_gunu', icon: <UploadCloud size={18} />, label: 'İçerik Günü' },
   ];
 
   const AI_SUB_OPTIONS = [
@@ -302,6 +306,12 @@ export default function Ajansa() {
               <span style={{ color: '#fff', textAlign: 'center', whiteSpace: 'pre-line', fontSize: '0.6rem', fontWeight: '600', lineHeight: '1.1' }}>{t.label}</span>
             </motion.button>
           ))}
+        </div>
+      )}
+
+      {mainTab === 'icerik_gunu' && (
+        <div style={{ padding: '0 0.5rem', marginBottom: '2rem' }}>
+          <IcerikGunuWizard />
         </div>
       )}
     </PageLayout>
