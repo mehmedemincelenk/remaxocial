@@ -96,7 +96,13 @@ export default function Step7_StoryAnket({ sessionId, memberId, onComplete, onPr
         </AnimatePresence>
       </div>
 
-      <div style={{ display: 'flex', gap: '1rem', width: '100%' }}>
+      <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
+        <button 
+          onClick={() => onComplete('story_anket_skipped')} 
+          style={{ width: '60px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem', flexShrink: 0 }}
+        >
+          Atla
+        </button>
         <button onClick={handleRefresh} style={secStyle} title="Değiştir"><RotateCw size={16} /></button>
         <button onClick={handleSave} disabled={isSubmitting} style={primStyle}>
           {isSubmitting ? '...' : 'Onayla ve İlerle'} <ChevronRight size={18} />
@@ -164,5 +170,5 @@ const pollOptionStyle = {
   boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
 };
 
-const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid #444', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
+const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
 const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.85rem' };

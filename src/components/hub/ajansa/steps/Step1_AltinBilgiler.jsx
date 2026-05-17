@@ -59,9 +59,17 @@ export default function Step1_AltinBilgiler({ sessionId, memberId, onComplete, o
         </p>
       </div>
 
-      <button onClick={handleApprove} disabled={isSubmitting} style={primStyle}>
-        {isSubmitting ? '...' : 'Tamam'} <Check size={18} />
-      </button>
+      <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
+        <button 
+          onClick={() => onComplete('altin_bilgi_skipped')} 
+          style={{ flex: 1, height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.8rem' }}
+        >
+          Atla
+        </button>
+        <button onClick={handleApprove} disabled={isSubmitting} style={{ ...primStyle, flex: 2 }}>
+          {isSubmitting ? '...' : 'Tamam'} <Check size={18} />
+        </button>
+      </div>
     </GlassCard>
   );
 }

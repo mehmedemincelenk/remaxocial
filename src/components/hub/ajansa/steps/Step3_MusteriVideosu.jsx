@@ -66,5 +66,5 @@ export default function Step3_MusteriVideosu({ sessionId, memberId, onComplete, 
 
 const uploadBoxStyle = { position: 'relative', width: '100%', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', cursor: 'pointer', color: '#888', fontSize: '0.8rem', gap: '0.4rem' };
 const fileInputStyle = { position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer' };
-const secondaryBtnStyle = { flex: 1, padding: '0.65rem', background: 'transparent', border: '1px solid #444', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontSize: '0.85rem' };
+const secondaryBtnStyle = { flex: 1, padding: '0.65rem', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontSize: '0.85rem', fontWeight: '600' };
 const primaryBtnStyle = { flex: 2, padding: '0.65rem', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' };

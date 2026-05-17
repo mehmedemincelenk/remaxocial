@@ -24,7 +24,38 @@ export default function useIcerikGunu() {
       
       const { data: ex } = await supabase.from('test_icerik_gunu_sessions').select('*').eq('member_id', memberId).eq('ay', ay).single();
       if (ex) {
-        update({ session: ex.id, completed: ex.steps_completed || [], step: (ex.steps_completed || []).length + 1, loading: false, memberId });
+        const completed = ex.steps_completed || [];
+        
+        // Find the first incomplete/skipped step to resume from
+        const ALL_STEPS = [
+          'altin_bilgi',
+          'story_anket',
+          'satildi_kiralandi',
+          'musteri_mesaji',
+          'musteri_video',
+          'business_vibe',
+          'haber_video',
+          'seri_face'
+        ];
+
+        let resumeStep = 1;
+        const firstIncompleteIdx = ALL_STEPS.findIndex(stepKey => {
+          return !completed.includes(stepKey) || completed.includes(`${stepKey}_skipped`);
+        });
+
+        if (firstIncompleteIdx !== -1) {
+          resumeStep = firstIncompleteIdx + 1;
+        } else if (completed.length >= 8) {
+          resumeStep = 9;
+        }
+
+        update({ 
+          session: ex.id, 
+          completed, 
+          step: resumeStep, 
+          loading: false, 
+          memberId 
+        });
       } else {
         const { data: n } = await supabase.from('test_icerik_gunu_sessions').insert([{ member_id: memberId, ay, insta_username: memberId }]).select().single();
         update({ session: n?.id, step: 1, loading: false, memberId });
@@ -59,9 +90,46 @@ export default function useIcerikGunu() {
 
   const complete = async (stepName) => {
     update({ loading: true });
-    const newSteps = [...state.completed.includes(stepName) ? state.completed : [...state.completed, stepName]];
+    
+    // Remove any previous versions of this step (completed or skipped)
+    const baseName = stepName.replace('_skipped', '');
+    let newSteps = state.completed.filter(s => s !== baseName && s !== `${baseName}_skipped`);
+    newSteps.push(stepName);
+
     await supabase.from('test_icerik_gunu_sessions').update({ steps_completed: newSteps }).eq('id', state.session);
-    update({ completed: newSteps, loading: false, ...(state.step < 8 ? { step: state.step + 1 } : { finishing: true, step: 9 }) });
+
+    const ALL_STEPS = [
+      'altin_bilgi',
+      'story_anket',
+      'satildi_kiralandi',
+      'musteri_mesaji',
+      'musteri_video',
+      'business_vibe',
+      'haber_video',
+      'seri_face'
+    ];
+
+    // Find the next incomplete step starting from the current index (state.step)
+    let nextIncompleteIdx = ALL_STEPS.findIndex((stepKey, idx) => {
+      if (idx < state.step) return false; // only search forward first
+      return !newSteps.includes(stepKey) || newSteps.includes(`${stepKey}_skipped`);
+    });
+
+    // If no forward incomplete steps, search from the beginning
+    if (nextIncompleteIdx === -1) {
+      nextIncompleteIdx = ALL_STEPS.findIndex((stepKey) => {
+        return !newSteps.includes(stepKey) || newSteps.includes(`${stepKey}_skipped`);
+      });
+    }
+
+    if (nextIncompleteIdx !== -1) {
+      update({ completed: newSteps, loading: false, step: nextIncompleteIdx + 1 });
+      if (nextIncompleteIdx + 1 < state.step) {
+        notify('Atladığınız adıma geri yönlendiriliyorsunuz.', 'info');
+      }
+    } else {
+      update({ completed: newSteps, loading: false, finishing: true, step: 9 });
+    }
   };
 
   const prevStep = () => {

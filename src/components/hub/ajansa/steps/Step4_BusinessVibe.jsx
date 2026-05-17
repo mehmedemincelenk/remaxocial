@@ -57,7 +57,17 @@ export default function Step4_BusinessVibe({ sessionId, memberId, onComplete, on
         <UploadCloud size={28} color="var(--color-accent)" />
         <span style={{ fontSize: '0.8rem' }}>{files.length > 0 ? `${files.length} Video Seçildi` : 'Videoları Seçin'}</span>
       </div>
-      <button onClick={handleSave} disabled={isSubmitting} style={btnStyle}>{isSubmitting ? 'Yükleniyor...' : 'Gönder ve İlerle'}</button>
+      <div style={{ display: 'flex', gap: '0.6rem', width: '100%', marginTop: '0.25rem' }}>
+        <button 
+          onClick={() => onComplete('business_vibe_skipped')} 
+          style={{ flex: 1, padding: '0.65rem', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem' }}
+        >
+          Atla
+        </button>
+        <button onClick={handleSave} disabled={isSubmitting} style={{ ...btnStyle, flex: 2, marginTop: 0 }}>
+          {isSubmitting ? '...' : 'Gönder ve İlerle'}
+        </button>
+      </div>
     </GlassCard>
   );
 }

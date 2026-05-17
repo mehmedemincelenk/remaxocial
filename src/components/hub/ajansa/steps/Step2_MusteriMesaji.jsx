@@ -6,7 +6,7 @@ import { useAppContext } from '../../../../context/AppContext';
 
 export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, onPrev }) {
   const { notify } = useAppContext();
-  const [form, setForm] = useState({ adi: '', mesaj: '', iletisim: '' });
+  const [form, setForm] = useState({ adi: '', mesaj: '', iletisim: '', rol: 'satıcı' });
   const [reviews, setReviews] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -15,7 +15,7 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
   const handleAdd = () => {
     if (!form.mesaj) return notify('Lütfen mesaj alanını doldurun.', 'error');
     setReviews(p => [...p, { ...form, id: Date.now() }]);
-    setForm({ adi: '', mesaj: '', iletisim: '' });
+    setForm({ adi: '', mesaj: '', iletisim: '', rol: 'satıcı' });
   };
 
   const handleRemove = (id) => {
@@ -31,7 +31,8 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
         session_id: sessionId,
         member_id: memberId,
         musteri_adi: r.adi,
-        mesaj: r.mesaj + (r.iletisim ? `\n\nİletişim: ${r.iletisim}` : ''),
+        mesaj: `[${r.rol.toUpperCase()}] ${r.mesaj}` + (r.iletisim ? `\n\nİletişim: ${r.iletisim}` : ''),
+        rol: r.rol,
         ay
       }));
       const { error } = await supabase.from('test_musteri_memnuniyeti').insert(payload);
@@ -72,6 +73,34 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+        {/* Toggle: Satıcı / Alıcı */}
+        <div style={{ display: 'flex', gap: '0.4rem', background: 'rgba(255,255,255,0.02)', padding: '3px', borderRadius: '10px', border: '1px solid rgba(255,255,255,0.05)' }}>
+          <button
+            onClick={() => setForm(p => ({ ...p, rol: 'satıcı' }))}
+            style={{
+              flex: 1, padding: '5px 8px', borderRadius: '7px', border: 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.7rem',
+              background: form.rol === 'satıcı' ? 'rgba(255,255,255,0.12)' : 'transparent',
+              color: form.rol === 'satıcı' ? '#fff' : '#666',
+              border: form.rol === 'satıcı' ? '1px solid rgba(255,255,255,0.2)' : '1px solid transparent',
+              transition: 'all 0.2s'
+            }}
+          >
+            SATICI YORUMU
+          </button>
+          <button
+            onClick={() => setForm(p => ({ ...p, rol: 'alıcı' }))}
+            style={{
+              flex: 1, padding: '5px 8px', borderRadius: '7px', border: 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.7rem',
+              background: form.rol === 'alıcı' ? 'rgba(255,255,255,0.12)' : 'transparent',
+              color: form.rol === 'alıcı' ? '#fff' : '#666',
+              border: form.rol === 'alıcı' ? '1px solid rgba(255,255,255,0.2)' : '1px solid transparent',
+              transition: 'all 0.2s'
+            }}
+          >
+            ALICI YORUMU
+          </button>
+        </div>
+
         <input placeholder="Müşteri Adı" value={form.adi} onChange={e => setForm(p => ({ ...p, adi: e.target.value }))} style={inputStyle} />
         <textarea placeholder="Mesaj..." value={form.mesaj} onChange={e => setForm(p => ({ ...p, mesaj: e.target.value }))} rows={2} style={inputStyle} />
         <input placeholder="İletişim (İsteğe bağlı)" value={form.iletisim} onChange={e => setForm(p => ({ ...p, iletisim: e.target.value }))} style={inputStyle} />
@@ -83,7 +112,21 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
           {reviews.map((r) => (
             <div key={r.id} style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.02)', padding: '4px 8px', borderRadius: '6px', gap: '6px' }}>
               <div style={{ flex: 1, minWidth: 0 }}>
-                <div style={{ fontSize: '0.75rem', color: '#fff', fontWeight: 'bold', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.adi || 'İsimsiz Müşteri'}</div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+                  <span style={{ fontSize: '0.75rem', color: '#fff', fontWeight: 'bold', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.adi || 'İsimsiz Müşteri'}</span>
+                  <span style={{
+                    background: r.rol === 'satıcı' ? 'rgba(74,222,128,0.15)' : 'rgba(56,189,248,0.15)',
+                    border: r.rol === 'satıcı' ? '1px solid rgba(74,222,128,0.3)' : '1px solid rgba(56,189,248,0.3)',
+                    borderRadius: '4px',
+                    padding: '1px 4px',
+                    fontSize: '0.55rem',
+                    color: r.rol === 'satıcı' ? '#4ade80' : '#38bdf8',
+                    textTransform: 'uppercase',
+                    fontWeight: 'bold'
+                  }}>
+                    {r.rol}
+                  </span>
+                </div>
                 <div style={{ fontSize: '0.65rem', color: '#aaa', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{r.mesaj}</div>
               </div>
               <button onClick={() => handleRemove(r.id)} style={delBtnStyle}><Trash2 size={12} /></button>
@@ -95,9 +138,17 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
       {hasInput ? (
         <button onClick={handleAdd} style={btnStyle}>Listeye Ekle</button>
       ) : (
-        <button onClick={handleSave} disabled={isSubmitting || reviews.length === 0} style={{ ...btnStyle, opacity: reviews.length === 0 ? 0.5 : 1 }}>
-          {isSubmitting ? '...' : `Tamamla ve İlerle (${reviews.length})`}
-        </button>
+        <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
+          <button 
+            onClick={() => onComplete('musteri_mesaji_skipped')} 
+            style={{ flex: 1, padding: '0.65rem', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem' }}
+          >
+            Atla
+          </button>
+          <button onClick={handleSave} disabled={isSubmitting || reviews.length === 0} style={{ ...btnStyle, flex: 2, opacity: reviews.length === 0 ? 0.5 : 1 }}>
+            {isSubmitting ? '...' : `Gönder ve İlerle (${reviews.length})`}
+          </button>
+        </div>
       )}
     </GlassCard>
   );

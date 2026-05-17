@@ -145,7 +145,13 @@ export default function Step5_HaberReels({ sessionId, memberId, onComplete, onPr
         )}
       </div>
 
-      <div style={{ display: 'flex', gap: '0.8rem', width: '100%' }}>
+      <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
+        <button 
+          onClick={() => onComplete('haber_video_skipped')} 
+          style={{ width: '60px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem', flexShrink: 0 }}
+        >
+          Atla
+        </button>
         <button onClick={handleRefresh} style={secStyle}><RotateCw size={16} /></button>
         <button onClick={() => currentAudio ? (currentIndex < 3 ? setCurrentIndex(p => p + 1) : handleSave()) : notify('Kayıt yapmalısınız.', 'error')} disabled={isSubmitting} style={primStyle}>
           {currentIndex < 3 ? 'Sonraki Haber' : (isSubmitting ? '...' : 'Gönder ve Bitir')}
@@ -161,5 +167,5 @@ const recordBtnStyle = { width: '48px', height: '48px', borderRadius: '50%', bor
 const actStyle = { padding: '5px 12px', borderRadius: '10px', border: '1px solid var(--color-accent)', background: 'rgba(74,222,128,0.1)', color: 'var(--color-accent)', fontSize: '0.7rem', fontWeight: 'bold', cursor: 'pointer' };
 const delStyle = { ...actStyle, background: 'rgba(255,77,77,0.15)', borderColor: '#ff4d4d', color: '#ff4d4d' };
 const confStyle = { ...actStyle, background: 'var(--color-accent)', color: '#000', borderColor: 'transparent' };
-const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid #444', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
+const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
 const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '0.85rem' };

@@ -123,7 +123,13 @@ export default function Step6_SeriFace({ sessionId, memberId, onComplete, onPrev
         </span>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.8rem', width: '100%' }}>
+      <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
+        <button 
+          onClick={() => onComplete('seri_face_skipped')} 
+          style={{ width: '60px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem', flexShrink: 0 }}
+        >
+          Atla
+        </button>
         <button onClick={handleRefresh} style={secStyle} title="Metni Değiştir"><RotateCw size={16} /></button>
         <button onClick={handleNext} disabled={isSubmitting} style={primStyle}>
           {isSubmitting ? '...' : (activeSlot === 4 ? 'Gönder ve Oturumu Tamamla' : `Onayla ve ${activeSlot + 2}. Videoya Geç`)} <ChevronRight size={18} />
@@ -134,5 +140,5 @@ export default function Step6_SeriFace({ sessionId, memberId, onComplete, onPrev
 }
 
 const upStyle = { position: 'relative', width: '100%', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0.8rem', cursor: 'pointer', color: '#888', fontSize: '0.8rem', gap: '0.4rem' };
-const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid #444', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
+const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
 const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.85rem' };
