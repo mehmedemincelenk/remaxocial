@@ -1,17 +1,110 @@
 [
   {
     "id": 1,
-    "baslik": "Kira Fiyatları %30 Arttı",
-    "metin": "Türkiye genelinde kira fiyatları son bir yılda ortalama %30 artış gösterdi. Uzmanlar, arz yetersizliği nedeniyle bu artışın devam edeceğini öngörüyor."
+    "kategori": "📊 Konut Piyasası",
+    "baslik": "Mayıs 2026: Ortalama Amortisman Süreleri Düştü!",
+    "veriHaber": "Türkiye genelinde ortalama konut amortisman süresi 20 yıldan 17 yıla geriledi. Kira çarpanlarındaki artış yatırımcılar için büyük fırsat sunuyor.",
+    "sozlukTerim": "Amortisman Süresi",
+    "sozlukAciklama": "Bir gayrimenkul yatırımının, elde edilen kira gelirleriyle kendini amorti etme (geri ödeme) süresidir.",
+    "cta": "Bölgenizdeki en yüksek kira getirili mülkleri ücretsiz listelemek için bana DM atın!"
   },
   {
     "id": 2,
-    "baslik": "Yeni Konut Kredisi Kampanyası Geliyor",
-    "metin": "İlk evini alacaklar için %1.20 faiz oranlı yeni bir konut kredisi kampanyasının yolda olduğu konuşuluyor. Gayrimenkul sektörü hareketlenmeye hazır."
+    "kategori": "🏦 Finans & Kredi",
+    "baslik": "Kredi Faizleri ve Konut Fiyat Dengesi Değişiyor",
+    "veriHaber": "Merkez Bankası verilerine göre konut kredisi faiz oranlarındaki dalgalanma satıcıları peşin alıcı aramaya yöneltti. Nakit alımlarda %15'e varan indirimler gözleniyor.",
+    "sozlukTerim": "Faiz Arbitrajı",
+    "sozlukAciklama": "Farklı faiz oranları arasındaki farktan yararlanarak sermaye getirisi elde etme yöntemidir.",
+    "cta": "Nakit alım avantajıyla kaçırılmayacak portföyleri hemen incelemek için bana yazın!"
   },
   {
     "id": 3,
-    "baslik": "Yabancıya Konut Satışında Düşüş",
-    "metin": "Son verilere göre yabancılara yapılan konut satışlarında %15'lik bir düşüş yaşandı. Piyasada yerli alıcının ağırlığı artıyor."
+    "kategori": "📜 Vergi & Tapu",
+    "baslik": "Değer Artış Kazancı Vergisinde Yeni Muafiyet Sınırı!",
+    "veriHaber": "Mülkünü 5 yıldan önce satanlar için değer artış kazancı vergisi istisna tutarı güncellendi. Bu durum satıcıların net kâr marjını doğrudan etkiliyor.",
+    "sozlukTerim": "Değer Artış Kazancı Vergisi",
+    "sozlukAciklama": "Satın alınan gayrimenkulün iktisap (edinme) tarihinden itibaren 5 yıl içinde elden çıkarılması durumunda oluşan kâr üzerinden ödenen vergidir.",
+    "cta": "Evinizi satarken vergi avantajından nasıl yararlanacağınızı öğrenmek için DM'den bana ulaşın!"
+  },
+  {
+    "id": 4,
+    "kategori": "⚖️ Tapu Hukuku",
+    "baslik": "Hisseli Tapularda Önalım Hakkı Anlaşmazlıkları Artıyor",
+    "veriHaber": "Son altı ayda açılan ortaklığın giderilmesi davalarında önalım hakkı uyuşmazlıkları %25 arttı. Hisseli yer alırken hak sahiplerine dikkat edilmeli.",
+    "sozlukTerim": "Şufa (Önalım) Hakkı",
+    "sozlukAciklama": "Hisseli gayrimenkullerde bir hissedarın kendi payını üçüncü şahıslara satması durumunda, diğer hissedarların öncelikle satın alma hakkıdır.",
+    "cta": "Tapu süreçlerinde yasal pürüzlerle karşılaşmamak için profesyonel danışmanlık alın, bana yazın!"
+  },
+  {
+    "id": 5,
+    "kategori": "🏗️ Kentsel Dönüşüm",
+    "baslik": "Rezerv Alan İlan Edilen Bölgelerde Değer Patlaması!",
+    "veriHaber": "Kentsel dönüşüm kapsamında rezerv yapı alanı ilan edilen lokasyonlarda arsa ve konut fiyatları son 3 ayda %40 üzerinde prim yaptı.",
+    "sozlukTerim": "Rezerv Yapı Alanı",
+    "sozlukAciklama": "Kentsel dönüşüm kanunu kapsamında, yeni yerleşim alanı olarak kullanılmak üzere Bakanlıkça belirlenen alanlardır.",
+    "cta": "Dönüşüm bölgelerindeki yüksek prim potansiyelli yatırımları ilk öğrenen olmak için bana DM gönderin!"
+  },
+  {
+    "id": 6,
+    "kategori": "📈 Gayrimenkul Yatırımı",
+    "baslik": "Arsa ve Arazi Yatırımları Konutu İkiye Katladı!",
+    "veriHaber": "Piyasa verilerine göre 2026'da arsa ve arazi satış hacmi, konut satış adetlerini geride bıraktı. Yatırımcılar uzun vadeli toprak yatırımına yöneliyor.",
+    "sozlukTerim": "İmar Durum Belgesi",
+    "sozlukAciklama": "Bir arsanın üzerine inşa edilecek yapının boyutunu, yüksekliğini ve kullanım amacını gösteren resmi belediye belgesidir.",
+    "cta": "İmarı temiz, prim garantili arsa portföylerime ulaşmak için mesaj atın!"
+  },
+  {
+    "id": 7,
+    "kategori": "🏢 Ticari Gayrimenkul",
+    "baslik": "Ofis ve Depolama Alanlarında Kira Getirisi Rekor Kırıyor!",
+    "veriHaber": "Lojistik sektöründeki büyüme nedeniyle endüstriyel depo ve ticari dükkan kiraları yıllık bazda %55 yükseldi. Yatırımcı amortisman süresi 12 yıla indi.",
+    "sozlukTerim": "Ticari Amortisman (Cap Rate)",
+    "sozlukAciklama": "Bir ticari mülkün yıllık net işletme gelirinin, mülkün toplam satın alma değerine oranını gösteren yatırım getiri yüzdesidir.",
+    "cta": "Yüksek nakit akışlı ticari gayrimenkul alternatifleri için hemen benimle iletişime geçin!"
+  },
+  {
+    "id": 8,
+    "kategori": "📐 Tapu Detayları",
+    "baslik": "Kat İrtifakı ile Kat Mülkiyeti Arasındaki Fiyat Farkı Genişliyor",
+    "veriHaber": "Bankaların kredi kriterlerini sıkılaştırmasıyla, kat mülkiyeti (iskanı) olmayan binalarda değer kayıpları ve satış zorlukları %18 arttı.",
+    "sozlukTerim": "Kat Mülkiyeti (İskan)",
+    "sozlukAciklama": "İnşaatı tamamen bitmiş bir binanın belediyeden onaylı kullanma izni (iskânı) alındıktan sonra, bağımsız bölümlerinin tapuya tescil edilmesidir.",
+    "cta": "Mülkünüzün iskân tapu durumunu ücretsiz check-up ettirmek için bana yazın!"
+  },
+  {
+    "id": 9,
+    "kategori": "🏡 Lüks Konut",
+    "baslik": "Lüks Segment Konutlarda 'Staging' Satış Süresini 3 Kat Hızlandırıyor",
+    "veriHaber": "Profesyonel dekorasyon ve staging (sahneleme) uygulanan lüks dairelerin, boş dairelere kıyasla 45 gün daha erken ve %8 daha yüksek bedelle satıldığı kanıtlandı.",
+    "sozlukTerim": "Home Staging",
+    "sozlukAciklama": "Bir gayrimenkulün satış veya kiralama sürecinde, alıcıların gözünde çekiciliğini artırmak amacıyla yapılan estetik ve dekoratif düzenlemelerdir.",
+    "cta": "Evinizi en yüksek fiyattan satacak staging ve pazarlama planımı öğrenmek için DM atın!"
+  },
+  {
+    "id": 10,
+    "kategori": "🚪 Mülk Yönetimi",
+    "baslik": "Tahliye Taahhütnamesi Olmayan Kiralıklara Talep Düştü!",
+    "veriHaber": "Kiralık piyasasındaki yasal süreçler nedeniyle, tahliye taahhütnamesi imzalamayan kiracı adaylarına ev sahiplerinin onay verme oranı %5'e geriledi.",
+    "sozlukTerim": "Tahliye Taahhütnamesi",
+    "sozlukAciklama": "Kiracının, kiralanan gayrimenkulü belirli bir tarihte boşaltacağını yazılı olarak beyan ettiği ve yasal olarak bağlayıcılığı olan taahhüttür.",
+    "cta": "Kiralama süreçlerinde mülkünüzü güvenceye alacak sözleşme şablonları için bana ulaşın!"
+  },
+  {
+    "id": 11,
+    "kategori": "📈 Konut Trendleri",
+    "baslik": "Nitelikli Göç ve Markalı Konut Talebi Rekor Kırıyor",
+    "veriHaber": "Büyükşehirlerden kıyı şeridine göç oranı son 12 ayda %35 arttı. Ege ve Akdeniz'deki markalı konut projelerinde metrekare birim fiyatları zirveyi gördü.",
+    "sozlukTerim": "Markalı Konut",
+    "sozlukAciklama": "Güçlü bir inşaat firmasının kurumsal kimliği ve güvencesi altında üretilen, belirli standartlara sahip konut projeleridir.",
+    "cta": "Bodrum ve Çeşme bölgesindeki fırsat projeleri incelemek için bana yazın!"
+  },
+  {
+    "id": 12,
+    "kategori": "🏦 Finansal Koruma",
+    "baslik": "Enflasyona Karşı En Güvenli Liman Yine Toprak!",
+    "veriHaber": "Finansal analistlerin raporuna göre, son 5 yılda enflasyon karşısında reel getiri oranını en çok koruyan yatırım enstrümanı %180 primle arsa yatırımı oldu.",
+    "sozlukTerim": "Reel Getiri",
+    "sozlukAciklama": "Yatırımdan elde edilen nominal kazancın, enflasyon oranından arındırıldıktan sonraki gerçek satın alma gücü artışıdır.",
+    "cta": "Bütçenize en uygun ve yüksek getirili toprak yatırımı seçenekleri için DM atın!"
   }
 ]

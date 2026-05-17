@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { LayoutGrid, BookOpen, Sparkles, X, Phone, HelpCircle, Trash2, Copy, Video, Mic, Radio, Trophy } from 'lucide-react';
+import { LayoutGrid, Library, Sparkles, X, Phone, HelpCircle, Trash2, Copy, Video, Mic, Radio, GraduationCap, Lightbulb, UploadCloud } from 'lucide-react';
 import useSupabase from '../../hooks/useSupabase';
 import { promptMixer, writerPromptMixer } from '../../utils/aiPrompts';
 
@@ -36,8 +36,8 @@ export default function FloatingMenu() {
   const [isOpen, setIsOpen] = useState(false);
   const [aiData, setAiData] = useState({ count: 0, ids: [], mode: 'all', type: 'photo', formData: null });
 
-  const isP = loc.pathname.startsWith('/p/');
-  const slug = isP ? loc.pathname.split('/')[2] : null;
+  const isD = loc.pathname.startsWith('/d/');
+  const slug = isD ? loc.pathname.split('/')[2] : null;
   const { data: profile } = useSupabase(slug ? 'consultants' : null, { filter: slug ? { column: 'slug', operator: 'eq', value: slug } : null, single: true });
 
   useEffect(() => {
@@ -69,18 +69,21 @@ export default function FloatingMenu() {
   };
 
   const hubItems = [
-    { id: 'home', path: '/akademi', icon: <Trophy size={20} />, label: 'Ana Sayfa' },
-    { id: 'library', path: '/', icon: <BookOpen size={20} />, label: 'Kütüphane' },
-    { id: 'ajansa', path: '/ajansa', icon: <Radio size={20} />, label: 'Ajansa' },
+    { id: 'library', path: '/', icon: <Library size={20} />, label: 'Kütüphane' },
+    { id: 'upload', path: '/ajansa?tab=icerik_gunu', icon: <UploadCloud size={20} />, label: 'İçerik Günü' },
+    { id: 'ads', path: '/ajansa?tab=ads', icon: <Sparkles size={20} />, label: 'İlanlar' },
+    { id: 'fikir', path: '/ajansa?tab=fikir_kutusu', icon: <Lightbulb size={20} />, label: 'Fikir Kutusu' },
+    { id: 'akademi', path: '/ajansa?tab=akademi', icon: <GraduationCap size={20} />, label: 'Görevler' },
   ];
 
-  const navItems = isP ? [
-    { id: 'home', path: `/p/${slug}`, icon: <LayoutGrid size={20} />, label: 'Profil' },
+  const navItems = isD ? [
+    { id: 'home', path: `/d/${slug}`, icon: <LayoutGrid size={20} />, label: 'Profil' },
     { id: 'news', path: `/`, icon: <HelpCircle size={20} />, label: 'Tüm Sorular' },
-    { id: 'call', type: 'ext', url: profile ? `tel:${profile.phone_num}` : '#', icon: <Phone size={20} />, label: 'Ara' }
+    { id: 'call', type: 'ext', url: profile ? `tel:${profile.whatsapp_num}` : '#', icon: <Phone size={20} />, label: 'Ara' }
   ] : hubItems;
 
-  const current = navItems.find(i => loc.pathname === i.path) || navItems[0];
+  const fullPath = loc.pathname + (loc.search || (loc.pathname === '/ajansa' ? '?tab=fikir_kutusu' : ''));
+  const current = navItems.find(i => fullPath === i.path) || navItems[0];
   const others = navItems.filter(i => i.id !== current.id);
 
   return (

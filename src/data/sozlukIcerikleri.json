@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "kategori": "Tapu & Mülkiyet",
+    "terimler": [
+      {
+        "kelime": "Kat İrtifakı",
+        "aciklama": "İnşaatı henüz bitmemiş bir binada, hissedarların paylarını ve bağımsız bölümlerini belirten geçici tapu türüdür."
+      },
+      {
+        "kelime": "Kat Mülkiyeti",
+        "aciklama": "İnşaatı tamamen bitmiş, iskanı (yapı kullanma izni) alınmış bağımsız bölümlerin resmi ve kalıcı tapu türüdür."
+      },
+      {
+        "kelime": "İskan Raporu",
+        "aciklama": "Bir yapının onaylı projesine tamamen uygun olarak tamamlandığını ve resmi olarak yaşanabilir olduğunu gösteren belgedir."
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "kategori": "Hukuk & Haklar",
+    "terimler": [
+      {
+        "kelime": "İntifa Hakkı",
+        "aciklama": "Bir mülkün kuru mülkiyeti başkasına ait olsa dahi, o mülkten tam olarak yararlanma ve içinde oturma hakkıdır."
+      },
+      {
+        "kelime": "Şufa Hakkı",
+        "aciklama": "Hisseli tapularda, bir hissedarın payını satması durumunda diğer hissedarların o payı öncelikli olarak satın alma hakkıdır."
+      },
+      {
+        "kelime": "İpotek",
+        "aciklama": "Doğacak bir borcun güvencesi olarak, bir gayrimenkulün alacaklı lehine resmi tapuda güvence gösterilmesidir."
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "kategori": "Finans & Yatırım",
+    "terimler": [
+      {
+        "kelime": "Rayiç Bedel",
+        "aciklama": "Bir mülkün güncel piyasa, arz-talep ve bölge koşullarına göre belirlenen yasal alım-satım değeridir."
+      },
+      {
+        "kelime": "Tapu Harcı",
+        "aciklama": "Gayrimenkul alım-satım işlemleri esnasında alıcı ve satıcıdan yasal olarak tahsil edilen resmi vergi tutarıdır."
+      },
+      {
+        "kelime": "Amortisman Süresi",
+        "aciklama": "Bir gayrimenkulün satın alma bedelinin, aylık kira getirileriyle kendisini kaç yılda geri ödeyeceğini gösteren süredir."
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "kategori": "Portföy & Sözleşme",
+    "terimler": [
+      {
+        "kelime": "Tek Yetki Sözleşmesi",
+        "aciklama": "Mülk sahibinin, gayrimenkulünün pazarlanması ve satışı için sadece tek bir danışmana resmi yetki verdiği belgedir."
+      },
+      {
+        "kelime": "Açık Portföy",
+        "aciklama": "Herhangi bir resmi yetkilendirme sözleşmesi olmadan, birden fazla emlakçının aynı mülkü satmaya çalışması durumudur."
+      },
+      {
+        "kelime": "Kaparo (Bağlanma Akçesi)",
+        "aciklama": "Bir mülkün alım-satımında anlaşmaya varıldığının kanıtı olarak, alıcının satıcıya güvence amacıyla ödediği ön tutardır."
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "kategori": "Mimari & Yapı",
+    "terimler": [
+      {
+        "kelime": "Brüt & Net Metrekare",
+        "aciklama": "Brüt alan kolonlar ve duvarlar dahil toplam alanı; net alan ise sadece süpürülebilir, kullanılabilir yaşam alanını ifade eder."
+      },
+      {
+        "kelime": "Kat İrtifaklı Tapu",
+        "aciklama": "Toprak hisseli olup, projede bağımsız bölümün yerinin belli olduğunu ancak binanın henüz resmi onay almadığını gösterir."
+      },
+      {
+        "kelime": "Gabarî",
+        "aciklama": "Belediyeler tarafından belirlenen, bir binanın yasal olarak inşa edilebileceği maksimum yükseklik sınırıdır."
+      }
+    ]
+  }
+]

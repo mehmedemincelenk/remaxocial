@@ -11,6 +11,10 @@ const PromptCard = ({ id, title, desc, icon, isSelected, onIconClick, onCardClic
   const [isFlashing, setIsFlashing] = useState(false);
   const timerRef = useRef(null);
 
+  const isCardSelected = typeof isSelected === 'boolean'
+    ? isSelected
+    : (Array.isArray(isSelected) && Array.isArray(multiIcons) && isSelected.some(id => multiIcons.some(m => m.id === id)));
+
   const handleLocalCardClick = () => {
     if (timerRef.current) clearTimeout(timerRef.current);
     onCardClick();
@@ -27,8 +31,8 @@ const PromptCard = ({ id, title, desc, icon, isSelected, onIconClick, onCardClic
             onClick={handleLocalCardClick} isMotion={true} whileTap={{ scale: 0.98 }} padding="0.75rem 1.25rem" borderRadius="20px"
             style={{
               flex: 1, display: 'flex', flexDirection: 'column', position: 'relative', cursor: 'pointer',
-              border: ((typeof isSelected === 'boolean' ? isSelected : isSelected.some(id => multiIcons?.map(m => m.id).includes(id))) || copied) ? '1px solid #fff' : '1px solid var(--color-border)',
-              boxShadow: ((typeof isSelected === 'boolean' ? isSelected : isSelected.some(id => multiIcons?.map(m => m.id).includes(id))) || copied) ? '0 0 15px rgba(255,255,255,0.1)' : 'none',
+              border: (isCardSelected || copied) ? '1px solid #fff' : '1px solid var(--color-border)',
+              boxShadow: (isCardSelected || copied) ? '0 0 15px rgba(255,255,255,0.1)' : 'none',
               transition: 'all 0.3s ease',
               background: 'rgba(255,255,255,0.03)'
             }}

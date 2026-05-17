@@ -1,8 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import GlassCard from '../../components/ortak/GlassCard';
 import { Mic, Play, Square, RefreshCcw, Check } from 'lucide-react';
+import { useAppContext } from '../../context/AppContext';
 
 const VideoStudio = () => {
+  const { notify } = useAppContext();
   const [news, setNews] = useState([]);
   const [recordingState, setRecordingState] = useState({}); // { index: 'idle' | 'recording' | 'review' | 'syncing' | 'done' }
   const [audioUrls, setAudioUrls] = useState({});
@@ -59,7 +61,7 @@ const VideoStudio = () => {
       }
     } catch (error) {
       console.error('❌ Kayıt gönderilemedi:', error);
-      alert('Kayıt kaydedilirken bir hata oluştu.');
+      notify('Kayıt kaydedilirken bir hata oluştu.', 'error');
       setRecordingState(prev => ({ ...prev, [index]: 'review' }));
     }
   };

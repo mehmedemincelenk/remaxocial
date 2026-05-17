@@ -1,11 +1,11 @@
 export const CONTENT_TYPES = {
   altin_bilgi: {
     id: 'altin_bilgi',
-    label: 'Altın Bilgi',
-    icon: '💎',
+    label: 'Emlak Sözlüğü',
+    icon: '📖',
     outputFormat: 'png',
     remotionComposition: 'SSS_B2B',
-    dataSource: 'altinBilgiler.json',
+    dataSource: 'sozlukIcerikleri.json',
   },
   musteri_memnuniyeti: {
     id: 'musteri_memnuniyeti',

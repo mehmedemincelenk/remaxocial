@@ -1,13 +1,12 @@
 import { useState, useEffect, useMemo } from 'react';
-import { Book, Cpu, Lightbulb, ChevronDown, ChevronUp, Trophy, CheckCircle2 } from 'lucide-react';
+import { Book, Cpu, Lightbulb, ChevronDown, ChevronUp, GraduationCap, CheckCircle2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import Loading from '../../components/ortak/Loading';
-import GlassCard from '../../components/ortak/GlassCard';
-import PageLayout from '../../components/ortak/PageLayout';
-import useSupabase from '../../hooks/useSupabase';
-import useLocalStorage from '../../hooks/useLocalStorage';
+import Loading from '../../ortak/Loading';
+import GlassCard from '../../ortak/GlassCard';
+import useSupabase from '../../../hooks/useSupabase';
+import useLocalStorage from '../../../hooks/useLocalStorage';
 
-const Home = () => {
+export default function Akademi() {
   const [content, setContent] = useState(null);
   const [loadingContent, setLoadingContent] = useState(true);
   const { data: tasks, loading: loadingTasks } = useSupabase('tasks');
@@ -46,14 +45,14 @@ const Home = () => {
   ];
 
   return (
-    <PageLayout padding="0.75rem" innerStyle={{ display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '0.6rem', width: '100%', maxWidth: '400px', margin: '0 auto' }}>
       {sections.map(sec => <HomeCard key={sec.id} {...sec} />)}
 
       {dailyTask && (
         <HomeCard 
           badge="GÜNÜN GÖREVİ" 
           title={dailyTask.title} 
-          icon={<Trophy size={12} />} 
+          icon={<GraduationCap size={12} />} 
           accent="#ED1C24" 
           body={dailyTask.description} 
           note={dailyTask.note}
@@ -62,9 +61,9 @@ const Home = () => {
           onComplete={handleComplete}
         />
       )}
-    </PageLayout>
+    </div>
   );
-};
+}
 
 const HomeCard = ({ badge, title, icon, accent, body, note, isTask, isDone, onComplete }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -82,7 +81,7 @@ const HomeCard = ({ badge, title, icon, accent, body, note, isTask, isDone, onCo
     >
       <header style={{ display: 'flex', alignItems: 'center', gap: '0.4rem', color: accent, marginBottom: '0.3rem' }}>
         {isDone ? <CheckCircle2 size={12} /> : icon} 
-        <span style={{ color: accent, fontSize: '0.6rem', fontWeight: '800', letterSpacing: '0.05em' }}>{isDone ? 'TAMAMLANDI' : badge}</span>
+        <span style={{ color: accent, fontSize: '0.65rem', fontWeight: '800', letterSpacing: '0.05em' }}>{isDone ? 'TAMAMLANDI' : badge}</span>
       </header>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: '0.75rem' }}>
         <h2 style={{ margin: 0, fontSize: '0.9rem', fontWeight: '700', textDecoration: isDone ? 'line-through' : 'none', opacity: isDone ? 0.5 : 1, lineHeight: '1.2' }}>{title}</h2>
@@ -91,10 +90,10 @@ const HomeCard = ({ badge, title, icon, accent, body, note, isTask, isDone, onCo
       <AnimatePresence>
         {isOpen && (
           <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }} exit={{ height: 0, opacity: 0 }} style={{ overflow: 'hidden' }}>
-            <div style={{ marginTop: '1.5rem', display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-              <p className="text-body" style={{ margin: 0 }}>{body}</p>
+            <div style={{ marginTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.8rem' }}>
+              <p className="text-body" style={{ margin: 0, fontSize: '0.8rem', lineHeight: '1.4', color: '#ccc' }}>{body}</p>
               {note && (
-                <div style={{ padding: '1rem', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', borderLeft: `3px solid ${accent}`, fontSize: '0.85rem', color: '#fff', fontStyle: 'italic' }}>
+                <div style={{ padding: '0.8rem', background: 'rgba(255,255,255,0.03)', borderRadius: '12px', borderLeft: `3px solid ${accent}`, fontSize: '0.75rem', color: '#fff', fontStyle: 'italic' }}>
                   💡 {note}
                 </div>
               )}
@@ -103,12 +102,12 @@ const HomeCard = ({ badge, title, icon, accent, body, note, isTask, isDone, onCo
                 <button 
                   onClick={(e) => { e.stopPropagation(); onComplete(); }}
                   style={{ 
-                    marginTop: '0.5rem', width: '100%', height: '48px', borderRadius: '16px', border: 'none', 
-                    background: '#ED1C24', color: '#fff', fontWeight: '800', fontSize: '0.9rem', 
+                    marginTop: '0.5rem', width: '100%', height: '44px', borderRadius: '12px', border: 'none', 
+                    background: '#ED1C24', color: '#fff', fontWeight: '800', fontSize: '0.85rem', 
                     cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' 
                   }}
                 >
-                  <CheckCircle2 size={18} /> YAPTIM
+                  <CheckCircle2 size={16} /> YAPTIM
                 </button>
               )}
             </div>
@@ -118,5 +117,3 @@ const HomeCard = ({ badge, title, icon, accent, body, note, isTask, isDone, onCo
     </GlassCard>
   );
 };
-
-export default Home;

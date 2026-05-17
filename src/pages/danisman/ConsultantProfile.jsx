@@ -11,6 +11,7 @@ import PageLayout from '../../components/ortak/PageLayout';
 import useSupabase from '../../hooks/useSupabase';
 import Marquee from '../../components/ortak/Marquee';
 import remaxLogo from '../../assets/icons/remax_logo.svg';
+import useFeed from '../../hooks/useFeed';
 
 const HookSection = ({ p, hook }) => (
   <section style={{ padding: '2rem 1.5rem', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
@@ -79,24 +80,9 @@ const FinalCTA = ({ p }) => (
 const ConsultantProfile = () => {
   const { slug } = useParams();
   const { data: p, loading: profileLoading } = useSupabase('consultants', { filter: { column: 'slug', operator: 'eq', value: slug }, single: true });
-  const [f, setF] = useState({ hook: null, reviews: [] });
-  const [feedLoading, setFeedLoading] = useState(false);
-
-  useEffect(() => {
-    if (p?.feed_url) {
-      setTimeout(() => setFeedLoading(true), 0);
-      fetch(p.feed_url)
-        .then(res => res.json())
-        .then(({ posts = [] }) => {
-          setF({
-            hook: posts.find(x => x.caption?.toLowerCase().includes('#wahook')),
-            reviews: [...posts.filter(x => x.caption?.toLowerCase().includes('#wayorum')), ...posts.filter(x => x.caption?.toLowerCase().includes('#wayorum'))]
-          });
-        })
-        .catch(console.error)
-        .finally(() => setFeedLoading(false));
-    }
-  }, [p?.feed_url]);
+  
+  // Merkezi feed yönetimi
+  const { data: f, loading: feedLoading } = useFeed(p?.feed_url);
 
   const l = profileLoading || feedLoading;
 

@@ -1,0 +1,199 @@
+[
+  {
+    "id": 1,
+    "baslik": "Mülk Değerleme Stratejisi",
+    "anket1": {
+      "soru": "Sizce bir evin satılamamasının en büyük nedeni nedir?",
+      "secenekler": [
+        "Hatalı Fiyatlandırma 📉",
+        "Kötü Pazarlama 📸"
+      ]
+    },
+    "anket2": {
+      "soru": "Evinizin gerçek değerini belirleyen en kritik faktör hangisidir?",
+      "secenekler": [
+        "Belediye Rayici 🏛️",
+        "Komşu Evlerin Satış Fiyatı 🏡",
+        "Bölgenin Güncel Arz-Talep Dengesi 📈"
+      ]
+    }
+  },
+  {
+    "id": 2,
+    "baslik": "Gayrimenkul Pazarlama Gücü",
+    "anket1": {
+      "soru": "Mülkünüzü satarken tek yetkili çalışmak hızı nasıl etkiler?",
+      "secenekler": [
+        "2 Kat Daha Hızlı Satış ⚡",
+        "Aynı Hızda Kalır 🤷‍♂️",
+        "Daha Yavaş Satılır 📉"
+      ]
+    },
+    "anket2": {
+      "soru": "Evinizin ilanına alıcı çekmek için en çok neye bütçe ayrılmalıdır?",
+      "secenekler": [
+        "Profesyonel Fotoğraf & Video 📸",
+        "Sosyal Medya Hedefli Reklamlar 🎯",
+        "Branda & Afiş Tasarımı 🚩",
+        "Emlak Portalları Öne Çıkarma 💻"
+      ]
+    }
+  },
+  {
+    "id": 3,
+    "baslik": "Alıcı Eleme & Zaman Yönetimi",
+    "anket1": {
+      "soru": "Evinizi satarken en çok çekindiğiniz durum hangisidir?",
+      "secenekler": [
+        "Niteliksiz Alıcı Turları 📞",
+        "Müzakere Süreçleri 🤝"
+      ]
+    },
+    "anket2": {
+      "soru": "Gelen alıcının 'gerçek' alıcı olduğunu nasıl anlarsınız?",
+      "secenekler": [
+        "Kredi Onay Belgesi Varsa 💳",
+        "Hemen Kaparo Vermek İsterse 💰",
+        "Profesyonel Danışman Eşliğindeyse 👨‍💼"
+      ]
+    }
+  },
+  {
+    "id": 4,
+    "baslik": "Kışın Ev Satış Gerçeği",
+    "anket1": {
+      "soru": "Sizce kış aylarında gayrimenkul satışı yapılır mı?",
+      "secenekler": [
+        "Kesinlikle, Alıcı Daha Ciddi 🔥",
+        "Hayır, Baharı Beklemek Lazım ❄️"
+      ]
+    },
+    "anket2": {
+      "soru": "Kışın bir mülkü hızlı satmak için yapılması gereken en önemli hamle?",
+      "secenekler": [
+        "Fiyatı Piyasanın Altına Çekmek 📉",
+        "İç Mekan Sıcaklığı & Işıklandırması 💡",
+        "Özel Dijital Reklam Kampanyası 🚀"
+      ]
+    }
+  },
+  {
+    "id": 5,
+    "baslik": "Komisyon & Hizmet Kalitesi",
+    "anket1": {
+      "soru": "Profesyonel bir emlakçıyla çalışmanın en büyük artısı nedir?",
+      "secenekler": [
+        "Doğru Fiyat Analizi 📊",
+        "Hukuki & Yasal Güvenlik 🏛️",
+        "Güçlü Pazarlama Reklamları 🚀",
+        "Pürüzsüz Müzakere Yönetimi 🤝"
+      ]
+    },
+    "anket2": {
+      "soru": "Kendi başına (sahibinden) satmaya çalışmak ortalama ne kadar zaman kaybettirir?",
+      "secenekler": [
+        "1-3 Ay Arası ⏳",
+        "3-6 Ay Arası 📆",
+        "6 Aydan Fazla veya Hiç Satılamama ❌"
+      ]
+    }
+  },
+  {
+    "id": 6,
+    "baslik": "Tapu & Yasal Masraflar",
+    "anket1": {
+      "soru": "Sizce tapu harcı masrafını kanunen kim ödemelidir?",
+      "secenekler": [
+        "Alıcı ve Satıcı Yarı Yarıya 🤝",
+        "Sadece Alıcı Ödemelidir 💸"
+      ]
+    },
+    "anket2": {
+      "soru": "Evin satış bedelini tapuda düşük göstermenin en büyük riski?",
+      "secenekler": [
+        "Geriye Dönük Vergi Cezaları 📈",
+        "Alıcının Evi O Fiyattan Geri Satın Alma Hakkı (Şufa) ⚖️",
+        "Banka Kredisi Limit Engeli 💳",
+        "Hepsi Ciddi Risk Barındırır 🚨"
+      ]
+    }
+  },
+  {
+    "id": 7,
+    "baslik": "Portföy Sunumu & Yetki Belgesi",
+    "anket1": {
+      "soru": "Evinizi birden fazla emlakçıya vermek satışı hızlandırır mı?",
+      "secenekler": [
+        "Hayır, Alıcı Gözünde Güven Kaybettirir 📉",
+        "Evet, Daha Çok İlan Açılması İyidir 📞"
+      ]
+    },
+    "anket2": {
+      "soru": "Tek yetkili sözleşme imzalamak danışmandan ne talep etme hakkı verir?",
+      "secenekler": [
+        "Profesyonel Reklam & Fotoğraf Bütçesi 🚀",
+        "Haftalık Yazılı Piyasa Raporlaması 📊",
+        "Pürüzsüz & Güvenli Yasal Hizmet ✅"
+      ]
+    }
+  },
+  {
+    "id": 8,
+    "baslik": "Gayrimenkul Yatırım Tercihleri",
+    "anket1": {
+      "soru": "Elinizde nakit olsa şu an hangisine yatırım yaparsınız?",
+      "secenekler": [
+        "Prim Potansiyeli Yüksek Toprak 🪵",
+        "Hazır Kiracılı Ticari Dükkan 🏢",
+        "Konut Alıp Kiraya Vermek 🏡"
+      ]
+    },
+    "anket2": {
+      "soru": "Gayrimenkul yatırımlarında en büyük kâr ne zaman elde edilir?",
+      "secenekler": [
+        "Mülkü Alırken Uygun Fiyata Alınca 🤝",
+        "Doğru Zamanda Satış Yapınca 📈",
+        "Uzun Yıllar Bekleyince ⏳"
+      ]
+    }
+  },
+  {
+    "id": 9,
+    "baslik": "Konut Kredisi & Satış Psikolojisi",
+    "anket1": {
+      "soru": "Krediye uygun mülklerin daha hızlı alıcı bulduğunu biliyor musunuz?",
+      "secenekler": [
+        "Evet, Alıcı Havuzunu Genişletir 👍",
+        "Hayır, Kredisiz de Satılır 🤷‍♂️"
+      ]
+    },
+    "anket2": {
+      "soru": "Alıcının bir evi gezerken karar vermesini sağlayan en önemli his?",
+      "secenekler": [
+        "Güven ve Şeffaf Bilgi Akışı 🕊️",
+        "Evin Sunduğu Manzara & Işık 🌅",
+        "Ulaşım ve Sosyal Çevre İmkanları 🚴"
+      ]
+    }
+  },
+  {
+    "id": 10,
+    "baslik": "Pazarlık & Fiyat Müzakeresi",
+    "anket1": {
+      "soru": "Alıcıdan gelen düşük fiyat teklifini anında reddetmek doğru mudur?",
+      "secenekler": [
+        "Hayır, Profesyonel Karşı Teklif Verilmelidir 🤝",
+        "Evet, Zaman Kaybıdır ❌"
+      ]
+    },
+    "anket2": {
+      "soru": "Gayrimenkul satış sürecinde en çok yorulduğunuz aşama hangisidir?",
+      "secenekler": [
+        "Nitelikli Alıcıları Bulmak 🔍",
+        "Pazarlık & Fiyat Yönetimi 🤝",
+        "Tapu İşlemleri & Evrak Takibi 📜",
+        "İlan Girişleri & Telefon Trafiği 📲"
+      ]
+    }
+  }
+]

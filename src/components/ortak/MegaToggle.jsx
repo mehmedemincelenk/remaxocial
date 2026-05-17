@@ -27,6 +27,9 @@ const MegaToggle = ({
 
         const isActive = activeId === opt.id;
         const isDisabled = disabledIds.includes(opt.id);
+        const showLabel = !!opt.label && !opt.icon && variant !== 'ai-nodes';
+        const buttonWidth = showLabel ? 'auto' : '38px';
+        const buttonPadding = showLabel ? '0 14px' : '0';
 
         return (
           <button 
@@ -34,8 +37,9 @@ const MegaToggle = ({
             onClick={() => !isDisabled && onChange(opt.id)}
             disabled={isDisabled}
             style={{ 
-              width: '38px', 
+              width: buttonWidth, 
               height: '32px', 
+              padding: buttonPadding,
               borderRadius: '10px', 
               border: 'none', 
               background: isActive ? 'rgba(255,255,255,0.1)' : 'transparent', 
@@ -64,7 +68,7 @@ const MegaToggle = ({
                   {opt.icon}
                 </div>
               ) : (
-                <span style={{ fontSize: '0.8rem', fontWeight: '800', color: isActive ? '#fff' : 'rgba(255,255,255,0.2)' }}>
+                <span style={{ fontSize: '0.82rem', fontWeight: '800', color: isActive ? '#fff' : 'rgba(255,255,255,0.4)' }}>
                   {opt.label}
                 </span>
               )
