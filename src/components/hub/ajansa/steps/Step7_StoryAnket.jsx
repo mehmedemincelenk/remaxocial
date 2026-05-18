@@ -105,7 +105,7 @@ export default function Step7_StoryAnket({ sessionId, memberId, onComplete, onPr
         </button>
         <button onClick={handleRefresh} style={secStyle} title="Değiştir"><RotateCw size={16} /></button>
         <button onClick={handleSave} disabled={isSubmitting} style={primStyle}>
-          {isSubmitting ? '...' : 'Onayla ve İlerle'} <ChevronRight size={18} />
+          {isSubmitting ? '...' : 'Onayla'} <ChevronRight size={18} />
         </button>
       </div>
     </GlassCard>
@@ -170,5 +170,5 @@ const pollOptionStyle = {
   boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
 };
 
-const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
-const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.85rem' };
+const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0, whiteSpace: 'nowrap' };
+const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.85rem', whiteSpace: 'nowrap' };

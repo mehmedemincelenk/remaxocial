@@ -16,7 +16,7 @@ import Akademi from '../../components/hub/ajansa/Akademi';
 // Styling definitions
 const contentBoxStyle = { display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', gap: '1.5rem', width: '100%' };
 const navBtnStyle = { 
-  width: '56px', height: '56px', borderRadius: '18px', border: 'none', 
+  width: '56px', height: '56px', borderRadius: '18px', 
   background: 'rgba(255,255,255,0.04)', color: '#fff', cursor: 'pointer', 
   display: 'flex', alignItems: 'center', justifyContent: 'center', 
   border: '1px solid rgba(255,255,255,0.08)', transition: 'all 0.2s' 

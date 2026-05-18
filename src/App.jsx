@@ -7,7 +7,6 @@ import FloatingMenu from './components/hub/FloatingMenu';
 import Library from './pages/hub/Library';
 import Ajansa from './pages/hub/Ajansa';
 import VideoStudio from './pages/hub/VideoStudio';
-import SelfieStudio from './pages/hub/SelfieStudio';
 import VoiceTest from './pages/hub/VoiceTest';
 import AIPromptLibrary from './pages/hub/AIPromptLibrary';
 import ConsultantProfile from './pages/danisman/ConsultantProfile';
@@ -31,7 +30,7 @@ const AppContent = () => {
   const showNavAndMenu = !isConsultantPage;
 
   return (
-    <div style={{
+    <div id="app-viewport" style={{
       height: '100%',
       display: 'flex',
       flexDirection: 'column',
@@ -56,7 +55,6 @@ const AppContent = () => {
           <Route path="/ai" element={<AIPromptLibrary />} />
           <Route path="/kutuphane" element={<Library />} />
           <Route path="/studio" element={<VideoStudio />} />
-          <Route path="/selfie" element={<SelfieStudio />} />
           <Route path="/voice-test" element={<VoiceTest />} />
         </Routes>
       </div>

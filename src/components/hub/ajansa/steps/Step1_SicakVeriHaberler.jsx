@@ -3,7 +3,7 @@ import { Check, ChevronLeft } from 'lucide-react';
 import { supabase } from '../../../../utils/supabaseClient';
 import { GlassCard } from '../../../ortak';
 
-export default function Step1_AltinBilgiler({ sessionId, memberId, onComplete, onPrev }) {
+export default function Step1_SicakVeriHaberler({ sessionId, memberId, onComplete, onPrev }) {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleApprove = async () => {
@@ -55,18 +55,12 @@ export default function Step1_AltinBilgiler({ sessionId, memberId, onComplete, o
       <div>
         <h3 style={{ margin: '0 0 0.4rem 0', color: '#fff', fontSize: '1.15rem', fontWeight: 'bold' }}>Sıcak Veri & Haberler</h3>
         <p style={{ margin: 0, color: '#ccc', fontSize: '0.78rem', lineHeight: '1.5' }}>
-          Bu ay gayrimenkul piyasasındaki en güncel sıcak gelişmeleri ve analizleri anlık karuseller halinde sizin adınıza paylaşacağız.
+          Bu ay gayrimenkul piyasasındaki en güncel sıcak gelişmeleri, analizleri ve emlak terminolojisinden bazı kelimelerin anlamlarını ("amortisman süresi", "kat irtifakı" gibi) hap bilgi içeriği olarak anlık karuseller halinde sizin adınıza paylaşacağız.
         </p>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
-        <button 
-          onClick={() => onComplete('altin_bilgi_skipped')} 
-          style={{ flex: 1, height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.8rem' }}
-        >
-          Atla
-        </button>
-        <button onClick={handleApprove} disabled={isSubmitting} style={{ ...primStyle, flex: 2 }}>
+      <div style={{ display: 'flex', width: '100%' }}>
+        <button onClick={handleApprove} disabled={isSubmitting} style={{ ...primStyle, flex: 1 }}>
           {isSubmitting ? '...' : 'Tamam'} <Check size={18} />
         </button>
       </div>
@@ -74,4 +68,4 @@ export default function Step1_AltinBilgiler({ sessionId, memberId, onComplete, o
   );
 }
 
-const primStyle = { width: '100%', height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer' };
+const primStyle = { width: '100%', height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', whiteSpace: 'nowrap' };

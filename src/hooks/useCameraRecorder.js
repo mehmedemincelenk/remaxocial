@@ -20,7 +20,12 @@ export default function useCameraRecorder() {
     try {
       if (stream) stream.getTracks().forEach(t => t.stop());
       const mediaStream = await navigator.mediaDevices.getUserMedia({ 
-        video: { facingMode: mode, width: { ideal: 1280 }, height: { ideal: 720 } }, 
+        video: { 
+          facingMode: mode, 
+          width: { ideal: 1280 }, 
+          height: { ideal: 720 },
+          frameRate: { ideal: 60, min: 30 }
+        }, 
         audio: true 
       });
       setStream(mediaStream);
@@ -42,7 +47,12 @@ export default function useCameraRecorder() {
     setPreviewUrl(null);
     setDuration(0);
     
-    const types = ['video/webm;codecs=vp9,opus', 'video/webm', 'video/mp4'];
+    const types = [
+      'video/mp4;codecs=avc1,mp4a.40.2',
+      'video/mp4',
+      'video/webm;codecs=vp9,opus',
+      'video/webm'
+    ];
     const selectedType = types.find(t => MediaRecorder.isTypeSupported(t)) || '';
 
     mediaRecorder.current = new MediaRecorder(stream, { mimeType: selectedType });
@@ -68,6 +78,14 @@ export default function useCameraRecorder() {
     if (stream) stream.getTracks().forEach(t => t.stop());
     setStream(null);
   };
+
+  useEffect(() => {
+    if (videoRef.current && stream) {
+      if (videoRef.current.srcObject !== stream) {
+        videoRef.current.srcObject = stream;
+      }
+    }
+  }, [stream]);
 
   useEffect(() => {
     if (countdown === 4 && !stream) startCamera();

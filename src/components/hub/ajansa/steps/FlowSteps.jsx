@@ -1,4 +1,4 @@
-export { default as Step1_AltinBilgiler } from './Step1_AltinBilgiler';
+export { default as Step1_SicakVeriHaberler } from './Step1_SicakVeriHaberler';
 export { default as Step2_MusteriMesaji } from './Step2_MusteriMesaji';
 export { default as Step3_MusteriVideosu } from './Step3_MusteriVideosu';
 export { default as Step4_BusinessVibe } from './Step4_BusinessVibe';

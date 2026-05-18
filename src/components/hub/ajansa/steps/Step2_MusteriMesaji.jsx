@@ -6,7 +6,7 @@ import { useAppContext } from '../../../../context/AppContext';
 
 export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, onPrev }) {
   const { notify } = useAppContext();
-  const [form, setForm] = useState({ adi: '', mesaj: '', iletisim: '', rol: 'satıcı' });
+  const [form, setForm] = useState({ adi: '', mesaj: '', rol: 'satıcı' });
   const [reviews, setReviews] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -15,7 +15,7 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
   const handleAdd = () => {
     if (!form.mesaj) return notify('Lütfen mesaj alanını doldurun.', 'error');
     setReviews(p => [...p, { ...form, id: Date.now() }]);
-    setForm({ adi: '', mesaj: '', iletisim: '', rol: 'satıcı' });
+    setForm({ adi: '', mesaj: '', rol: 'satıcı' });
   };
 
   const handleRemove = (id) => {
@@ -31,7 +31,7 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
         session_id: sessionId,
         member_id: memberId,
         musteri_adi: r.adi,
-        mesaj: `[${r.rol.toUpperCase()}] ${r.mesaj}` + (r.iletisim ? `\n\nİletişim: ${r.iletisim}` : ''),
+        mesaj: `[${r.rol.toUpperCase()}] ${r.mesaj}`,
         rol: r.rol,
         ay
       }));
@@ -78,32 +78,31 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
           <button
             onClick={() => setForm(p => ({ ...p, rol: 'satıcı' }))}
             style={{
-              flex: 1, padding: '5px 8px', borderRadius: '7px', border: 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.7rem',
+              flex: 1, padding: '5px 8px', borderRadius: '7px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.7rem',
               background: form.rol === 'satıcı' ? 'rgba(255,255,255,0.12)' : 'transparent',
               color: form.rol === 'satıcı' ? '#fff' : '#666',
               border: form.rol === 'satıcı' ? '1px solid rgba(255,255,255,0.2)' : '1px solid transparent',
               transition: 'all 0.2s'
             }}
           >
-            SATICI YORUMU
+            SATICI
           </button>
           <button
             onClick={() => setForm(p => ({ ...p, rol: 'alıcı' }))}
             style={{
-              flex: 1, padding: '5px 8px', borderRadius: '7px', border: 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.7rem',
+              flex: 1, padding: '5px 8px', borderRadius: '7px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.7rem',
               background: form.rol === 'alıcı' ? 'rgba(255,255,255,0.12)' : 'transparent',
               color: form.rol === 'alıcı' ? '#fff' : '#666',
               border: form.rol === 'alıcı' ? '1px solid rgba(255,255,255,0.2)' : '1px solid transparent',
               transition: 'all 0.2s'
             }}
           >
-            ALICI YORUMU
+            ALICI
           </button>
         </div>
 
         <input placeholder="Müşteri Adı" value={form.adi} onChange={e => setForm(p => ({ ...p, adi: e.target.value }))} style={inputStyle} />
         <textarea placeholder="Mesaj..." value={form.mesaj} onChange={e => setForm(p => ({ ...p, mesaj: e.target.value }))} rows={2} style={inputStyle} />
-        <input placeholder="İletişim (İsteğe bağlı)" value={form.iletisim} onChange={e => setForm(p => ({ ...p, iletisim: e.target.value }))} style={inputStyle} />
       </div>
 
       {reviews.length > 0 && (
@@ -135,25 +134,27 @@ export default function Step2_MusteriMesaji({ sessionId, memberId, onComplete, o
         </div>
       )}
 
-      {hasInput ? (
-        <button onClick={handleAdd} style={btnStyle}>Listeye Ekle</button>
-      ) : (
-        <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
-          <button 
-            onClick={() => onComplete('musteri_mesaji_skipped')} 
-            style={{ flex: 1, padding: '0.65rem', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem' }}
-          >
-            Atla
+      <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
+        <button 
+          onClick={() => onComplete('musteri_mesaji_skipped')} 
+          style={{ flex: 1, padding: '0.65rem', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '10px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem' }}
+        >
+          Atla
+        </button>
+        {hasInput ? (
+          <button onClick={handleAdd} style={{ ...btnStyle, flex: 2 }}>
+            Ekle
           </button>
+        ) : (
           <button onClick={handleSave} disabled={isSubmitting || reviews.length === 0} style={{ ...btnStyle, flex: 2, opacity: reviews.length === 0 ? 0.5 : 1 }}>
-            {isSubmitting ? '...' : `Gönder ve İlerle (${reviews.length})`}
+            {isSubmitting ? '...' : `Gönder (${reviews.length})`}
           </button>
-        </div>
-      )}
+        )}
+      </div>
     </GlassCard>
   );
 }
 
 const inputStyle = { width: '100%', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)', padding: '0.6rem 0.8rem', borderRadius: '10px', color: '#fff', outline: 'none', fontSize: '0.8rem' };
 const delBtnStyle = { background: 'rgba(255,77,77,0.15)', border: 'none', borderRadius: '6px', color: '#ff4d4d', width: '24px', height: '24px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
-const btnStyle = { width: '100%', padding: '0.65rem', background: 'var(--color-accent)', border: 'none', borderRadius: '10px', color: '#000', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem', transition: 'all 0.2s' };
+const btnStyle = { width: '100%', padding: '0.65rem', background: 'var(--color-accent)', border: 'none', borderRadius: '10px', color: '#000', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem', transition: 'all 0.2s', whiteSpace: 'nowrap' };

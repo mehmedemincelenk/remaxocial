@@ -4,10 +4,13 @@ import useLocalStorage from './useLocalStorage';
 import sssData from '../data/diamond_qa_master.json';
 import objectionsData from '../data/itirazlar.json';
 import newsData from '../api/news.json';
-import feedData from '../../wepscrp/data.json';
+import feedData from '../data/feeds/shorts_detailed_full_premium.json';
 
-export default function useLibrary() {
-  const [tab, setTab] = useState('feed');
+export default function useLibrary(activeTabOverride) {
+  const [localTab, setLocalTab] = useState('feed');
+  const tab = activeTabOverride || localTab;
+  const setTab = setLocalTab;
+
   const [term, setTerm] = useState('');
   const [isCatsOpen, setIsCatsOpen] = useState(false);
   const [selCats, setSelCats] = useState({ feed: [], sss: [], objections: ['Seçtiklerim'] });
@@ -17,13 +20,19 @@ export default function useLibrary() {
   const curTable = tab === 'objections' ? 'objections' : null;
   const { data: supabaseData, loading } = useSupabase(curTable);
 
+  const [shuffledFeed] = useState(() => {
+    return [...feedData].sort(() => Math.random() - 0.5);
+  });
+
   const data = useMemo(() => {
     if (tab === 'sss') return [...(supabaseData || []), ...sssData];
     if (tab === 'objections') return objectionsData;
     if (tab === 'news') return newsData;
-    if (tab === 'feed') return [...feedData].sort(() => Math.random() - 0.5);
+    if (tab === 'feed') {
+      return shuffledFeed;
+    }
     return supabaseData || [];
-  }, [supabaseData, tab]);
+  }, [supabaseData, tab, shuffledFeed]);
 
   const allCats = useMemo(() => {
     const raw = (tab === 'sss' || tab === 'objections' || tab === 'news')

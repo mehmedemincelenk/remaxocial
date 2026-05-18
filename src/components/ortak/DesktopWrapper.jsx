@@ -29,19 +29,72 @@ export default function DesktopWrapper({ children }) {
       {/* Left Info Pane */}
       <div className="mockup-info-section">
         <div className="info-content">
-          <h1 className="mockup-title">
-            RE/MAX <span className="gradient-text">SOCIAL</span>
+          <h1 className="mockup-title" style={{
+            fontSize: '3.6rem',
+            fontWeight: '900',
+            lineHeight: '1.05',
+            letterSpacing: '-0.04em',
+            margin: '0 0 1.5rem 0',
+            display: 'flex',
+            flexDirection: 'column',
+            textTransform: 'uppercase'
+          }}>
+            <span style={{ color: '#ffffff' }}>RSOCIAL</span>
+            <span style={{ color: 'rgba(255, 255, 255, 0.25)' }}>MOBİL DENEYİM.</span>
           </h1>
-          <p className="mockup-subtitle">
-            Yapay zeka gücüyle gayrimenkul danışmanları için otomatik içerik üretim ve yönetim stüdyosu.
+          <p className="mockup-subtitle" style={{
+            color: 'rgba(255, 255, 255, 0.45)',
+            fontSize: '0.98rem',
+            lineHeight: '1.6',
+            marginBottom: '3rem',
+            maxWidth: '420px'
+          }}>
+            En yüksek performans ve konfor için bu uygulama mobil cihazlar için optimize edilmiştir.
           </p>
-          <div className="qr-box">
-            <div className="qr-icon-container">
-              <span style={{ fontSize: '1.5rem' }}>📱</span>
+          <div className="qr-box" style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1.5rem',
+            background: 'rgba(255, 255, 255, 0.02)',
+            border: '1px solid rgba(255, 255, 255, 0.05)',
+            borderRadius: '24px',
+            padding: '1.25rem',
+            maxWidth: '440px'
+          }}>
+            <div style={{
+              background: '#ffffff',
+              padding: '8px',
+              borderRadius: '16px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0
+            }}>
+              <img 
+                src={`https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=${encodeURIComponent(window.location.origin)}&color=000000&bgcolor=ffffff`}
+                alt="RSOCIAL QR Code"
+                style={{ width: '80px', height: '80px', borderRadius: '4px', display: 'block' }}
+              />
             </div>
-            <div className="qr-text">
-              <h3>Mobil Uyumlu Deneyim</h3>
-              <p>Telefonunuzdan QR kodu taratarak veya bu pencereyi daraltarak mobil cihazınızda anında test edebilirsiniz.</p>
+            <div style={{ textAlign: 'left' }}>
+              <h3 style={{
+                color: '#ffffff',
+                fontSize: '0.85rem',
+                fontWeight: '800',
+                margin: '0 0 4px 0',
+                letterSpacing: '0.5px',
+                textTransform: 'uppercase'
+              }}>
+                QR KODU OKUTUN
+              </h3>
+              <p style={{
+                color: 'rgba(255, 255, 255, 0.35)',
+                fontSize: '0.74rem',
+                lineHeight: '1.4',
+                margin: 0
+              }}>
+                Kameranızı açın ve uygulamaya doğrudan cebinizden ulaşın.
+              </p>
             </div>
           </div>
         </div>

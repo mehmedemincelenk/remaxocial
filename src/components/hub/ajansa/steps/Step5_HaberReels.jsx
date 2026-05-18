@@ -154,7 +154,7 @@ export default function Step5_HaberReels({ sessionId, memberId, onComplete, onPr
         </button>
         <button onClick={handleRefresh} style={secStyle}><RotateCw size={16} /></button>
         <button onClick={() => currentAudio ? (currentIndex < 3 ? setCurrentIndex(p => p + 1) : handleSave()) : notify('Kayıt yapmalısınız.', 'error')} disabled={isSubmitting} style={primStyle}>
-          {currentIndex < 3 ? 'Sonraki Haber' : (isSubmitting ? '...' : 'Gönder ve Bitir')}
+          {currentIndex < 3 ? 'Sonraki' : (isSubmitting ? '...' : 'Gönder')}
         </button>
       </div>
     </GlassCard>
@@ -162,10 +162,10 @@ export default function Step5_HaberReels({ sessionId, memberId, onComplete, onPr
 }
 
 const boxStyle = { width: '100%', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.15)', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0.75rem', justifyContent: 'center', minHeight: '90px' };
-const micStyle = { width: '48px', height: '48px', borderRadius: '50%', border: 'none', background: 'var(--color-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 0 10px rgba(74,222,128,0.25)' };
+const micStyle = { width: '48px', height: '48px', borderRadius: '50%', border: 'none', background: 'var(--color-accent)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 0 10px rgba(6,182,212,0.25)' };
 const recordBtnStyle = { width: '48px', height: '48px', borderRadius: '50%', border: 'none', background: '#ff4d4d', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', boxShadow: '0 0 10px rgba(255,77,77,0.3)' };
-const actStyle = { padding: '5px 12px', borderRadius: '10px', border: '1px solid var(--color-accent)', background: 'rgba(74,222,128,0.1)', color: 'var(--color-accent)', fontSize: '0.7rem', fontWeight: 'bold', cursor: 'pointer' };
+const actStyle = { padding: '5px 12px', borderRadius: '10px', border: '1px solid var(--color-accent)', background: 'rgba(6,182,212,0.1)', color: 'var(--color-accent)', fontSize: '0.7rem', fontWeight: 'bold', cursor: 'pointer' };
 const delStyle = { ...actStyle, background: 'rgba(255,77,77,0.15)', borderColor: '#ff4d4d', color: '#ff4d4d' };
 const confStyle = { ...actStyle, background: 'var(--color-accent)', color: '#000', borderColor: 'transparent' };
-const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
-const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '0.85rem' };
+const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0, whiteSpace: 'nowrap' };
+const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: '0.85rem', whiteSpace: 'nowrap' };

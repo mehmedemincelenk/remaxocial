@@ -30,12 +30,12 @@ export default function MegaInput({
         onChange={onChange}
         style={{ 
           width: '100%', 
-          padding: `0.85rem 1rem 0.85rem ${Icon ? '2.8rem' : '1rem'}`, 
+          padding: `0.75rem 1rem 0.75rem ${Icon ? '2.8rem' : '1rem'}`, 
           background: 'rgba(255,255,255,0.03)', 
           border: '1px solid rgba(255,255,255,0.1)',
           borderRadius: '12px', 
           color: '#fff', 
-          fontSize: '0.95rem',
+          fontSize: '0.85rem',
           outline: 'none',
           transition: 'all 0.3s ease',
         }}

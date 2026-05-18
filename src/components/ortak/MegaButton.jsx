@@ -19,13 +19,13 @@ export default function MegaButton({
       disabled={isLoading}
       style={{ 
         width: '100%',
-        padding: '0.9rem', 
+        padding: '0.75rem', 
         background: isPrimary ? 'var(--color-accent)' : 'rgba(255,255,255,0.05)', 
         border: isPrimary ? 'none' : '1px solid rgba(255,255,255,0.1)',
         borderRadius: '12px', 
         color: isPrimary ? '#000' : '#fff', 
         fontWeight: '700', 
-        fontSize: '0.95rem',
+        fontSize: '0.85rem',
         cursor: isLoading ? 'not-allowed' : 'pointer',
         opacity: isLoading ? 0.7 : 1,
         transition: 'all 0.3s ease',

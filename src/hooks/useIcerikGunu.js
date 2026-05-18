@@ -34,7 +34,6 @@ export default function useIcerikGunu() {
           'musteri_mesaji',
           'musteri_video',
           'business_vibe',
-          'haber_video',
           'seri_face'
         ];
 
@@ -45,8 +44,8 @@ export default function useIcerikGunu() {
 
         if (firstIncompleteIdx !== -1) {
           resumeStep = firstIncompleteIdx + 1;
-        } else if (completed.length >= 8) {
-          resumeStep = 9;
+        } else if (completed.length >= 7) {
+          resumeStep = 8;
         }
 
         update({ 
@@ -105,7 +104,6 @@ export default function useIcerikGunu() {
       'musteri_mesaji',
       'musteri_video',
       'business_vibe',
-      'haber_video',
       'seri_face'
     ];
 
@@ -128,7 +126,7 @@ export default function useIcerikGunu() {
         notify('Atladığınız adıma geri yönlendiriliyorsunuz.', 'info');
       }
     } else {
-      update({ completed: newSteps, loading: false, finishing: true, step: 9 });
+      update({ completed: newSteps, loading: false, finishing: true, step: 8 });
     }
   };
 

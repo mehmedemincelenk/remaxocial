@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Video, RotateCw, ChevronRight, ChevronLeft } from 'lucide-react';
+import { RotateCw, ChevronRight, ChevronLeft, UploadCloud } from 'lucide-react';
 import { supabase } from '../../../../utils/supabaseClient';
 import { GlassCard } from '../../../ortak';
 import { useAppContext } from '../../../../context/AppContext';
@@ -29,7 +29,7 @@ export default function Step6_SeriFace({ sessionId, memberId, onComplete, onPrev
   const handleNext = async () => {
     const file = videoFiles[currentSeri.id];
     if (!file && !uploadedUrls[currentSeri.id]) {
-      return notify('Lütfen bu metin için videonuzu çekin veya yükleyin.', 'error');
+      return notify('Lütfen bu metin için videonuzu yükleyin.', 'error');
     }
 
     setIsSubmitting(true);
@@ -67,7 +67,8 @@ export default function Step6_SeriFace({ sessionId, memberId, onComplete, onPrev
   };
 
   return (
-    <GlassCard padding="1.1rem" borderRadius="18px" style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', position: 'relative' }}>
+    <GlassCard padding="1.1rem" borderRadius="18px" style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', position: 'relative', overflow: 'hidden' }}>
+      
       {onPrev && (
         <button 
           onClick={onPrev} 
@@ -94,51 +95,92 @@ export default function Step6_SeriFace({ sessionId, memberId, onComplete, onPrev
 
       <div style={{ textAlign: 'center' }}>
         <h3 style={{ margin: '0 0 4px 0', color: '#fff', fontSize: '1.15rem' }}>🎬 Seri Face Reels</h3>
-        <p style={{ margin: 0, color: '#aaa', fontSize: '0.75rem' }}>Ayda 5 adet konuşan kafa reels videonuzu çekin.</p>
+        <p style={{ margin: 0, color: '#aaa', fontSize: '0.75rem' }}>Ayda 5 adet konuşan kafa reels videonuzu yükleyin.</p>
       </div>
 
-      <div style={{ background: 'rgba(0,0,0,0.3)', padding: '0.8rem', borderRadius: '12px', position: 'relative', minHeight: '120px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-        <div style={{ position: 'absolute', top: '10px', right: '15px', fontSize: '0.65rem', color: 'var(--color-accent)', fontWeight: 'bold' }}>
+      <div style={{ background: 'rgba(0,0,0,0.3)', padding: '0.8rem', borderRadius: '12px', position: 'relative', minHeight: '100px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+        <div style={{ position: 'absolute', top: '8px', right: '12px', fontSize: '0.62rem', color: 'var(--color-accent)', fontWeight: 'bold' }}>
           Video {activeSlot + 1} / 5
         </div>
-        <div style={{ fontSize: '0.65rem', color: 'var(--color-accent)', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '6px' }}>
-          🗣️ OKUNACAK KONUŞMA METNİ
+        <div style={{ fontSize: '0.62rem', color: '#fff', fontWeight: 'bold', textTransform: 'uppercase', letterSpacing: '0.5px', marginBottom: '4px' }}>
+          🗣️ KONUŞMA METNİ
         </div>
-        <p style={{ color: '#fff', fontSize: '0.76rem', lineHeight: '1.4', margin: 0, fontStyle: 'italic' }}>
-          "{currentSeri.icerik}"
+        <p style={{ color: '#fff', fontSize: '0.75rem', lineHeight: '1.4', margin: 0, fontStyle: 'italic' }}>
+          "{currentSeri?.icerik}"
         </p>
       </div>
 
-      <div style={upStyle}>
+      {/* Spacious Direct Upload Zone */}
+      <div 
+        style={{ 
+          position: 'relative', 
+          width: '100%', 
+          height: '140px', 
+          display: 'flex', 
+          flexDirection: 'column', 
+          alignItems: 'center', 
+          justifyContent: 'center', 
+          background: 'rgba(255, 255, 255, 0.02)', 
+          border: '2px dashed rgba(255, 255, 255, 0.1)', 
+          borderRadius: '16px', 
+          overflow: 'hidden', 
+          cursor: 'pointer', 
+          transition: 'all 0.25s ease' 
+        }}
+        onMouseEnter={e => { 
+          e.currentTarget.style.borderColor = 'var(--color-accent)'; 
+          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.04)'; 
+        }}
+        onMouseLeave={e => { 
+          e.currentTarget.style.borderColor = 'rgba(255, 255, 255, 0.1)'; 
+          e.currentTarget.style.background = 'rgba(255, 255, 255, 0.02)'; 
+        }}
+      >
         <input 
           type="file" 
           accept="video/*" 
-          capture="user" 
           onChange={e => setVideoFiles(p => ({ ...p, [currentSeri.id]: e.target.files[0] }))} 
           style={{ position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', zIndex: 5 }} 
         />
-        <Video size={20} color={videoFiles[currentSeri.id] || uploadedUrls[currentSeri.id] ? 'var(--color-accent)' : '#444'} />
-        <span style={{ fontSize: '0.75rem', fontWeight: 'bold', color: videoFiles[currentSeri.id] || uploadedUrls[currentSeri.id] ? '#fff' : '#888' }}>
-          {videoFiles[currentSeri.id] || uploadedUrls[currentSeri.id] ? 'Video Hazır (Değiştir)' : 'Videoyu Çek veya Yükle'}
-        </span>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.6rem', color: '#aaa', textAlign: 'center', padding: '1rem' }}>
+          <div style={{ width: '48px', height: '48px', borderRadius: '50%', background: 'rgba(255,255,255,0.04)', display: 'flex', alignItems: 'center', justifyContent: 'center', border: '1px solid rgba(255,255,255,0.06)' }}>
+            <UploadCloud size={24} color="var(--color-accent)" />
+          </div>
+          <div>
+            <p style={{ margin: 0, fontSize: '0.8rem', color: '#fff', fontWeight: '700' }}>Video Seç veya Sürükle</p>
+            <p style={{ margin: '2px 0 0 0', fontSize: '0.65rem', color: '#666' }}>Maksimum 50MB, MP4 veya MOV</p>
+          </div>
+        </div>
       </div>
 
-      <div style={{ display: 'flex', gap: '0.6rem', width: '100%' }}>
-        <button 
-          onClick={() => onComplete('seri_face_skipped')} 
-          style={{ width: '60px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#aaa', cursor: 'pointer', fontWeight: '600', fontSize: '0.85rem', flexShrink: 0 }}
-        >
-          Atla
-        </button>
+      {/* Success Indicator for selected/recorded video */}
+      {currentSeri && (videoFiles[currentSeri.id] || uploadedUrls[currentSeri.id]) && (
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', background: 'rgba(34,197,94,0.08)', border: '1px solid rgba(34,197,94,0.2)', padding: '0.5rem 0.8rem', borderRadius: '10px' }}>
+          <span style={{ color: 'var(--color-accent)', fontSize: '0.78rem' }}>✅</span>
+          <span style={{ fontSize: '0.72rem', color: '#fff', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {videoFiles[currentSeri.id] ? videoFiles[currentSeri.id].name : 'Yüklenen Video Hazır'}
+          </span>
+          <button 
+            onClick={() => {
+              setVideoFiles(p => { const copy = { ...p }; delete copy[currentSeri.id]; return copy; });
+              setUploadedUrls(p => { const copy = { ...p }; delete copy[currentSeri.id]; return copy; });
+            }}
+            style={{ background: 'transparent', border: 'none', color: '#ff4d4d', cursor: 'pointer', fontSize: '0.72rem', fontWeight: 'bold' }}
+          >
+            Sil
+          </button>
+        </div>
+      )}
+
+      <div style={{ display: 'flex', gap: '0.6rem', width: '100%', marginTop: '0.4rem' }}>
         <button onClick={handleRefresh} style={secStyle} title="Metni Değiştir"><RotateCw size={16} /></button>
         <button onClick={handleNext} disabled={isSubmitting} style={primStyle}>
-          {isSubmitting ? '...' : (activeSlot === 4 ? 'Gönder ve Oturumu Tamamla' : `Onayla ve ${activeSlot + 2}. Videoya Geç`)} <ChevronRight size={18} />
+          {isSubmitting ? '...' : (activeSlot === 4 ? 'Gönder' : 'Onayla')} <ChevronRight size={18} />
         </button>
       </div>
     </GlassCard>
   );
 }
 
-const upStyle = { position: 'relative', width: '100%', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '0.8rem', cursor: 'pointer', color: '#888', fontSize: '0.8rem', gap: '0.4rem' };
-const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0 };
-const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.85rem' };
+const secStyle = { width: '42px', height: '42px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', borderRadius: '12px', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0, whiteSpace: 'nowrap' };
+const primStyle = { flex: 1, height: '42px', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', cursor: 'pointer', fontSize: '0.85rem', whiteSpace: 'nowrap' };

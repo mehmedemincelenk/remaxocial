@@ -17,6 +17,7 @@ export default function Step8_SatildiKiralandi({ sessionId, memberId, onComplete
   const [selectedTypes, setSelectedTypes] = useState([]);
   const [coverFile, setCoverFile] = useState(null);
   const [extraFiles, setExtraFiles] = useState([]);
+  const [transactions, setTransactions] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleExtraFilesChange = (e) => {
@@ -28,67 +29,120 @@ export default function Step8_SatildiKiralandi({ sessionId, memberId, onComplete
     setExtraFiles(prev => prev.filter((_, i) => i !== index));
   };
 
-  const handleSave = async () => {
+  const handleAddTransaction = () => {
     if (selectedTypes.length === 0) return notify('Lütfen en az bir konut tipi seçin.', 'error');
     if (!form.sehir.trim()) return notify('Lütfen şehir girin.', 'error');
     if (!form.semt.trim()) return notify('Lütfen semt girin.', 'error');
     if (!coverFile) return notify('Lütfen en iyi görseli (kapak) seçin.', 'error');
 
+    const newTx = {
+      id: Date.now(),
+      form: { ...form },
+      selectedTypes: [...selectedTypes],
+      coverFile,
+      extraFiles: [...extraFiles]
+    };
+
+    setTransactions(prev => [...prev, newTx]);
+
+    // Reset Form
+    setForm({
+      sehir: '',
+      semt: '',
+      sure: '',
+      type: 'satildi',
+      hasAds: true,
+      musteriYorumu: ''
+    });
+    setSelectedTypes([]);
+    setCoverFile(null);
+    setExtraFiles([]);
+    notify('İşlem eklendi! Yenisini ekleyebilir ya da alttan kaydedip ilerleyebilirsiniz.', 'success');
+  };
+
+  const handleSave = async () => {
+    let listToUpload = [...transactions];
+
+    // If they have nothing added, but they filled out the form, add it automatically
+    if (listToUpload.length === 0) {
+      if (selectedTypes.length > 0 || form.sehir.trim() || form.semt.trim() || coverFile) {
+        if (selectedTypes.length === 0) return notify('Lütfen konut tipi seçin.', 'error');
+        if (!form.sehir.trim()) return notify('Lütfen şehir girin.', 'error');
+        if (!form.semt.trim()) return notify('Lütfen semt girin.', 'error');
+        if (!coverFile) return notify('Lütfen kapak görseli seçin.', 'error');
+        
+        listToUpload.push({
+          id: Date.now(),
+          form: { ...form },
+          selectedTypes: [...selectedTypes],
+          coverFile,
+          extraFiles: [...extraFiles]
+        });
+      }
+    }
+
+    if (listToUpload.length === 0) {
+      return onComplete('satildi_kiralandi_skipped');
+    }
+
     setIsSubmitting(true);
     try {
       const ay = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`;
 
-      // 1. Upload Cover Image
-      const coverFileName = `${memberId}-${Date.now()}-cover.${coverFile.name.split('.').pop()}`;
-      const coverFilePath = `${ay}/${coverFileName}`;
-      let coverUrl = '';
-      
-      try {
-        await supabase.storage.from('test-victory-images').upload(coverFilePath, coverFile);
-        const { data } = supabase.storage.from('test-victory-images').getPublicUrl(coverFilePath);
-        coverUrl = data?.publicUrl || '';
-      } catch {
-        await supabase.storage.from('test-business-vibe').upload(coverFilePath, coverFile);
-        const { data } = supabase.storage.from('test-business-vibe').getPublicUrl(coverFilePath);
-        coverUrl = data?.publicUrl || '';
-      }
-
-      // 2. Upload Extra Images
-      const extraUrls = [];
-      for (let i = 0; i < extraFiles.length; i++) {
-        const file = extraFiles[i];
-        const extraFileName = `${memberId}-${Date.now()}-extra-${i}.${file.name.split('.').pop()}`;
-        const extraFilePath = `${ay}/${extraFileName}`;
+      for (const tx of listToUpload) {
+        // 1. Upload Cover Image
+        const coverFileName = `${memberId}-${Date.now()}-cover.${tx.coverFile.name.split('.').pop()}`;
+        const coverFilePath = `${ay}/${coverFileName}`;
+        let coverUrl = '';
         
         try {
-          await supabase.storage.from('test-victory-images').upload(extraFilePath, file);
-          const { data } = supabase.storage.from('test-victory-images').getPublicUrl(extraFilePath);
-          if (data?.publicUrl) extraUrls.push(data.publicUrl);
+          await supabase.storage.from('test-victory-images').upload(coverFilePath, tx.coverFile);
+          const { data } = supabase.storage.from('test-victory-images').getPublicUrl(coverFilePath);
+          coverUrl = data?.publicUrl || '';
         } catch {
-          await supabase.storage.from('test-business-vibe').upload(extraFilePath, file);
-          const { data } = supabase.storage.from('test-business-vibe').getPublicUrl(extraFilePath);
-          if (data?.publicUrl) extraUrls.push(data.publicUrl);
+          await supabase.storage.from('test-business-vibe').upload(coverFilePath, tx.coverFile);
+          const { data } = supabase.storage.from('test-business-vibe').getPublicUrl(coverFilePath);
+          coverUrl = data?.publicUrl || '';
         }
+
+        // 2. Upload Extra Images
+        const extraUrls = [];
+        for (let i = 0; i < tx.extraFiles.length; i++) {
+          const file = tx.extraFiles[i];
+          const extraFileName = `${memberId}-${Date.now()}-extra-${i}.${file.name.split('.').pop()}`;
+          const extraFilePath = `${ay}/${extraFileName}`;
+          
+          try {
+            await supabase.storage.from('test-victory-images').upload(extraFilePath, file);
+            const { data } = supabase.storage.from('test-victory-images').getPublicUrl(extraFilePath);
+            if (data?.publicUrl) extraUrls.push(data.publicUrl);
+          } catch {
+            await supabase.storage.from('test-business-vibe').upload(extraFilePath, file);
+            const { data } = supabase.storage.from('test-business-vibe').getPublicUrl(extraFilePath);
+            if (data?.publicUrl) extraUrls.push(data.publicUrl);
+          }
+        }
+
+        // 3. Write to test_victory_uploads or fallback table
+        const payload = {
+          session_id: sessionId,
+          member_id: memberId,
+          baslik: tx.selectedTypes.join(', '),
+          konum: `${tx.form.sehir} / ${tx.form.semt}`,
+          sure: tx.form.sure,
+          type: tx.form.type,
+          has_ads: tx.form.hasAds,
+          musteri_yorumgu: tx.form.musteriYorumu,
+          musteri_adi: '',
+          cover_url: coverUrl,
+          images_urls: extraUrls,
+          cta_type: 'none',
+          ay
+        };
+
+        await supabase.from('test_victory_uploads').insert([payload]);
       }
 
-      // 3. Write to test_victory_uploads or fallback table
-      const payload = {
-        session_id: sessionId,
-        member_id: memberId,
-        baslik: selectedTypes.join(', '),
-        konum: `${form.sehir} / ${form.semt}`,
-        sure: form.sure,
-        type: form.type,
-        has_ads: form.hasAds,
-        musteri_yorumgu: form.musteriYorumu,
-        musteri_adi: '',
-        cover_url: coverUrl,
-        images_urls: extraUrls,
-        cta_type: 'none',
-        ay
-      };
-
-      await supabase.from('test_victory_uploads').insert([payload]);
       onComplete('satildi_kiralandi');
     } catch (e) { 
       onComplete('satildi_kiralandi');
@@ -96,6 +150,10 @@ export default function Step8_SatildiKiralandi({ sessionId, memberId, onComplete
       setIsSubmitting(false); 
     }
   };
+
+  // Determine button state: "Ekle" or "Kaydet ve İlerle"
+  const hasFormInput = selectedTypes.length > 0 || form.sehir.trim() || form.semt.trim() || coverFile;
+  const isAddMode = hasFormInput || transactions.length === 0;
 
   return (
     <GlassCard padding="1rem" borderRadius="18px" style={{ display: 'flex', flexDirection: 'column', gap: '0.65rem', color: '#fff', border: '1px solid rgba(255,255,255,0.06)', position: 'relative' }}>
@@ -136,7 +194,7 @@ export default function Step8_SatildiKiralandi({ sessionId, memberId, onComplete
           <button
             onClick={() => setForm(p => ({ ...p, type: 'satildi' }))}
             style={{
-              flex: 1, padding: '6px 8px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.72rem',
+              flex: 1, padding: '6px 8px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.72rem',
               background: form.type === 'satildi' ? 'rgba(255,255,255,0.12)' : 'transparent',
               color: form.type === 'satildi' ? '#fff' : '#666',
               border: form.type === 'satildi' ? '1px solid rgba(255,255,255,0.2)' : '1px solid transparent',
@@ -148,7 +206,7 @@ export default function Step8_SatildiKiralandi({ sessionId, memberId, onComplete
           <button
             onClick={() => setForm(p => ({ ...p, type: 'kiralandi' }))}
             style={{
-              flex: 1, padding: '6px 8px', borderRadius: '8px', border: 'none', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.72rem',
+              flex: 1, padding: '6px 8px', borderRadius: '8px', cursor: 'pointer', fontWeight: 'bold', fontSize: '0.72rem',
               background: form.type === 'kiralandi' ? 'rgba(255,255,255,0.12)' : 'transparent',
               color: form.type === 'kiralandi' ? '#fff' : '#666',
               border: form.type === 'kiralandi' ? '1px solid rgba(255,255,255,0.2)' : '1px solid transparent',
@@ -264,6 +322,26 @@ export default function Step8_SatildiKiralandi({ sessionId, memberId, onComplete
 
       </div>
 
+      {/* Added Transactions List Panel */}
+      {transactions.length > 0 && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem', background: 'rgba(0,0,0,0.2)', padding: '0.6rem', borderRadius: '10px', maxHeight: '110px', overflowY: 'auto' }}>
+          <div style={{ fontSize: '0.65rem', color: '#888', fontWeight: 'bold' }}>EKLENEN İŞLEMLER ({transactions.length})</div>
+          {transactions.map((tx) => (
+            <div key={tx.id} style={{ display: 'flex', alignItems: 'center', background: 'rgba(255,255,255,0.02)', padding: '4px 8px', borderRadius: '6px', gap: '6px' }}>
+              <span style={{ fontSize: '0.72rem', color: '#fff', flex: 1, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+                🏠 {tx.selectedTypes.join(', ')} ({tx.form.sehir} / {tx.form.semt}) - {tx.form.type === 'satildi' ? 'Satıldı' : 'Kiralandı'}
+              </span>
+              <button 
+                onClick={() => setTransactions(prev => prev.filter(x => x.id !== tx.id))} 
+                style={{ background: 'rgba(255,77,77,0.15)', border: 'none', borderRadius: '6px', color: '#ff4d4d', width: '22px', height: '22px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', flexShrink: 0, fontSize: '0.65rem' }}
+              >
+                🗑️
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Actions */}
       <div style={{ display: 'flex', gap: '0.6rem', marginTop: '0.3rem' }}>
         <button 
@@ -273,17 +351,17 @@ export default function Step8_SatildiKiralandi({ sessionId, memberId, onComplete
           Atla
         </button>
         <button 
-          onClick={handleSave} 
+          onClick={isAddMode ? handleAddTransaction : handleSave} 
           disabled={isSubmitting} 
           style={{ flex: 2, padding: '8px', background: 'var(--color-accent)', border: 'none', borderRadius: '10px', color: '#000', fontWeight: 'bold', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.8rem' }}
         >
-          {isSubmitting ? '...' : 'Kaydet ve İlerle'}
+          {isSubmitting ? '...' : (isAddMode ? 'Ekle' : 'Kaydet ve İlerle')}
         </button>
       </div>
     </GlassCard>
   );
 }
 
-const inputStyle = { width: '100%', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.08)', padding: '8px 12px', borderRadius: '10px', color: '#fff', outline: 'none', fontSize: '0.78rem' };
-const uploadBoxStyle = (active) => ({ position: 'relative', width: '100%', background: active ? 'rgba(74,222,128,0.02)' : 'rgba(255,255,255,0.01)', border: active ? '1px dashed #4ADE80' : '1px dashed rgba(255,255,255,0.08)', borderRadius: '10px', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '6px 12px', cursor: 'pointer', color: '#888', fontSize: '0.72rem', gap: '6px', height: '36px', transition: 'all 0.3s' });
-const fileInputStyle = { position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer' };
+const inputStyle = { background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: '10px', padding: '6px 10px', color: '#fff', fontSize: '0.75rem', outline: 'none', width: '100%', boxSizing: 'border-box' };
+const uploadBoxStyle = (active) => ({ border: '1px dashed rgba(255,255,255,0.15)', background: 'rgba(255,255,255,0.01)', borderRadius: '10px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '6px', cursor: 'pointer', gap: '4px', height: '42px', boxSizing: 'border-box' });
+const fileInputStyle = { position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer', zIndex: 10 };

@@ -65,7 +65,7 @@ export default function Step4_BusinessVibe({ sessionId, memberId, onComplete, on
           Atla
         </button>
         <button onClick={handleSave} disabled={isSubmitting} style={{ ...btnStyle, flex: 2, marginTop: 0 }}>
-          {isSubmitting ? '...' : 'Gönder ve İlerle'}
+          {isSubmitting ? '...' : 'Gönder'}
         </button>
       </div>
     </GlassCard>
@@ -74,4 +74,4 @@ export default function Step4_BusinessVibe({ sessionId, memberId, onComplete, on
 
 const uploadBoxStyle = { position: 'relative', width: '100%', background: 'rgba(255,255,255,0.02)', border: '1px dashed rgba(255,255,255,0.2)', borderRadius: '12px', display: 'flex', flexDirection: 'column', alignItems: 'center', padding: '1rem', cursor: 'pointer', color: '#888', fontSize: '0.8rem', gap: '0.4rem' };
 const fileInputStyle = { position: 'absolute', inset: 0, opacity: 0, cursor: 'pointer' };
-const btnStyle = { width: '100%', marginTop: '0.25rem', padding: '0.65rem', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem' };
+const btnStyle = { width: '100%', marginTop: '0.25rem', padding: '0.65rem', background: 'var(--color-accent)', border: 'none', borderRadius: '12px', color: '#000', fontWeight: 'bold', cursor: 'pointer', fontSize: '0.85rem', whiteSpace: 'nowrap' };

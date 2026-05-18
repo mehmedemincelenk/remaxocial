@@ -7,16 +7,15 @@ import * as Steps from './steps/FlowSteps';
 export default function IcerikGunuFlow() {
   const h = useIcerikGunu();
   const stepList = [
-    Steps.Step1_AltinBilgiler,
+    Steps.Step1_SicakVeriHaberler,
     Steps.Step7_StoryAnket,
     Steps.Step8_SatildiKiralandi, // 3. Adım: Satıldı / Kiralandı Başarı İlanı
     Steps.Step2_MusteriMesaji,
     Steps.Step3_MusteriVideosu,
     Steps.Step4_BusinessVibe,
-    Steps.Step5_HaberReels,
     Steps.Step6_SeriFace
   ];
-  const ActiveStep = h.step > 0 && h.step <= 8 ? stepList[h.step - 1] : null;
+  const ActiveStep = h.step > 0 && h.step <= 7 ? stepList[h.step - 1] : null;
 
   if (h.loading && h.step === 0) return <div style={centerStyle}><Loader2 className="animate-spin" color="#fff" /></div>;
 
@@ -41,7 +40,7 @@ export default function IcerikGunuFlow() {
     </div>
   );
 
-  if (h.step === 9) return (
+  if (h.step === 8) return (
     <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} style={centerStyle}>
       <GlassCard padding="3rem" borderRadius="30px" style={{ textAlign: 'center' }}>
         <CheckCircle2 size={64} color="var(--color-accent)" style={{ margin: '0 auto 1.5rem' }} />
